@@ -1,11 +1,13 @@
-@import '../variables';
+@import '../variables.scss';
 
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
+  gap: 10px;
 
   .container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
   }
