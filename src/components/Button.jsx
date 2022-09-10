@@ -1,4 +1,4 @@
-function Button({onClick, outline, children, className}) {
+function Button({onClick}) {
   return (
     <button className="button button--cart" onClick={onClick}>
       <span>520 ₽</span>
