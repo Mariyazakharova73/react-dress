@@ -2,30 +2,35 @@ import React from 'react';
 import Header from './components/Header';
 import Categories from './components/Categories';
 import Sort from './components/Sort';
+// import Spinner from './components/Spinner';
 import PizzaBlock from './components/PizzaBlock';
+import Skeleton from './components/Skeleton';
 
 function App() {
+  const [pizzas, setPizzas] = React.useState([]);
+  const [loading, setLoading] = React.useState([]);
+
+  React.useEffect(() => {
+    setLoading(true);
+    fetch('https://631cd2604fa7d3264cb78455.mockapi.io/items')
+      .then((response) => response.json())
+      .then((res) => {
+        setPizzas(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
         <div className="container">
-          <div className="content__top">
-            <Categories />
-            <Sort />
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className="content__items">
-            <PizzaBlock title="Мексиканская" price='500'/>
-            <PizzaBlock title="Маргарита" price='450'/>
-            <PizzaBlock title="Четыре сыра" price='450'/>
-            <PizzaBlock title="Неаполетано" price='600'/>
-            <PizzaBlock title="Римская" price='450'/>
-            <PizzaBlock title="Сардиния" price='430'/>
-            <PizzaBlock title="Фермерская" price='550'/>
-            <PizzaBlock title="Монтанара" price='650'/>
-            <PizzaBlock title="Карбонара" price='450'/>
-          </div>
+
         </div>
       </div>
     </div>

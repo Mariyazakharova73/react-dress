@@ -1,4 +1,4 @@
-<!-- # react-movies
+# react-pizza
 
 ### Обзор
 
@@ -10,7 +10,7 @@
 
 **Описание проекта**
 
-Проект "Место" на React.
+Проект "react-pizza".
 
 **Технологии и инструменты**
 
@@ -18,30 +18,24 @@
 * CSS3
 * Java Script
 * React
+* Redux
 * SPA
-* создана файловая структура по БЭМ (Nested)
-* реализована адаптивная верстка
+* https://mockapi.io/
+
 
 **Функции**
 
-* информация о пользователе, карточки, количество лайков загружаютя с сервера;
-* реализовано редактирование данных профиля, добавление новой карточки, удаление карточки владельца, постановка и снятие лайка;
-* отредактированные данные сохраняются на сервере;
+* 
+* 
+* 
 
 **Начало работы**
 
 npm install <br/>
 npm start <br/>
-Работа с gh-pages.<br/>
-"homepage": "http://{username}.github.io/{repo-name}"<br/>
-"scripts": {
-//...<br/>
-"predeploy": "npm run build",<br/>
-"deploy": "gh-pages -d build"<br/>
-}<br/>
-npm install gh-pages --save-dev <br/>
+Работа с gh-pages:<br/>
 npm run deploy <br/>
 
 **Cсылка на страницу проекта**
 
-* [Ссылка: "Место"](https://mariyazakharova73.github.io/mesto-react/) -->
+* [Ссылка: "react-pizza"]()
