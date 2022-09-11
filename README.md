@@ -20,12 +20,13 @@
 * React
 * Redux
 * SPA
+* react-router6
 * https://mockapi.io/
 
 
 **Функции**
 
-* 
+* Добавление товара в корзину
 * 
 * 
 

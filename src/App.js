@@ -1,37 +1,20 @@
 import React from 'react';
 import Header from './components/Header';
-import Categories from './components/Categories';
-import Sort from './components/Sort';
-// import Spinner from './components/Spinner';
-import PizzaBlock from './components/PizzaBlock';
-import Skeleton from './components/Skeleton';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Cart from './pages/Cart';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [pizzas, setPizzas] = React.useState([]);
-  const [loading, setLoading] = React.useState([]);
-
-  React.useEffect(() => {
-    setLoading(true);
-    fetch('https://631cd2604fa7d3264cb78455.mockapi.io/items')
-      .then((response) => response.json())
-      .then((res) => {
-        setPizzas(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
-        <div className="container">
-
-        </div>
+          <Routes>
+            <Route path="/" element={<Home/>}></Route>
+            <Route path="/cart" element={<Cart/>}></Route>
+            <Route path="*" element={<NotFound/>}></Route>
+          </Routes>
       </div>
     </div>
   );

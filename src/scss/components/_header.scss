@@ -10,6 +10,14 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 650px) {
+      flex-direction: column;
+
+      .header__cart {
+        margin-top: 10px;
+      }
+    }
   }
 
   &__logo {
