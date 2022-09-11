@@ -39,4 +39,4 @@ npm run deploy <br/>
 
 **Cсылка на страницу проекта**
 
-* [Ссылка: "react-pizza"]()
+* [Ссылка: "react-pizza"](https://mariyazakharova73.github.io/react-pizza/)
