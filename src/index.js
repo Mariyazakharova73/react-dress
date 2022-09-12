@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import '../src/scss/app.scss';
 import App from './App';

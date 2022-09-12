@@ -12,8 +12,6 @@ const Home = () => {
 
   React.useEffect(() => {
     setLoading(true);
-
-
 const sortBy =sortType.sortProperty.replace('-', '');
 const order = sortType.sortProperty.includes('-') ? 'asc' :'desc';
 const category = categoryId > 0 ? `category=${categoryId}` : ''
