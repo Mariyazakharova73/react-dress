@@ -22,5 +22,21 @@
   opacity: .3;
   position: absolute;
   left: 14px;
-  top: 14px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.clearIcon{
+  width: 25px;
+  height: 25px;
+  opacity: .3;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translate(0, -50%);
+  cursor: pointer;
+
+  &:hover {
+    opacity: .8;
+  }
 }

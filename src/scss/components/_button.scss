@@ -12,6 +12,7 @@
   border: 1px solid transparent;
   @include noselect();
 
+
   &,
   span {
     color: #fff;
@@ -56,6 +57,7 @@
   &--outline {
     background-color: #fff;
     border-color: $orange;
+
     &,
     span {
       color: $orange;
