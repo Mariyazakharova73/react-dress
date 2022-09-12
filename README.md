@@ -18,17 +18,17 @@
 * CSS3
 * Java Script
 * React
-* Redux
+* Redux Toolkit
 * SPA
 * react-router6
 * https://mockapi.io/
-
+* Пагинация
 
 **Функции**
 
 * Добавление товара в корзину
-* 
-* 
+* Сортировка товара
+* Поиск товора
 
 **Начало работы**
 
