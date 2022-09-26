@@ -1,30 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-// export interface CounterState {
-//   value: number
-// }
 
 const initialState = {
-  count: 0,
-}
+  categoryId: 0 ,
+  sortType: {
+    name: 'популярности',
+    sortProperty: 'raiting',
+  },
+};
 
+//{name: 'filters', actions: {…}, caseReducers: {…}, reducer: ƒ, getInitialState: ƒ}
 export const filterSlice = createSlice({
-  name: 'filter',
+  name: 'filters',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.count += 1
+    setCaregoryId(state, action) {
+      state.categoryId = action.payload;
     },
-    decrement: (state) => {
-      state.count -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.count += action.payload
-    },
-  },
-})
+    setSortType(state, action) {
+      state.sortType = action.payload;
+    }
+  }
+});
 
-export const { increment, decrement, incrementByAmount } = filterSlice.actions
+export const { setCaregoryId, setSortType } = filterSlice.actions;
 
-export default filterSlice.reducer
+export default filterSlice.reducer;

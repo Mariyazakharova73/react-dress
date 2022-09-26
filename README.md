@@ -17,8 +17,9 @@
 * HTML5
 * CSS3
 * Java Script
-* React
-* Redux Toolkit
+* react
+* react-redux
+* redux toolkit
 * SPA
 * react-router6
 * https://mockapi.io/

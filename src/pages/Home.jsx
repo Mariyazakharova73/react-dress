@@ -6,14 +6,29 @@ import Skeleton from '../components/Skeleton';
 import Pagination from '../components/Pagination';
 import { SearchContext } from '../App.js';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setCaregoryId } from '../redux/slices/filterSlice';
+
 const Home = () => {
+  const dispatch = useDispatch();
+  //берем данные из store
+  // const categoryId = useSelector((state) => state.filter.categoryId);
+  // const sortType = useSelector((state) => state.filter.sortType);
+
+  const { categoryId, sortType } = useSelector((state) => state.filter);
+
+  const onClickCategory = (id) => {
+    dispatch(setCaregoryId(id));
+    // console.log(setCaregoryId(id))
+    // {type: 'filters/setCaregoryId', payload: 1}
+  };
+
   const { searchValue } = React.useContext(SearchContext);
   const [pizzas, setPizzas] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const [categoryId, setCategoryId] = React.useState([]);
-  const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'raiting' });
+  // const [categoryId, setCategoryId] = React.useState([]);
+  // const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'raiting' });
   const [numberPage, setNumberPage] = React.useState(1);
-
   React.useEffect(() => {
     setLoading(true);
     const sortBy = sortType.sortProperty.replace('-', '');
@@ -50,8 +65,8 @@ const Home = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories categoryId={categoryId} onClickCategory={(id) => setCategoryId(id)} />
-        <Sort sortType={sortType} onClickSort={(obj) => setSortType(obj)} />
+        <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
+        <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{loading ? skeletons : arr}</div>
