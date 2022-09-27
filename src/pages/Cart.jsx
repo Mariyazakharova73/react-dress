@@ -83,9 +83,9 @@ const Cart = () => {
         <div className="cart__item">
           <div className="cart__item-img">
             <img
-              className="pizza-block__image"
-              src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-              alt="Pizza"
+              className="dress-block__image"
+              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              alt="dress"
             />
           </div>
           <div className="cart__item-info">
@@ -158,9 +158,9 @@ const Cart = () => {
         <div className="cart__item">
           <div className="cart__item-img">
             <img
-              className="pizza-block__image"
-              src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-              alt="Pizza"
+              className="dress-block__image"
+              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              alt="dress"
             />
           </div>
           <div className="cart__item-info">
@@ -233,9 +233,9 @@ const Cart = () => {
         <div className="cart__item">
           <div className="cart__item-img">
             <img
-              className="pizza-block__image"
-              src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-              alt="Pizza"
+              className="dress-block__image"
+              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              alt="dress"
             />
           </div>
           <div className="cart__item-info">
@@ -308,9 +308,9 @@ const Cart = () => {
         <div className="cart__item">
           <div className="cart__item-img">
             <img
-              className="pizza-block__image"
-              src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-              alt="Pizza"
+              className="dress-block__image"
+              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              alt="dress"
             />
           </div>
           <div className="cart__item-info">
@@ -393,7 +393,7 @@ const Cart = () => {
           </span>
         </div>
         <div className="cart__bottom-buttons">
-          <Link to="/react-pizza" className="button button--outline button--add go-back-btn">
+          <Link to="/react-dress" className="button button--outline button--add go-back-btn">
             <svg
               width="8"
               height="14"

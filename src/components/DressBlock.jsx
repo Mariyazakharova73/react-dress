@@ -1,18 +1,19 @@
 import React from 'react';
 
-function PizzaBlock({ title, price, imageUrl, sizes, types }) {
+function DressBlock({ title, price, imageUrl, sizes, types }) {
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
 
-  const typeNames = ['тонкое', 'традиционное'];
+  const typeNames = ['светлое', 'темное'];
 
   return (
-    <div className="pizza-block-wrapper">
-      <div className="pizza-block">
-        <img className="pizza-block__image" src={imageUrl} alt={`${title}.`} />
-        <h4 className="pizza-block__title">{title}</h4>
-        <div className="pizza-block__selector">
+    <div className="dress-block-wrapper">
+      <div className="dress-block">
+        <img className="dress-block__image" src={imageUrl} alt={`${title}.`} />
+        <h4 className="dress-block__title">{title}</h4>
+        <div className="dress-block__selector">
           <ul>
+            {/* [ 0, 1 ] */}
             {types.map((item, index) => (
               <li
                 onClick={() => setActiveType(item)}
@@ -24,19 +25,20 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
             ))}
           </ul>
           <ul>
+            {/* [ 42, 44, 46 ] */}
             {sizes.map((item, index) => (
               <li
                 onClick={() => setActiveSize(index)}
                 className={activeSize === index ? 'active' : ''}
                 key={index}
               >
-                {item} см.
+                {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="pizza-block__bottom">
-          <div className="pizza-block__price">{price}₽</div>
+        <div className="dress-block__bottom">
+          <div className="dress-block__price">{price}₽</div>
           <button className="button button--outline button--add">
             <svg
               width="12"
@@ -58,4 +60,4 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
     </div>
   );
 }
-export default PizzaBlock;
+export default DressBlock;

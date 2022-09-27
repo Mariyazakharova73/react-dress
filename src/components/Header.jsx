@@ -1,4 +1,4 @@
-import logo from '../images/pizza-logo.svg';
+import logo from '../images/dress.svg'
 import { Link } from 'react-router-dom';
 import Search from './Search/index.jsx';
 
@@ -6,11 +6,11 @@ function Header() {
   return (
     <div className="header">
       <div className="container">
-        <Link to="react-pizza">
+        <Link to="react-dress">
           <div className="header__logo">
-            <img width="38" src={logo} alt="Pizza logo." />
+            <img width="38" src={logo} alt="dress logo." />
             <div>
-              <h1>React Pizza</h1>
+              <h1>React Dress</h1>
             </div>
           </div>
         </Link>

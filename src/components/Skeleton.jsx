@@ -2,21 +2,22 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 
 const Skeleton = () => (
-  <div className="pizza-block-wrapper">
+  <div className="dress-block-wrapper">
     <ContentLoader
-      className="pizza-block"
+      className="dress-block"
       speed={2}
       width={280}
-      height={500}
-      viewBox="0 0 280 500"
+      height={623}
+      viewBox="0 0 280 623"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
     >
-      <circle cx="134" cy="136" r="125" />
-      <rect x="0" y="279" rx="10" ry="10" width="280" height="23" />
-      <rect x="0" y="326" rx="10" ry="10" width="280" height="88" />
-      <rect x="0" y="436" rx="10" ry="10" width="95" height="30" />
-      <rect x="125" y="427" rx="24" ry="24" width="152" height="45" />
+      <rect x="0" y="402" rx="10" ry="10" width="280" height="55" />
+      <rect x="0" y="475" rx="10" ry="10" width="280" height="88" />
+      <rect x="124" y="362" rx="0" ry="0" width="0" height="12" />
+      <rect x="2" y="585" rx="10" ry="10" width="95" height="30" />
+      <rect x="0" y="0" rx="0" ry="0" width="280" height="390" />
+      <rect x="127" y="573" rx="10" ry="10" width="153" height="45" />
     </ContentLoader>
   </div>
 );

@@ -1,4 +1,4 @@
-# react-pizza
+# react-dress
 
 ### Обзор
 
@@ -10,7 +10,7 @@
 
 **Описание проекта**
 
-Проект "react-pizza".
+Проект "react-dress".
 
 **Технологии и инструменты**
 
@@ -42,4 +42,4 @@ npm run deploy <br/>
 
 **Cсылка на страницу проекта**
 
-* [Ссылка: "react-pizza"](https://mariyazakharova73.github.io/react-pizza/)
+* [Ссылка: "react-dress"](https://mariyazakharova73.github.io/react-dress/)

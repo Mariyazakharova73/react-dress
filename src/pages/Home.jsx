@@ -1,9 +1,9 @@
 import React from 'react';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock';
+import PizzaBlock from '../components/DressBlock';
 import Skeleton from '../components/Skeleton';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/Pagination/Pagination';
 import { SearchContext } from '../App.js';
 import axios from 'axios';
 import qs from 'qs';
@@ -16,14 +16,14 @@ const Home = () => {
   const navigate = useNavigate();
   const { categoryId, sortType, currentPage } = useSelector((state) => state.filter);
   const { searchValue } = React.useContext(SearchContext);
-  const [pizzas, setPizzas] = React.useState([]);
+  const [dress, setDress] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   // const [categoryId, setCategoryId] = React.useState([]);
   // const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'raiting' });
   // const [numberPage, setNumberPage] = React.useState(1);
 
-  const onClickCategory = (id) => {
-    dispatch(setCaregoryId(id));
+  const onClickCategory = (category) => {
+    dispatch(setCaregoryId(category));
     // console.log(setCaregoryId(id))
     // {type: 'filters/setCaregoryId', payload: 1}
   };
@@ -40,7 +40,7 @@ const Home = () => {
       currentPage,
     });
     navigate(`?${string}`);
-    console.log(string);
+    // console.log(string);
   }, [categoryId, sortType.sortProperty, currentPage]);
 
   //ПИЦЦЫ
@@ -53,10 +53,10 @@ const Home = () => {
 
     axios
       .get(
-        `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+        `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=10&${category}&sortBy=${sortBy}&order=${order}${search}`
       )
       .then((res) => {
-        setPizzas(res.data);
+        setDress(res.data);
         setLoading(false);
       });
     window.scrollTo(0, 0);
@@ -69,7 +69,7 @@ const Home = () => {
   //     return false;
   //   }
   // });
-  const arr = pizzas.map((item) => <PizzaBlock key={item.id} {...item} />);
+  const arr = dress.map((item) => <PizzaBlock key={item.id} {...item} />);
   const skeletons = [...new Array(4)].map((item, index) => <Skeleton key={index} />);
 
   return (
@@ -78,9 +78,9 @@ const Home = () => {
         <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Все платья</h2>
       <div className="content__items">{loading ? skeletons : arr}</div>
-      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      {/* <Pagination currentPage={currentPage} onChangePage={onChangePage} /> */}
     </div>
   );
 };

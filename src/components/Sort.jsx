@@ -9,6 +9,7 @@ const list = [
 ];
 
 function Sort() {
+
   const [isVisible, setIsVisible] = React.useState(false);
   const dispatch = useDispatch();
   const sortType = useSelector((state) => state.filter.sortType);
