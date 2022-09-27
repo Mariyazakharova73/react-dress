@@ -12,11 +12,14 @@ import { setCaregoryId, setCurrentPage } from '../redux/slices/filterSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
-  //берем данные из store
-  // const categoryId = useSelector((state) => state.filter.categoryId);
-  // const sortType = useSelector((state) => state.filter.sortType);
-
   const { categoryId, sortType, currentPage } = useSelector((state) => state.filter);
+
+  const { searchValue } = React.useContext(SearchContext);
+  const [pizzas, setPizzas] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  // const [categoryId, setCategoryId] = React.useState([]);
+  // const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'raiting' });
+  // const [numberPage, setNumberPage] = React.useState(1);
 
   const onClickCategory = (id) => {
     dispatch(setCaregoryId(id));
@@ -28,32 +31,13 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  const { searchValue } = React.useContext(SearchContext);
-  const [pizzas, setPizzas] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  // const [categoryId, setCategoryId] = React.useState([]);
-  // const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'raiting' });
-  // const [numberPage, setNumberPage] = React.useState(1);
   React.useEffect(() => {
     setLoading(true);
     const sortBy = sortType.sortProperty.replace('-', '');
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
-
-    // fetch(
-    //   `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${numberPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-    // )
-    //   .then((response) => response.json())
-    //   .then((res) => {
-    //     setPizzas(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
+    
     axios
       .get(
         `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
