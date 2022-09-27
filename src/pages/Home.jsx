@@ -1,7 +1,7 @@
 import React from 'react';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
-import PizzaBlock from '../components/DressBlock';
+import DressBlock from '../components/DressBlock';
 import Skeleton from '../components/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
 import { SearchContext } from '../App.js';
@@ -69,7 +69,7 @@ const Home = () => {
   //     return false;
   //   }
   // });
-  const arr = dress.map((item) => <PizzaBlock key={item.id} {...item} />);
+  const arr = dress.map((item) => <DressBlock key={item.id} {...item} />);
   const skeletons = [...new Array(4)].map((item, index) => <Skeleton key={index} />);
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DressBlock({ title, price, imageUrl, sizes, types }) {
+function DressBlock({ title, price, imageUrl, sizes, types, imageUrl2 }) {
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
 
@@ -9,7 +9,11 @@ function DressBlock({ title, price, imageUrl, sizes, types }) {
   return (
     <div className="dress-block-wrapper">
       <div className="dress-block">
-        <img className="dress-block__image" src={imageUrl} alt={`${title}.`} />
+        <img
+          className="dress-block__image"
+          src={!activeType ? imageUrl : imageUrl2}
+          alt={`${title}.`}
+        />
         <h4 className="dress-block__title">{title}</h4>
         <div className="dress-block__selector">
           <ul>
