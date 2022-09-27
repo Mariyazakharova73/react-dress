@@ -6,14 +6,15 @@ import Skeleton from '../components/Skeleton';
 import Pagination from '../components/Pagination';
 import { SearchContext } from '../App.js';
 import axios from 'axios';
-
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCaregoryId, setCurrentPage } from '../redux/slices/filterSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { categoryId, sortType, currentPage } = useSelector((state) => state.filter);
-
   const { searchValue } = React.useContext(SearchContext);
   const [pizzas, setPizzas] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -31,13 +32,25 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
+  //В АДРЕСНУЮ СТРОКУ
+  React.useEffect(() => {
+    const string = qs.stringify({
+      sortProperty: sortType.sortProperty,
+      categoryId,
+      currentPage,
+    });
+    navigate(`?${string}`);
+    console.log(string);
+  }, [categoryId, sortType.sortProperty, currentPage]);
+
+  //ПИЦЦЫ
   React.useEffect(() => {
     setLoading(true);
     const sortBy = sortType.sortProperty.replace('-', '');
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
-    
+
     axios
       .get(
         `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
@@ -47,7 +60,7 @@ const Home = () => {
         setLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, sortType, searchValue, currentPage]);
+  }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
 
   // const filterArr = pizzas.filter((obj) => {
   //   if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
