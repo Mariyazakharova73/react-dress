@@ -75,7 +75,6 @@ const Cart = () => {
               strokeLinejoin="round"
             />
           </svg>
-
           <span>Очистить корзину</span>
         </div>
       </div>
@@ -84,7 +83,7 @@ const Cart = () => {
           <div className="cart__item-img">
             <img
               className="dress-block__image"
-              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              src=""
               alt="dress"
             />
           </div>
@@ -159,7 +158,7 @@ const Cart = () => {
           <div className="cart__item-img">
             <img
               className="dress-block__image"
-              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              src=""
               alt="dress"
             />
           </div>
@@ -234,7 +233,7 @@ const Cart = () => {
           <div className="cart__item-img">
             <img
               className="dress-block__image"
-              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              src=""
               alt="dress"
             />
           </div>
@@ -309,7 +308,7 @@ const Cart = () => {
           <div className="cart__item-img">
             <img
               className="dress-block__image"
-              src="https://dododress-a.akamaihd.net/static/Img/Products/dress/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+              src=""
               alt="dress"
             />
           </div>

@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import filter from './slices/filterSlice';
+import cart from './slices/cartSlice';
 
 //configureStore создает хранилище
 export const store = configureStore({
-  reducer: { filter },
+  reducer: { filter, cart },
 });
 
-console.log('store', store)
+console.log('store', store);
