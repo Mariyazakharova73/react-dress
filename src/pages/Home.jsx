@@ -1,6 +1,6 @@
 import React from 'react';
 import Categories from '../components/Categories';
-import Sort from '../components/Sort';
+import Sort, { list } from '../components/Sort';
 import DressBlock from '../components/DressBlock';
 import Skeleton from '../components/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
@@ -9,12 +9,13 @@ import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCaregoryId, setCurrentPage } from '../redux/slices/filterSlice';
+import { setCaregoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
   //берем информацию из редакса
   const { categoryId, currentPage, sort } = useSelector((state) => state.filter);
 
@@ -33,34 +34,59 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  // //В АДРЕСНУЮ СТРОКУ
-  // React.useEffect(() => {
-  //   const string = qs.stringify({
-  //     sortProperty: sortType.sortProperty,
-  //     categoryId,
-  //     currentPage,
-  //   });
-  //   navigate(`?${string}`);
-  //   // console.log(string);
-  // }, [categoryId, sortType, currentPage]);
+  //если был первый рендер, парсим параметры из адресной строки
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+      //передаем в редакс
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  //В АДРЕСНУЮ СТРОКУ
+  React.useEffect(() => {
+    //если изменили параметры и был первый рендер
+    if (isMounted.current) {
+      const string = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+      //передаем в адресную строку нашу строку
+      navigate(`?${string}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sort.sortProperty, currentPage]);
 
   //ПИЦЦЫ
   React.useEffect(() => {
-    setLoading(true);
-    const sortBy = sort.sortProperty.replace('-', '');
-    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
-    const search = searchValue ? `&search=${searchValue}` : '';
-
-    axios
-      .get(
-        `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-      )
-      .then((res) => {
-        setDress(res.data);
-        setLoading(false);
-      });
     window.scrollTo(0, 0);
+    if (!isSearch.current) {
+      setLoading(true);
+      const sortBy = sort.sortProperty.replace('-', '');
+      const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+      const category = categoryId > 0 ? `category=${categoryId}` : '';
+      const search = searchValue ? `&search=${searchValue}` : '';
+
+      axios
+        .get(
+          `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+        )
+        .then((res) => {
+          setDress(res.data);
+          setLoading(false);
+        });
+    }
+
+    isSearch.current = false;
   }, [categoryId, sort, searchValue, currentPage]);
 
   // const filterArr = pizzas.filter((obj) => {
