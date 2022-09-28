@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-dress/static/css/main.75038e1b.css",
-    "main.js": "/react-dress/static/js/main.a314e89c.js",
+    "main.js": "/react-dress/static/js/main.e6bf0a54.js",
     "static/media/dress.svg": "/react-dress/static/media/dress.2704476e100681df31f5bc950ff9c5e6.svg",
     "index.html": "/react-dress/index.html",
     "main.75038e1b.css.map": "/react-dress/static/css/main.75038e1b.css.map",
-    "main.a314e89c.js.map": "/react-dress/static/js/main.a314e89c.js.map"
+    "main.e6bf0a54.js.map": "/react-dress/static/js/main.e6bf0a54.js.map"
   },
   "entrypoints": [
     "static/css/main.75038e1b.css",
-    "static/js/main.a314e89c.js"
+    "static/js/main.e6bf0a54.js"
   ]
 }
