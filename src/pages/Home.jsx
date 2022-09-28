@@ -14,53 +14,54 @@ import { setCaregoryId, setCurrentPage } from '../redux/slices/filterSlice';
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { categoryId, sortType, currentPage } = useSelector((state) => state.filter);
+
+  //берем информацию из редакса
+  const { categoryId, currentPage, sort } = useSelector((state) => state.filter);
+
   const { searchValue } = React.useContext(SearchContext);
   const [dress, setDress] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  // const [categoryId, setCategoryId] = React.useState([]);
-  // const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'raiting' });
-  // const [numberPage, setNumberPage] = React.useState(1);
 
-  const onClickCategory = (category) => {
-    dispatch(setCaregoryId(category));
-    // console.log(setCaregoryId(id))
-    // {type: 'filters/setCaregoryId', payload: 1}
+  const onClickCategory = (categoryNumber) => {
+    //передаем в reduser данные categoryNumber
+    dispatch(setCaregoryId(categoryNumber));
+    // console.log(setCaregoryId(categoryNumber))
+    // {type: 'filter/setCaregoryId', payload: 1}
   };
 
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number));
   };
 
-  //В АДРЕСНУЮ СТРОКУ
-  React.useEffect(() => {
-    const string = qs.stringify({
-      sortProperty: sortType.sortProperty,
-      categoryId,
-      currentPage,
-    });
-    navigate(`?${string}`);
-    // console.log(string);
-  }, [categoryId, sortType.sortProperty, currentPage]);
+  // //В АДРЕСНУЮ СТРОКУ
+  // React.useEffect(() => {
+  //   const string = qs.stringify({
+  //     sortProperty: sortType.sortProperty,
+  //     categoryId,
+  //     currentPage,
+  //   });
+  //   navigate(`?${string}`);
+  //   // console.log(string);
+  // }, [categoryId, sortType, currentPage]);
 
   //ПИЦЦЫ
   React.useEffect(() => {
     setLoading(true);
-    const sortBy = sortType.sortProperty.replace('-', '');
-    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+    const sortBy = sort.sortProperty.replace('-', '');
+    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
     axios
       .get(
-        `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=10&${category}&sortBy=${sortBy}&order=${order}${search}`
+        `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
       )
       .then((res) => {
         setDress(res.data);
         setLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
+  }, [categoryId, sort, searchValue, currentPage]);
 
   // const filterArr = pizzas.filter((obj) => {
   //   if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -80,7 +81,7 @@ const Home = () => {
       </div>
       <h2 className="content__title">Все платья</h2>
       <div className="content__items">{loading ? skeletons : arr}</div>
-      {/* <Pagination currentPage={currentPage} onChangePage={onChangePage} /> */}
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };

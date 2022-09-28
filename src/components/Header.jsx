@@ -1,6 +1,6 @@
 import logo from '../images/dress.svg'
 import { Link } from 'react-router-dom';
-import Search from './Search/index.jsx';
+import Search from './Search/Search.jsx';
 
 function Header() {
   return (
