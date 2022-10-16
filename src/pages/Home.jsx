@@ -24,7 +24,7 @@ const Home = () => {
   const [loading, setLoading] = React.useState(true);
 
   const onClickCategory = (categoryNumber) => {
-    //передаем в reduser данные categoryNumber
+    //передаем в reduser данные categoryNumber  
     dispatch(setCaregoryId(categoryNumber));
     // console.log(setCaregoryId(categoryNumber))
     // {type: 'filter/setCaregoryId', payload: 1}
