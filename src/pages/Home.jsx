@@ -19,7 +19,6 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-
   //берем информацию из редакса
   const { categoryId, currentPage, sort } = useSelector((state) => state.filter);
 
@@ -68,24 +67,34 @@ const Home = () => {
     isMounted.current = true;
   }, [categoryId, sort.sortProperty, currentPage]);
 
+  const fetchDress = async () => {
+    setLoading(true);
+    const sortBy = sort.sortProperty.replace('-', '');
+    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const search = searchValue ? `&search=${searchValue}` : '';
+
+    //     axios
+    //     .get(
+    //       `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+    //     )
+    //     .then((res) => {
+    //       setDress(res.data);
+    //       setLoading(false);
+    //     });
+
+    const res = await axios.get(
+      `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+    );
+    setDress(res.data);
+    setLoading(false);
+  };
+
   //ПИЦЦЫ
   React.useEffect(() => {
     window.scrollTo(0, 0);
     if (!isSearch.current) {
-      setLoading(true);
-      const sortBy = sort.sortProperty.replace('-', '');
-      const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
-      const category = categoryId > 0 ? `category=${categoryId}` : '';
-      const search = searchValue ? `&search=${searchValue}` : '';
-
-      axios
-        .get(
-          `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-        )
-        .then((res) => {
-          setDress(res.data);
-          setLoading(false);
-        });
+      fetchDress();
     }
 
     isSearch.current = false;
