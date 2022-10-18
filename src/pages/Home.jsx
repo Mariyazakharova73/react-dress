@@ -6,7 +6,9 @@ import Skeleton from '../components/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
 import { SearchContext } from '../App.js';
 import axios from 'axios';
+//для работы с адресной строкой
 import qs from 'qs';
+//для работы с адресной строкой
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCaregoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
@@ -16,6 +18,8 @@ const Home = () => {
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
+
+
   //берем информацию из редакса
   const { categoryId, currentPage, sort } = useSelector((state) => state.filter);
 
@@ -24,9 +28,7 @@ const Home = () => {
   const [loading, setLoading] = React.useState(true);
 
   const onClickCategory = (categoryNumber) => {
-    //передаем в reduser данные categoryNumber  
     dispatch(setCaregoryId(categoryNumber));
-    // console.log(setCaregoryId(categoryNumber))
     // {type: 'filter/setCaregoryId', payload: 1}
   };
 

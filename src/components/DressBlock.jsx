@@ -1,11 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem } from '../redux/slices/cartSlice';
+import cartSlice, { addItem } from '../redux/slices/cartSlice';
 
 function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2 }) {
   const dispatch = useDispatch();
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
+
+  const cartItem = useSelector((state) => state.cart.items.find((obj) => obj.id === id));
+
+  const addedCount = cartItem ? cartItem.count : 0;
 
   const typeNames = ['светлое', 'темное'];
 
@@ -16,10 +20,10 @@ function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2 }) {
       price,
       imageUrl,
       imageUrl2,
-      type: activeType,
+      type: typeNames[activeType],
       size: activeSize,
     };
-    dispatch(addItem(item))
+    dispatch(addItem(item));
   };
 
   return (
@@ -73,7 +77,7 @@ function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2 }) {
               />
             </svg>
             <span>Добавить</span>
-            <i>0</i>
+            {addedCount > 0 && <i>{addedCount}</i>}
           </button>
         </div>
       </div>

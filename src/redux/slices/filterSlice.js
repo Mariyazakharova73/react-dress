@@ -9,7 +9,7 @@ const initialState = {
   },
 };
 
-//{name: 'filter', actions: {…}, caseReducers: {…}, reducer: ƒ, getInitialState: ƒ}
+
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,

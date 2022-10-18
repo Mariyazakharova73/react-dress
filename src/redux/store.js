@@ -7,4 +7,3 @@ export const store = configureStore({
   reducer: { filter, cart },
 });
 
-console.log('store', store);
