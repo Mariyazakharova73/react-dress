@@ -21,7 +21,8 @@ function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2 }) {
       imageUrl,
       imageUrl2,
       type: typeNames[activeType],
-      size: activeSize,
+      size: sizes[activeSize],
+      activeType
     };
     dispatch(addItem(item));
   };
