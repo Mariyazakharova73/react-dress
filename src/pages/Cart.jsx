@@ -5,7 +5,7 @@ import { CartItem } from '../components/CartItem';
 import { clearItems } from '../redux/slices/cartSlice';
 import CartEmpty from '../components/CartEmpty';
 
-const Cart = () => {
+const Cart = ({handleTrashClick}) => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cart);
   const totalCount = items.reduce((sum, item) => {
@@ -58,7 +58,7 @@ const Cart = () => {
             </svg>
             Корзина
           </h2>
-          <div onClick={onClickClear} className="cart__clear">
+          <div onClick={handleTrashClick} className="cart__clear">
             <svg
               width="20"
               height="20"
