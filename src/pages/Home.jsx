@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCaregoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 
-const Home = () => {
+const Home = ({handleImageClick}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
@@ -90,7 +90,7 @@ const Home = () => {
     setLoading(false);
   };
 
-  //ПИЦЦЫ
+  //Платья
   React.useEffect(() => {
     window.scrollTo(0, 0);
     if (!isSearch.current) {
@@ -107,7 +107,7 @@ const Home = () => {
   //     return false;
   //   }
   // });
-  const arr = dress.map((item) => <DressBlock key={item.id} {...item} />);
+  const arr = dress.map((item) => <DressBlock key={item.id} {...item} handleImageClick={handleImageClick}/>);
   const skeletons = [...new Array(4)].map((item, index) => <Skeleton key={index} />);
 
   return (

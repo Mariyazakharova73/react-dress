@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import cartSlice, { addItem } from '../redux/slices/cartSlice';
 
-function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2 }) {
+function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) {
   const dispatch = useDispatch();
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
@@ -27,13 +27,28 @@ function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2 }) {
     dispatch(addItem(item));
   };
 
+  const onClickImage = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      imageUrl2,
+      type: typeNames[activeType],
+      size: sizes[activeSize],
+      activeType
+    };
+    handleImageClick(item)
+  };
+
+
   return (
     <div className="dress-block-wrapper">
       <div className="dress-block">
         <img
           className="dress-block__image"
           src={!activeType ? imageUrl : imageUrl2}
-          alt={`${title}.`}
+          alt={`${title}.`} onClick={onClickImage}
         />
         <h4 className="dress-block__title">{title}</h4>
         <div className="dress-block__selector">

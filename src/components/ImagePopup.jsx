@@ -1,0 +1,24 @@
+import './Popup/index.css';
+
+function ImagePopup({ dress, onClose, isOpen }) {
+  console.log('ImagePopup')
+  return (
+    <div className={`popup popup_place_click-image ${isOpen ? 'popup_opened' : ''}`}>
+      <div className="popup__content">
+        <button className="popup__close" type="button" onClick={onClose} />
+        <figure className="popup__image-container">
+          <img
+            className="popup__image"
+            src={ !dress.activeType ? dress.imageUrl : dress.imageUrl2}
+            alt={`${dress.name}.`}
+          />
+          <figcaption className="popup__image-title">{dress.title}</figcaption>
+        </figure>
+        <div className="popup__image-title">{dress.size} р-р, {dress.type}</div>
+        <div className="popup__image-title">Цена: {dress.price} руб.</div>
+      </div>
+    </div>
+  );
+}
+
+export default ImagePopup;

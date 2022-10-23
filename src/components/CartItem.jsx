@@ -94,7 +94,7 @@ export const CartItem = ({
       <div className="cart__item-remove">
         <div className="button button--outline button--circle">
           <svg
-            onClick={ handleClick}
+            onClick={handleClick}
             width="10"
             height="10"
             viewBox="0 0 10 10"
