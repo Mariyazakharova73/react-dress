@@ -1,9 +1,9 @@
 import React from 'react';
-import Popup from './Popup/Popup';
+import PopupWithForm from './Popup/PopupWithForm';
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../redux/slices/cartSlice';
 
-function DeleteDressPopup({ isOpen, onClose, idForDelete }) {
+function DeleteDressPopup({ onClose, idForDelete,  }) {
   const dispatch = useDispatch();
   console.log(idForDelete)
 
@@ -14,7 +14,7 @@ function DeleteDressPopup({ isOpen, onClose, idForDelete }) {
   }
 
   return (
-    <Popup onClose={onClose} isOpen={isOpen} onSubmit={handleSubmit} title="Удалить товар?"></Popup>
+    <PopupWithForm onClose={onClose} onSubmit={handleSubmit} title="Удалить товар?"></PopupWithForm>
   );
 }
 

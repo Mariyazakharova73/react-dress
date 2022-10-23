@@ -6,6 +6,7 @@ import Cart from './pages/Cart.jsx';
 import DeleteDressPopup from './components/DeleteDressPopup';
 import ClearCartPopup from './components/ClearCartPopup';
 import ImagePopup from './components/ImagePopup';
+import Popup from './components/Popup/Popup';
 import { Routes, Route } from 'react-router-dom';
 
 export const SearchContext = React.createContext('');
@@ -21,7 +22,7 @@ function App() {
   function closePopups() {
     setIsDeleteDressPopupOpen(false);
     setIsClearCartPopupOpen(false);
-    setIsImagePopupOpen(false)
+    setIsImagePopupOpen(false);
   }
 
   function handleTrashClick() {
@@ -29,14 +30,20 @@ function App() {
   }
 
   const onClickRemove = (id) => {
-    setIsDeleteDressPopupOpen(true)
-    setIdForDelete(id)
+    setIsDeleteDressPopupOpen(true);
+    setIdForDelete(id);
   };
 
   function handleImageClick(dressData) {
-    setIsImagePopupOpen(true)
+    setIsImagePopupOpen(true);
     setSelectedDress(dressData);
   }
+
+  const closeByOverlay = (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopups();
+    }
+  };
 
   return (
     <div className="wrapper">
@@ -44,14 +51,37 @@ function App() {
         <Header />
         <div className="content">
           <Routes>
-            <Route path="/react-dress" element={<Home handleImageClick={handleImageClick}/>}></Route>
-            <Route path="/cart" element={<Cart handleTrashClick={handleTrashClick} onClickRemove={onClickRemove}/>}></Route>
+            <Route
+              path="/react-dress"
+              element={<Home handleImageClick={handleImageClick} />}
+            ></Route>
+            <Route
+              path="/cart"
+              element={<Cart handleTrashClick={handleTrashClick} onClickRemove={onClickRemove} />}
+            ></Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </div>
-        <ClearCartPopup isOpen={isClearCartPopup} onClose={closePopups} />
-        <DeleteDressPopup isOpen={isDeleteDressPopupOpen} onClose={closePopups} idForDelete={idForDelete}/>
-        <ImagePopup isOpen={isImagePopupOpen} onClose={closePopups} dress={selectedDress}/>
+        <Popup name="delete-button"
+          isOpen={isClearCartPopup}
+          onClose={closePopups}
+          closeByOverlay={closeByOverlay}><ClearCartPopup onClose={closePopups} /></Popup>
+        <Popup
+          name="delete-button"
+          isOpen={isDeleteDressPopupOpen}
+          onClose={closePopups}
+          closeByOverlay={closeByOverlay}
+        >
+          <DeleteDressPopup onClose={closePopups} idForDelete={idForDelete} />
+        </Popup>
+        <Popup
+          name="click-image"
+          isOpen={isImagePopupOpen}
+          onClose={closePopups}
+          closeByOverlay={closeByOverlay}
+        >
+          <ImagePopup onClose={closePopups} dress={selectedDress} />
+        </Popup>
       </SearchContext.Provider>
     </div>
   );

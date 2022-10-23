@@ -1,22 +1,29 @@
-import './index.css';
+import { useEffect } from 'react';
 
-function Popup({ isOpen, onClose, title,  handleSubmit}) {
+const Popup = ({ children, isOpen, name, onClose, closeByOverlay }) => {
+  const closeByEsc = (evt) => {
+    if (evt.key === 'Escape') {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('keydown', closeByEsc);
+    }
+    return () => {
+      document.removeEventListener('keydown', closeByEsc);
+    };
+  }, [isOpen]);
 
   return (
-    <div className={`popup popup_place_delete-button ${isOpen ? 'popup_opened' : ''}`}>
-      <div className="popup__content">
-        <button className="popup__close" type="button" onClick={onClose} />
-        <div className="popup__form-content">
-          <h2 className="popup__form-heading">{title}</h2>
-          <form onSubmit={handleSubmit} className="popup__form form" noValidate>
-            <button className="popup__form-button" type="submit">
-              Да
-            </button>
-          </form>
-        </div>
-      </div>
+    <div
+      onClick={closeByOverlay}
+      className={`popup popup_place_${name} ${isOpen ? 'popup_opened' : ''}`}
+    >
+      {children}
     </div>
   );
-}
+};
 
 export default Popup;
