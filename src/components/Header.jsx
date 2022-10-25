@@ -4,9 +4,7 @@ import Search from './Search/Search.jsx';
 import { useSelector } from 'react-redux';
 
 function Header() {
-  //вытаскиваем данные из редакса
   const { items, totalPrice } = useSelector((state) => state.cart);
-
   const totalCount = items.reduce((sum, item) => {
     return item.count + sum;
   }, 0);

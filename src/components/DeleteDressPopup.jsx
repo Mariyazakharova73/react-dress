@@ -5,7 +5,6 @@ import { removeItem } from '../redux/slices/cartSlice';
 
 function DeleteDressPopup({ onClose, idForDelete,  }) {
   const dispatch = useDispatch();
-  console.log(idForDelete)
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -14,7 +13,7 @@ function DeleteDressPopup({ onClose, idForDelete,  }) {
   }
 
   return (
-    <PopupWithForm onClose={onClose} onSubmit={handleSubmit} title="Удалить товар?"></PopupWithForm>
+    <PopupWithForm onClose={onClose} onSubmit={handleSubmit} title="Удалить товар из корзины?"></PopupWithForm>
   );
 }
 

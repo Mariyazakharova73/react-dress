@@ -11,10 +11,8 @@ export const list = [
 
 function Sort() {
   const dispatch = useDispatch();
-  //берем информацию из редакса
   const sort = useSelector((state) => state.filter.sort);
   const sortRef = React.useRef();
-
   const [isVisible, setIsVisible] = React.useState(false);
 
   const handleClick = () => {
@@ -38,11 +36,6 @@ function Sort() {
       document.body.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
-  // const onClickListItem = (index) => {
-  //   setIsVisible(false);
-  //   // onClickSort(index);
-  // };
 
   return (
     <div className="sort" ref={sortRef}>

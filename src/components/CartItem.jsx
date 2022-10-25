@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { minusItem, addItem, removeItem } from '../redux/slices/cartSlice';
+import { minusItem, addItem } from '../redux/slices/cartSlice';
 
 export const CartItem = ({
   id,
@@ -29,17 +29,13 @@ export const CartItem = ({
   };
 
   function handleClick() {
-    // if (window.confirm('Удалить товар?')) {
-    //   dispatch(removeItem(id));
-    // }
-
-    onClickRemove(id); //передаем id в x
+    onClickRemove(id); 
   }
 
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="dress-block__image" src={!activeType ? imageUrl : imageUrl2} alt="dress" />
+        <img className="dress-block__image" src={!activeType ? imageUrl : imageUrl2} alt="dress." />
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
@@ -89,7 +85,7 @@ export const CartItem = ({
         </div>
       </div>
       <div className="cart__item-price">
-        <b>{price * count}</b>
+        <b>{price * count} руб.</b>
       </div>
       <div className="cart__item-remove">
         <div className="button button--outline button--circle">

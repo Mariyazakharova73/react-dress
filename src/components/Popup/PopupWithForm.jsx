@@ -3,7 +3,6 @@ import './index.css';
 function PopupWithForm({  onClose, title,  onSubmit}) {
 
   return (
-    // <div className={`popup popup_place_delete-button ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__content">
         <button className="popup__close" type="button" onClick={onClose} />
         <div className="popup__form-content">

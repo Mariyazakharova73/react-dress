@@ -9,7 +9,6 @@ const initialState = {
   },
 };
 
-
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,
@@ -30,7 +29,6 @@ export const filterSlice = createSlice({
     },
   },
 });
-console.log('filterSlice', filterSlice);
 
 export const { setCaregoryId, setSort, setCurrentPage, setFilters } = filterSlice.actions;
 

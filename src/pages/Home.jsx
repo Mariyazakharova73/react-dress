@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCaregoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 
-const Home = ({handleImageClick}) => {
+const Home = ({ handleImageClick }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
@@ -82,17 +82,21 @@ const Home = ({handleImageClick}) => {
     //       setDress(res.data);
     //       setLoading(false);
     //     });
-
-    const res = await axios.get(
-      `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-    );
-    setDress(res.data);
-    setLoading(false);
+    try {
+      const res = await axios.get(
+        `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+      );
+      setDress(res.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+    window.scrollTo(0, 0);
   };
 
   //Платья
   React.useEffect(() => {
-    window.scrollTo(0, 0);
     if (!isSearch.current) {
       fetchDress();
     }
@@ -107,7 +111,9 @@ const Home = ({handleImageClick}) => {
   //     return false;
   //   }
   // });
-  const arr = dress.map((item) => <DressBlock key={item.id} {...item} handleImageClick={handleImageClick}/>);
+  const arr = dress.map((item) => (
+    <DressBlock key={item.id} {...item} handleImageClick={handleImageClick} />
+  ));
   const skeletons = [...new Array(4)].map((item, index) => <Skeleton key={index} />);
 
   return (

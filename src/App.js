@@ -17,7 +17,7 @@ function App() {
   const [isClearCartPopup, setIsClearCartPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [selectedDress, setSelectedDress] = React.useState({});
-  const [idForDelete, setIdForDelete] = React.useState(10);
+  const [idForDelete, setIdForDelete] = React.useState('');
 
   function closePopups() {
     setIsDeleteDressPopupOpen(false);

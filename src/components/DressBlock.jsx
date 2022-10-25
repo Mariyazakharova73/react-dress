@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import cartSlice, { addItem } from '../redux/slices/cartSlice';
+import { addItem } from '../redux/slices/cartSlice';
 
 function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) {
   const dispatch = useDispatch();

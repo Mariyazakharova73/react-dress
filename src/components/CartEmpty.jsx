@@ -10,7 +10,7 @@ function CartEmpty() {
         <p>
           Вероятнее всего, вы ещё не заказали платья.
           <br />
-          Для того, чтобы заказать платья, перейди на главную страницу.
+          Для того, чтобы сделать заказ, перейдите на главную страницу.
         </p>
         <img src={emptyImg} alt="Empty cart." />
         <Link to="/react-dress" className="button button--black">
