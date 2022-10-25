@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-dress/static/css/main.06b4e202.css",
-    "main.js": "/react-dress/static/js/main.b8ec681f.js",
+    "main.js": "/react-dress/static/js/main.1e248983.js",
     "static/media/empty-cart.png": "/react-dress/static/media/empty-cart.db905d1f4b063162f25b.png",
     "static/media/dress.svg": "/react-dress/static/media/dress.2704476e100681df31f5bc950ff9c5e6.svg",
     "index.html": "/react-dress/index.html",
     "main.06b4e202.css.map": "/react-dress/static/css/main.06b4e202.css.map",
-    "main.b8ec681f.js.map": "/react-dress/static/js/main.b8ec681f.js.map"
+    "main.1e248983.js.map": "/react-dress/static/js/main.1e248983.js.map"
   },
   "entrypoints": [
     "static/css/main.06b4e202.css",
-    "static/js/main.b8ec681f.js"
+    "static/js/main.1e248983.js"
   ]
 }
