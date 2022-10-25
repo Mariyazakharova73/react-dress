@@ -9,22 +9,29 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
     justify-content: space-between;
 
-    @media (max-width: 650px) {
+    @media (max-width: 450px) {
       flex-direction: column;
-
-      .header__cart {
-        margin-top: 10px;
-      }
     }
   }
 
   &__logo {
     display: flex;
+    align-items: center;
 
     img {
       margin-right: 15px;
+      width: 38px;
+
     }
 
     h1 {
@@ -33,6 +40,11 @@
       letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+
+      // @media (max-width: 450px) {
+      //   max-width: 280px;
+      //   font-size: 15px;
+      // }
     }
 
     p {

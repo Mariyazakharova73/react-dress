@@ -1,6 +1,5 @@
 .root {
   position: relative;
-  left: -120px;
 }
 
 .input {
@@ -10,6 +9,10 @@
   border-radius: 16px;
   font-size: 16px;
   padding-left: 42px;
+
+  @media (max-width: 450px) {
+    max-width: 280px;
+  }
 
   &:focus {
     border: 1px solid rgba(0, 0, 0, 0.5);
