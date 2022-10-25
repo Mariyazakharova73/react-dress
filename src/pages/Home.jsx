@@ -4,14 +4,18 @@ import Sort, { list } from '../components/Sort';
 import DressBlock from '../components/DressBlock';
 import Skeleton from '../components/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
-import { SearchContext } from '../App.js';
 //для работы с адресной строкой
 import qs from 'qs';
 //для работы с адресной строкой
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCaregoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { fetchDresses } from '../redux/slices/dressSlice';
+import {
+  selectFilter,
+  setCaregoryId,
+  setCurrentPage,
+  setFilters,
+} from '../redux/slices/filterSlice';
+import { fetchDresses, selectDressData } from '../redux/slices/dressSlice';
 
 const Home = ({ handleImageClick }) => {
   const dispatch = useDispatch();
@@ -19,11 +23,8 @@ const Home = ({ handleImageClick }) => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const { categoryId, currentPage, sort } = useSelector((state) => state.filter);
-  const dresses = useSelector((state) => state.dress.items);
-  const status = useSelector((state) => state.dress.status);
-
-  const { searchValue } = React.useContext(SearchContext);
+  const { categoryId, currentPage, sort, searchValue } = useSelector(selectFilter);
+  const { items: dresses, status } = useSelector(selectDressData);
 
   const onClickCategory = (categoryNumber) => {
     dispatch(setCaregoryId(categoryNumber));
@@ -103,9 +104,7 @@ const Home = ({ handleImageClick }) => {
       {status === 'error' ? (
         <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>
-          <p>
-            К сожалению, не удалось загрузить платья. Попробуйте повторить попытку позже.
-          </p>
+          <p>К сожалению, не удалось загрузить платья. Попробуйте повторить попытку позже.</p>
         </div>
       ) : (
         <div className="content__items">{status === 'loading' ? skeletons : arr}</div>

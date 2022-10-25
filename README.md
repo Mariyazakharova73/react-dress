@@ -14,19 +14,17 @@
 
 **Технологии и инструменты**
 
-* HTML5
-* CSS3
-* Java Script
-* react
-* react-redux
-* redux toolkit
+* CSS-Modules / SCSS
+* React
+* Redux Toolkit
 * SPA
-* react-router6
-* axios
-* lodash.debounce
+* React Router v6
+* Axios
+* Lodash.Debounce
 * https://mockapi.io/
-* пагинация
-* createAsyncThunk
+* React Pagination
+* React Content Loader (скелетон)
+* createAsyncThunk, ThunkAPI
 
 **Функции**
 
