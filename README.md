@@ -26,6 +26,7 @@
 * lodash.debounce
 * https://mockapi.io/
 * пагинация
+* createAsyncThunk
 
 **Функции**
 

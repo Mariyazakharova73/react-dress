@@ -5,13 +5,13 @@ import DressBlock from '../components/DressBlock';
 import Skeleton from '../components/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
 import { SearchContext } from '../App.js';
-import axios from 'axios';
 //для работы с адресной строкой
 import qs from 'qs';
 //для работы с адресной строкой
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCaregoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { fetchDresses } from '../redux/slices/dressSlice';
 
 const Home = ({ handleImageClick }) => {
   const dispatch = useDispatch();
@@ -19,16 +19,14 @@ const Home = ({ handleImageClick }) => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  //берем информацию из редакса
   const { categoryId, currentPage, sort } = useSelector((state) => state.filter);
+  const dresses = useSelector((state) => state.dress.items);
+  const status = useSelector((state) => state.dress.status);
 
   const { searchValue } = React.useContext(SearchContext);
-  const [dress, setDress] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
 
   const onClickCategory = (categoryNumber) => {
     dispatch(setCaregoryId(categoryNumber));
-    // {type: 'filter/setCaregoryId', payload: 1}
   };
 
   const onChangePage = (number) => {
@@ -39,9 +37,7 @@ const Home = ({ handleImageClick }) => {
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-
       const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
-      //передаем в редакс
       dispatch(
         setFilters({
           ...params,
@@ -67,40 +63,21 @@ const Home = ({ handleImageClick }) => {
     isMounted.current = true;
   }, [categoryId, sort.sortProperty, currentPage]);
 
-  const fetchDress = async () => {
-    setLoading(true);
+  const getDresses = () => {
     const sortBy = sort.sortProperty.replace('-', '');
     const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    //     axios
-    //     .get(
-    //       `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-    //     )
-    //     .then((res) => {
-    //       setDress(res.data);
-    //       setLoading(false);
-    //     });
-    try {
-      const res = await axios.get(
-        `https://631cd2604fa7d3264cb78455.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-      );
-      setDress(res.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
+    dispatch(fetchDresses({ sortBy, order, category, search, currentPage }));
     window.scrollTo(0, 0);
   };
 
   //Платья
   React.useEffect(() => {
     if (!isSearch.current) {
-      fetchDress();
+      getDresses();
     }
-
     isSearch.current = false;
   }, [categoryId, sort, searchValue, currentPage]);
 
@@ -111,7 +88,7 @@ const Home = ({ handleImageClick }) => {
   //     return false;
   //   }
   // });
-  const arr = dress.map((item) => (
+  const arr = dresses.map((item) => (
     <DressBlock key={item.id} {...item} handleImageClick={handleImageClick} />
   ));
   const skeletons = [...new Array(4)].map((item, index) => <Skeleton key={index} />);
@@ -123,7 +100,16 @@ const Home = ({ handleImageClick }) => {
         <Sort />
       </div>
       <h2 className="content__title">Все платья</h2>
-      <div className="content__items">{loading ? skeletons : arr}</div>
+      {status === 'error' ? (
+        <div className="content__error-info">
+          <h2>Произошла ошибка 😕</h2>
+          <p>
+            К сожалению, не удалось загрузить платья. Попробуйте повторить попытку позже.
+          </p>
+        </div>
+      ) : (
+        <div className="content__items">{status === 'loading' ? skeletons : arr}</div>
+      )}
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
