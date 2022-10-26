@@ -14,10 +14,10 @@ export const list: SortItem[] = [
   { name: 'алфавиту', sortProperty: '-title' },
 ];
 
-function Sort() {
+const Sort = () => {
   const dispatch = useDispatch();
   const sort = useSelector(selectSort);
-  const sortRef = React.useRef(null); 
+  const sortRef = React.useRef<HTMLDivElement>(null); 
   const [isVisible, setIsVisible] = React.useState(false);
 
   const handleClick = () => {
@@ -30,7 +30,7 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (evt) => {
+    const handleClickOutside = (evt: any) => {
       if (!evt.path.includes(sortRef.current)) {
         setIsVisible(false);
       }

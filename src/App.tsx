@@ -37,7 +37,7 @@ function App() {
     setSelectedDress(dressData);
   }
 
-  const closeByOverlay = (evt) => {
+  const closeByOverlay = (evt: any) => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopups();
     }

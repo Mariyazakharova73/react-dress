@@ -2,7 +2,20 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { minusItem, addItem } from '../redux/slices/cartSlice';
 
-export const CartItem = ({
+type CartItemProps = {
+  id: string;
+  title: string;
+  price: number;
+  count: number;
+  imageUrl: string;
+  imageUrl2: string;
+  type: string;
+  activeType: number;
+  size: number;
+  onClickRemove: any;
+}
+
+export const CartItem: React.FC<CartItemProps> = ({
   id,
   title,
   price,
@@ -40,7 +53,7 @@ export const CartItem = ({
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="dress-block__image" src={!activeType ? imageUrl : imageUrl2} alt="dress." />
+        <img className="dress-block__image" src={!activeType ? imageUrl : imageUrl2} alt={`${title}.`} />
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
