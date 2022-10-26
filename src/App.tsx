@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from './components/Header.jsx';
-import Home from './pages/Home.jsx';
-import NotFound from './pages/NotFound.jsx';
-import Cart from './pages/Cart.jsx';
+import Header from './components/Header';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Cart from './pages/Cart';
 import DeleteDressPopup from './components/DeleteDressPopup';
 import ClearCartPopup from './components/ClearCartPopup';
 import ImagePopup from './components/ImagePopup';
 import Popup from './components/Popup/Popup';
 import { Routes, Route } from 'react-router-dom';
-import FullDress from './pages/FullDress.jsx';
+import FullDress from './pages/FullDress';
 
 function App() {
   const [isDeleteDressPopupOpen, setIsDeleteDressPopupOpen] = React.useState(false);

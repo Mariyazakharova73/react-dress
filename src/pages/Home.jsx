@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination/Pagination';
 //для работы с адресной строкой
 import qs from 'qs';
 //для работы с адресной строкой
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectFilter,
