@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination/Pagination';
 //для работы с адресной строкой
 import qs from 'qs';
 //для работы с адресной строкой
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectFilter,
@@ -81,7 +81,6 @@ const Home = ({ handleImageClick }) => {
     }
     isSearch.current = false;
   }, [categoryId, sort, searchValue, currentPage]);
-
   // const filterArr = pizzas.filter((obj) => {
   //   if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
   //     return true;
@@ -90,6 +89,7 @@ const Home = ({ handleImageClick }) => {
   //   }
   // });
   const arr = dresses.map((item) => (
+    // <Link key={item.id} to={`/dress/${item.id}`}></Link>
     <DressBlock key={item.id} {...item} handleImageClick={handleImageClick} />
   ));
   const skeletons = [...new Array(4)].map((item, index) => <Skeleton key={index} />);

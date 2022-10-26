@@ -8,6 +8,7 @@ import ClearCartPopup from './components/ClearCartPopup';
 import ImagePopup from './components/ImagePopup';
 import Popup from './components/Popup/Popup';
 import { Routes, Route } from 'react-router-dom';
+import FullDress from './pages/FullDress.jsx';
 
 function App() {
   const [isDeleteDressPopupOpen, setIsDeleteDressPopupOpen] = React.useState(false);
@@ -48,6 +49,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/react-dress" element={<Home handleImageClick={handleImageClick} />}></Route>
+          <Route path="/dress/:id" element={<FullDress/>}></Route>
           <Route
             path="/cart"
             element={<Cart handleTrashClick={handleTrashClick} onClickRemove={onClickRemove} />}
