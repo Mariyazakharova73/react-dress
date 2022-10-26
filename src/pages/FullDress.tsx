@@ -2,15 +2,22 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function FullDress() {
-  const [dress, setDress] = React.useState({});
+const FullDress: React.FC = () => {
+  const [dress, setDress] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: number;
+  }>({ 
+    imageUrl: '',
+    title: '',
+    price: 0 });
   const { id } = useParams();
   const navigate = useNavigate();
 
   React.useEffect(() => {
     async function fetchDress() {
       try {
-        const data = await axios.get(
+        const {data} = await axios.get(
           'https://631cd2604fa7d3264cb78455.mockapi.io/items/' + id
         );
         setDress(data);
@@ -23,16 +30,16 @@ function FullDress() {
 
   }, []);
 
-if (!dress.data) {
-  return "Загрузка..."
+if (!dress) {
+  return <>Загрузка...</>
 }
 
   return (
     <div className="container">
-      <img src={dress.data.imageUrl} />
-      <h2>{dress.data.title}</h2>
+      <img src={dress.imageUrl} alt={`${dress.title}.`}/>
+      <h2>{dress.title}</h2>
       <p>text</p>
-      <h4>{dress.data.price} руб</h4>
+      <h4>{dress.price} руб</h4>
     </div>
   );
 }

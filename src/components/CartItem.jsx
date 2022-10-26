@@ -25,11 +25,16 @@ export const CartItem = ({
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem(id));
+    if (count > 1) {
+      dispatch(minusItem(id));
+    }
+    if (count === 1) {
+      onClickRemove(id);
+    }
   };
 
   function handleClick() {
-    onClickRemove(id); 
+    onClickRemove(id);
   }
 
   return (
