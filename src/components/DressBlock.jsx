@@ -43,14 +43,12 @@ function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2, handl
   return (
     <div className="dress-block-wrapper">
       <div className="dress-block">
-        {/* <Link to={`/dress/${id}`}> */}
           <img
             className="dress-block__image"
             src={!activeType ? imageUrl : imageUrl2}
             alt={`${title}.`}
             onClick={onClickImage}
           />
-        {/* </Link> */}
         <h4 className="dress-block__title">{title}</h4>
         <div className="dress-block__selector">
           <ul>

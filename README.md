@@ -25,6 +25,7 @@
 * React Pagination
 * React Content Loader (скелетон)
 * createAsyncThunk, ThunkAPI
+* TypeScript
 
 **Функции**
 

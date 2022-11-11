@@ -27,12 +27,12 @@ function App() {
     setIsClearCartPopupOpen(true);
   }
 
-  const onClickRemove = (id) => {
+  const onClickRemove = (id: any) => {
     setIsDeleteDressPopupOpen(true);
     setIdForDelete(id);
   };
 
-  function handleImageClick(dressData) {
+  function handleImageClick(dressData:any) {
     setIsImagePopupOpen(true);
     setSelectedDress(dressData);
   }
