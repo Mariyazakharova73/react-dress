@@ -1,6 +1,6 @@
 import logo from '../images/dress.svg';
 import { Link, useLocation } from 'react-router-dom';
-import Search from './Search/Search.jsx';
+import Search from './Search/Search';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../redux/slices/cartSlice';
 

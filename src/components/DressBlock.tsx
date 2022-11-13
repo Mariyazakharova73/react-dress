@@ -5,7 +5,11 @@ import { addItem, selectCartItemById } from '../redux/slices/cartSlice';
 
 const typeNames = ['светлое', 'темное'];
 
-function DressBlock({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) {
+type PizzaBlockProps = {
+  id: string, title: string, price: number, imageUrl: string, sizes: number[], types: number[], imageUrl2: string, handleImageClick: any
+}
+
+const DressBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) => {
   const dispatch = useDispatch();
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);

@@ -8,12 +8,15 @@ const Search = () => {
   const dispatch = useDispatch();
   // для работы debounce
   const [value, setValue] = React.useState('');
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const onClickClear = () => {
     dispatch(setSearchValue(''));
     setValue('');
-    inputRef.current.focus();
+    // if (inputRef.current) {
+    // inputRef.current.focus();
+    // }
+    inputRef.current?.focus();
   };
 
   //создается только при первом рендере
