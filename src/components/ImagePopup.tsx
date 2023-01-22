@@ -1,6 +1,6 @@
 import './Popup/index.css';
 
-function ImagePopup({ dress, onClose, }) {
+const ImagePopup:React.FC<any> = ({ dress, onClose, }) =>{
   return (
       <div className="popup__content">
         <button className="popup__close" type="button" onClick={onClose} />

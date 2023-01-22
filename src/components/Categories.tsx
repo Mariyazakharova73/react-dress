@@ -1,13 +1,8 @@
 import React from 'react';
+import { ICategoriesProps } from '../types/types'
+import { categories } from '../utils/variables'
 
-type CategoriesProps = {
-  categoryId: number;
-  onClickCategory: any;
-}
-
-const Categories: React.FC<CategoriesProps> = ({ categoryId, onClickCategory }) => {
-  const categories = ['Все', 'Комбинация', 'Кожаные', 'Длинные', 'Короткие', 'Пиджак'];
-
+const Categories: React.FC<ICategoriesProps> = ({ categoryId, onClickCategory }) => {
   return (
     <div className="categories">
       <ul>

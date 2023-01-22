@@ -1,12 +1,12 @@
-import React from 'react';
-import PopupWithForm from './Popup/PopupWithForm';
-import { useDispatch } from 'react-redux';
-import { clearItems } from '../redux/slices/cartSlice';
+import React from "react";
+import PopupWithForm from "./Popup/PopupWithForm";
+import { useDispatch } from "react-redux";
+import { clearItems } from "../redux/slices/cartSlice";
 
-function ClearCartPopup({  onClose }) {
+const ClearCartPopup: React.FC<any> = ({ onClose }) => {
   const dispatch = useDispatch();
 
-  function handleSubmit(evt) {
+  function handleSubmit(evt: any) {
     evt.preventDefault();
     dispatch(clearItems());
     onClose();
@@ -19,6 +19,6 @@ function ClearCartPopup({  onClose }) {
       title="Очистить корзину?"
     ></PopupWithForm>
   );
-}
+};
 
 export default ClearCartPopup;

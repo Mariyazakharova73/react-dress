@@ -1,23 +1,23 @@
-import React from 'react';
-import Categories from '../components/Categories';
-import Sort, { list } from '../components/Sort';
-import DressBlock from '../components/DressBlock';
-import Skeleton from '../components/Skeleton';
-import Pagination from '../components/Pagination/Pagination';
+import React from "react";
+import Categories from "../components/Categories";
+import Sort from "../components/Sort";
+import { list } from "../utils/variables.js";
+import DressBlock from "../components/DressBlock";
+import Skeleton from "../components/Skeleton";
+import Pagination from "../components/Pagination/Pagination";
 //для работы с адресной строкой
-import qs from 'qs';
-//для работы с адресной строкой
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   selectFilter,
   setCaregoryId,
   setCurrentPage,
   setFilters,
-} from '../redux/slices/filterSlice';
-import { fetchDresses, selectDressData } from '../redux/slices/dressSlice';
+} from "../redux/slices/filterSlice";
+import { fetchDresses, selectDressData } from "../redux/slices/dressSlice";
 
-const Home = ({ handleImageClick }) => {
+const Home: React.FC<any> = ({ handleImageClick }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
@@ -26,12 +26,12 @@ const Home = ({ handleImageClick }) => {
   const { categoryId, currentPage, sort, searchValue } = useSelector(selectFilter);
   const { items: dresses, status } = useSelector(selectDressData);
 
-  const onClickCategory = (categoryNumber) => {
+  const onClickCategory = (categoryNumber: number) => {
     dispatch(setCaregoryId(categoryNumber));
   };
 
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   //если был первый рендер, парсим параметры из адресной строки
@@ -65,11 +65,11 @@ const Home = ({ handleImageClick }) => {
   }, [categoryId, sort.sortProperty, currentPage]);
 
   const getDresses = () => {
-    const sortBy = sort.sortProperty.replace('-', '');
-    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
-    const search = searchValue ? `&search=${searchValue}` : '';
-
+    const sortBy = sort.sortProperty.replace("-", "");
+    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const category = categoryId > 0 ? `category=${categoryId}` : "";
+    const search = searchValue ? `&search=${searchValue}` : "";
+    //@ts-ignore
     dispatch(fetchDresses({ sortBy, order, category, search, currentPage }));
     window.scrollTo(0, 0);
   };
@@ -88,8 +88,7 @@ const Home = ({ handleImageClick }) => {
   //     return false;
   //   }
   // });
-  const arr = dresses.map((item) => (
-    // <Link key={item.id} to={`/dress/${item.id}`}></Link>
+  const arr = dresses.map((item: any) => (
     <DressBlock key={item.id} {...item} handleImageClick={handleImageClick} />
   ));
   const skeletons = [...new Array(4)].map((item, index) => <Skeleton key={index} />);
@@ -101,13 +100,13 @@ const Home = ({ handleImageClick }) => {
         <Sort />
       </div>
       <h2 className="content__title">Все платья</h2>
-      {status === 'error' ? (
+      {status === "error" ? (
         <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>
           <p>К сожалению, не удалось загрузить платья. Попробуйте повторить попытку позже.</p>
         </div>
       ) : (
-        <div className="content__items">{status === 'loading' ? skeletons : arr}</div>
+        <div className="content__items">{status === "loading" ? skeletons : arr}</div>
       )}
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>

@@ -4,9 +4,9 @@ import { CartItem } from '../components/CartItem';
 import CartEmpty from '../components/CartEmpty';
 import { selectCart } from '../redux/slices/cartSlice';
 
-const Cart = ({handleTrashClick, onClickRemove}) => {
+const Cart: React.FC <any>= ({handleTrashClick, onClickRemove}) => {
   const { items, totalPrice } = useSelector(selectCart);
-  const totalCount = items.reduce((sum, item) => {
+  const totalCount = items.reduce((sum: number, item: any) => {
     return item.count + sum;
   }, 0);
 
@@ -91,7 +91,7 @@ const Cart = ({handleTrashClick, onClickRemove}) => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((item) => (
+          {items.map((item: any) => (
             <CartItem key={item.id} {...item} handleTrashClick={handleTrashClick} onClickRemove={onClickRemove}/>
           ))}
         </div>

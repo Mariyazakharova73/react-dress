@@ -1,30 +1,22 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSort, setSort } from '../redux/slices/filterSlice';
+import { ISortItem } from '../types/types';
+import { list } from '../utils/variables.js';
 
-type SortItem = {
-  name: string;
-  sortProperty: string;
-}
+const Sort: React.FC = () => {
 
-export const list: SortItem[] = [
-  { name: 'популярности', sortProperty: 'rating' },
-  { name: 'цене (по убыванию)', sortProperty: 'price' },
-  { name: 'цене (по возрастанию)', sortProperty: '-price' },
-  { name: 'алфавиту', sortProperty: '-title' },
-];
-
-const Sort = () => {
   const dispatch = useDispatch();
   const sort = useSelector(selectSort);
   const sortRef = React.useRef<HTMLDivElement>(null); 
+
   const [isVisible, setIsVisible] = React.useState(false);
 
   const handleClick = () => {
     setIsVisible(!isVisible);
   };
-
-  const onClickListItem = (obj: SortItem) => {
+ 
+  const onClickListItem = (obj: ISortItem) => {
     dispatch(setSort(obj));
     setIsVisible(false);
   };
@@ -36,7 +28,7 @@ const Sort = () => {
       }
     };
 
-    document.body.addEventListener('click', handleClickOutside);
+      document.body.addEventListener('click', handleClickOutside);
     return () => {
       document.body.removeEventListener('click', handleClickOutside);
     };

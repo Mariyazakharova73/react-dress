@@ -1,21 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { minusItem, addItem } from '../redux/slices/cartSlice';
+import { ICartItemProps } from '../types/types'
 
-type CartItemProps = {
-  id: string;
-  title: string;
-  price: number;
-  count: number;
-  imageUrl: string;
-  imageUrl2: string;
-  type: string;
-  activeType: number;
-  size: number;
-  onClickRemove: any;
-}
-
-export const CartItem: React.FC<CartItemProps> = ({
+export const CartItem: React.FC<ICartItemProps> = ({
   id,
   title,
   price,

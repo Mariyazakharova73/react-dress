@@ -1,15 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { addItem, selectCartItemById } from '../redux/slices/cartSlice';
+import { IPizzaBlockProps } from '../types/types';
+import { typeNames } from '../utils/variables'
 
-const typeNames = ['светлое', 'темное'];
-
-type PizzaBlockProps = {
-  id: string, title: string, price: number, imageUrl: string, sizes: number[], types: number[], imageUrl2: string, handleImageClick: any
-}
-
-const DressBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) => {
+const DressBlock: React.FC<IPizzaBlockProps> = ({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) => {
+  
   const dispatch = useDispatch();
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);

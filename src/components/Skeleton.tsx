@@ -1,7 +1,8 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const Skeleton = () => (
+const Skeleton : React.FC = () => {
+  return (
   <div className="dress-block-wrapper">
     <ContentLoader
       className="dress-block"
@@ -19,7 +20,7 @@ const Skeleton = () => (
       <rect x="0" y="0" rx="0" ry="0" width="280" height="390" />
       <rect x="127" y="573" rx="10" ry="10" width="153" height="45" />
     </ContentLoader>
-  </div>
-);
+  </div>)
+};
 
 export default Skeleton;

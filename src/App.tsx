@@ -10,7 +10,7 @@ import Popup from './components/Popup/Popup';
 import { Routes, Route } from 'react-router-dom';
 import FullDress from './pages/FullDress';
 
-function App() {
+const App: React.FC = () => {
   const [isDeleteDressPopupOpen, setIsDeleteDressPopupOpen] = React.useState(false);
   const [isClearCartPopup, setIsClearCartPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
@@ -48,13 +48,13 @@ function App() {
       <Header />
       <div className="content">
         <Routes>
-          <Route path="/react-dress" element={<Home handleImageClick={handleImageClick} />}></Route>
-          <Route path="/dress/:id" element={<FullDress/>}></Route>
+          <Route path="/react-dress" element={<Home handleImageClick={handleImageClick} />}/>
+          <Route path="/dress/:id" element={<FullDress/>}/>
           <Route
             path="/cart"
             element={<Cart handleTrashClick={handleTrashClick} onClickRemove={onClickRemove} />}
-          ></Route>
-          <Route path="*" element={<NotFound />}></Route>
+          />
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>
       <Popup
