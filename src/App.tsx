@@ -37,7 +37,7 @@ const App: React.FC = () => {
     setSelectedDress(dressData);
   }
 
-  const closeByOverlay = (evt: any) => {
+  const closeByOverlay = (evt: React.ChangeEvent<HTMLDivElement>) => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopups();
     }

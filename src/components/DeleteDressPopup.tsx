@@ -6,7 +6,7 @@ import { removeItem } from "../redux/slices/cartSlice";
 const DeleteDressPopup: React.FC<any> = ({ onClose, idForDelete }) => {
   const dispatch = useDispatch();
 
-  function handleSubmit(evt: any) {
+  function handleSubmit(evt: React.ChangeEvent<HTMLInputElement>) {
     evt.preventDefault();
     dispatch(removeItem(idForDelete));
     onClose();

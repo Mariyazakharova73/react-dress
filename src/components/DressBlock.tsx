@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, selectCartItemById } from '../redux/slices/cartSlice';
-import { IPizzaBlockProps } from '../types/types';
+import { IDressBlockProps, ICartItem } from '../types/types';
 import { typeNames } from '../utils/variables'
 
-const DressBlock: React.FC<IPizzaBlockProps> = ({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) => {
+const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) => {
   
   const dispatch = useDispatch();
   const [activeType, setActiveType] = React.useState(0);
@@ -13,7 +13,7 @@ const DressBlock: React.FC<IPizzaBlockProps> = ({ id, title, price, imageUrl, si
   const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
-    const item = {
+    const item: ICartItem = {
       id,
       title,
       price,
@@ -22,6 +22,7 @@ const DressBlock: React.FC<IPizzaBlockProps> = ({ id, title, price, imageUrl, si
       type: typeNames[activeType],
       size: sizes[activeSize],
       activeType,
+      count: 0
     };
     dispatch(addItem(item));
   };

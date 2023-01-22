@@ -6,7 +6,7 @@ import { clearItems } from "../redux/slices/cartSlice";
 const ClearCartPopup: React.FC<any> = ({ onClose }) => {
   const dispatch = useDispatch();
 
-  function handleSubmit(evt: any) {
+  function handleSubmit(evt: React.ChangeEvent<HTMLInputElement>) {
     evt.preventDefault();
     dispatch(clearItems());
     onClose();

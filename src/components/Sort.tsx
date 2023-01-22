@@ -1,36 +1,37 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectSort, setSort } from '../redux/slices/filterSlice';
-import { ISortItem } from '../types/types';
-import { list } from '../utils/variables.js';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectSort, setSort } from "../redux/slices/filterSlice";
+import { ISortItem, PopupClickType } from "../types/types";
+import { list } from "../utils/variables.js";
 
 const Sort: React.FC = () => {
-
   const dispatch = useDispatch();
   const sort = useSelector(selectSort);
-  const sortRef = React.useRef<HTMLDivElement>(null); 
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
   const [isVisible, setIsVisible] = React.useState(false);
 
   const handleClick = () => {
     setIsVisible(!isVisible);
   };
- 
+
   const onClickListItem = (obj: ISortItem) => {
     dispatch(setSort(obj));
     setIsVisible(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (evt: any) => {
-      if (!evt.path.includes(sortRef.current)) {
+    const handleClickOutside = (evt: MouseEvent) => {
+      // переопределяем тип с path
+      const _evt = evt as PopupClickType;
+      if (sortRef.current && !_evt.path.includes(sortRef.current)) {
         setIsVisible(false);
       }
     };
 
-      document.body.addEventListener('click', handleClickOutside);
+    document.body.addEventListener("click", handleClickOutside);
     return () => {
-      document.body.removeEventListener('click', handleClickOutside);
+      document.body.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
@@ -59,7 +60,7 @@ const Sort: React.FC = () => {
             {list.map((obj, index) => (
               <li
                 onClick={() => onClickListItem(obj)}
-                className={sort.sortProperty === obj.sortProperty ? 'active' : ''}
+                className={sort.sortProperty === obj.sortProperty ? "active" : ""}
                 key={index}
               >
                 {obj.name}
@@ -68,10 +69,10 @@ const Sort: React.FC = () => {
           </ul>
         </div>
       ) : (
-        ''
+        ""
       )}
     </div>
   );
-}
+};
 
 export default Sort;

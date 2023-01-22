@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 const Popup: React.FC<any> = ({ children, isOpen, name, onClose, closeByOverlay }) => {
-  const closeByEsc = (evt: any) => {
+  const closeByEsc = (evt: KeyboardEvent) => {
     if (evt.key === "Escape") {
       onClose();
     }
