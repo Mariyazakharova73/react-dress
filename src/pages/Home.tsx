@@ -18,6 +18,7 @@ import {
 import { fetchDresses, selectDressData } from "../redux/slices/dressSlice";
 
 const Home: React.FC<any> = ({ handleImageClick }) => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
@@ -34,31 +35,34 @@ const Home: React.FC<any> = ({ handleImageClick }) => {
     dispatch(setCurrentPage(page));
   };
 
-  //если был первый рендер, парсим параметры из адресной строки
+  // Проверяем, есть ли данные в адресной строке. И парсим, если есть
   React.useEffect(() => {
     if (window.location.search) {
+      // составляем объект и передаем в редакс
       const params = qs.parse(window.location.search.substring(1));
       const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
       dispatch(
         setFilters({
-          ...params,
-          sort,
+          searchValue: String(params.search),
+          categoryId: Number(params.category),
+          currentPage: Number(params.currentPage),
+          sort: sort || list[0],
         })
       );
       isSearch.current = true;
     }
   }, []);
 
-  //В АДРЕСНУЮ СТРОКУ
+  // в адресную строку
   React.useEffect(() => {
-    //если изменили параметры и был первый рендер
+    // если изменили параметры и был первый рендер
     if (isMounted.current) {
       const string = qs.stringify({
         sortProperty: sort.sortProperty,
         categoryId,
         currentPage,
       });
-      //передаем в адресную строку нашу строку
+      // передаем в адресную строку данные
       navigate(`?${string}`);
     }
     isMounted.current = true;
@@ -74,20 +78,14 @@ const Home: React.FC<any> = ({ handleImageClick }) => {
     window.scrollTo(0, 0);
   };
 
-  //Платья
+  // Платья
   React.useEffect(() => {
     if (!isSearch.current) {
       getDresses();
     }
     isSearch.current = false;
   }, [categoryId, sort, searchValue, currentPage]);
-  // const filterArr = pizzas.filter((obj) => {
-  //   if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // });
+
   const arr = dresses.map((item: any) => (
     <DressBlock key={item.id} {...item} handleImageClick={handleImageClick} />
   ));

@@ -1,11 +1,19 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addItem, selectCartItemById } from '../redux/slices/cartSlice';
-import { IDressBlockProps, ICartItem } from '../types/types';
-import { typeNames } from '../utils/variables'
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, selectCartItemById } from "../redux/slices/cartSlice";
+import { IDressBlockProps, ICartItem } from "../types/types";
+import { typeNames } from "../utils/variables";
 
-const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, sizes, types, imageUrl2, handleImageClick }) => {
-  
+const DressBlock: React.FC<IDressBlockProps> = ({
+  id,
+  title,
+  price,
+  imageUrl,
+  sizes,
+  types,
+  imageUrl2,
+  handleImageClick,
+}) => {
   const dispatch = useDispatch();
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
@@ -22,13 +30,13 @@ const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, si
       type: typeNames[activeType],
       size: sizes[activeSize],
       activeType,
-      count: 0
+      count: 0,
     };
     dispatch(addItem(item));
   };
 
   const onClickImage = () => {
-    const item = {
+    const item: ICartItem = {
       id,
       title,
       price,
@@ -37,6 +45,7 @@ const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, si
       type: typeNames[activeType],
       size: sizes[activeSize],
       activeType,
+      count: 0,
     };
     handleImageClick(item);
   };
@@ -44,12 +53,12 @@ const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, si
   return (
     <div className="dress-block-wrapper">
       <div className="dress-block">
-          <img
-            className="dress-block__image"
-            src={!activeType ? imageUrl : imageUrl2}
-            alt={`${title}.`}
-            onClick={onClickImage}
-          />
+        <img
+          className="dress-block__image"
+          src={!activeType ? imageUrl : imageUrl2}
+          alt={`${title}.`}
+          onClick={onClickImage}
+        />
         <h4 className="dress-block__title">{title}</h4>
         <div className="dress-block__selector">
           <ul>
@@ -57,7 +66,7 @@ const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, si
             {types.map((item, index) => (
               <li
                 onClick={() => setActiveType(item)}
-                className={activeType === item ? 'active' : ''}
+                className={activeType === item ? "active" : ""}
                 key={index}
               >
                 {typeNames[item]}
@@ -69,7 +78,7 @@ const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, si
             {sizes.map((item, index) => (
               <li
                 onClick={() => setActiveSize(index)}
-                className={activeSize === index ? 'active' : ''}
+                className={activeSize === index ? "active" : ""}
                 key={index}
               >
                 {item}
@@ -80,18 +89,7 @@ const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, si
         <div className="dress-block__bottom">
           <div className="dress-block__price">{price}₽</div>
           <button onClick={onClickAdd} className="button button--outline button--add">
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
-                fill="white"
-              />
-            </svg>
+            +&nbsp;
             <span>Добавить</span>
             {addedCount > 0 && <i>{addedCount}</i>}
           </button>
@@ -99,5 +97,5 @@ const DressBlock: React.FC<IDressBlockProps> = ({ id, title, price, imageUrl, si
       </div>
     </div>
   );
-}
+};
 export default DressBlock;

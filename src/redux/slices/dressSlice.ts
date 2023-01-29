@@ -1,11 +1,10 @@
 import { RootState } from "./../store";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IDressSliceState, FetchDressesType, ICartItem } from "../../types/types";
-
+import { IDressSliceState, FetchDressesType, IDress, Status } from "../../types/types";
 
 // возвращаемый тип - ICartItem[], аргументы - FetchDressesType;
-export const fetchDresses = createAsyncThunk<ICartItem[], FetchDressesType>(
+export const fetchDresses = createAsyncThunk<IDress[], FetchDressesType>(
   "dress/fetchDressesStatus",
   async (params) => {
     const { sortBy, order, category, search, currentPage } = params;
@@ -18,31 +17,48 @@ export const fetchDresses = createAsyncThunk<ICartItem[], FetchDressesType>(
 
 const initialState: IDressSliceState = {
   items: [],
-  status: "loading",
+  status: Status.LOADING,
 };
 
 export const dressSlice = createSlice({
   name: "dress",
   initialState,
   reducers: {
-    setItems(state, action) {
+    setItems(state, action: PayloadAction<IDress[]>) {
       state.items = action.payload;
     },
-  },
-  extraReducers: {
-    [fetchDresses.pending]: (state) => {
-      state.status = "loading";
+  }, 
+
+  extraReducers: (builder) => {
+    builder.addCase(fetchDresses.pending, (state, action) => {
+      state.status = Status.LOADING;
       state.items = [];
-    },
-    [fetchDresses.fulfilled]: (state, action) => {
+    });
+
+    builder.addCase(fetchDresses.fulfilled, (state, action) => {
       state.items = action.payload;
-      state.status = "success";
-    },
-    [fetchDresses.rejected]: (state) => {
-      state.status = "error";
+      state.status = Status.SUCCESS;
+    });
+
+    builder.addCase(fetchDresses.rejected, (state, action) => {
+      state.status = Status.ERROR;
       state.items = [];
-    },
+    });
   },
+  // extraReducers: {
+  //   [fetchDresses.pending]: (state) => {
+  //     state.status = "loading";
+  //     state.items = [];
+  //   },
+  //   [fetchDresses.fulfilled]: (state, action) => {
+  //     state.items = action.payload;
+  //     state.status = "success";
+  //   },
+  //   [fetchDresses.rejected]: (state) => {
+  //     state.status = "error";
+  //     state.items = [];
+  //   },
+  // },
 });
 
 export const { setItems } = dressSlice.actions;

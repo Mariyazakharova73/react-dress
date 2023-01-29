@@ -1,4 +1,3 @@
-import { fetchDresses } from "./../redux/slices/dressSlice";
 export interface ISortItem {
   name: string;
   sortProperty: string;
@@ -56,7 +55,7 @@ export interface ICartItem {
   title: string;
   price: number;
   imageUrl: string;
-  sizes: number[];
+  sizes?: number[];
   type: string;
   imageUrl2: string;
   size: number;
@@ -66,7 +65,7 @@ export interface ICartItem {
 
 export interface ISort {
   name: string;
-  sortProperty: "rating" | "title" | "price" | "-rating" | "-title" | "-price";
+  sortProperty: string;
 }
 
 // redux
@@ -84,8 +83,14 @@ export interface IFilterSliceState {
 
 export interface IDressSliceState {
   items: IDress[];
-  status: "loading" | "success" | "error";
+  status: Status;
 }
 
 // все ключи и значения - строки
 export type FetchDressesType = Record<string, string>;
+
+export enum Status {
+  LOADING = "loading",
+  SUCCESS = "success",
+  ERROR = "error",
+}

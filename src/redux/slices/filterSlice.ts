@@ -28,6 +28,7 @@ export const filterSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    // данные из адресной страки в state
     setFilters(state, action: PayloadAction<IFilterSliceState>) {
       state.sort = action.payload.sort;
       state.currentPage = Number(action.payload.currentPage);

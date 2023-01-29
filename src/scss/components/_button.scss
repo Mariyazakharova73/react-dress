@@ -11,7 +11,7 @@
   transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
   border: 1px solid transparent;
   @include noselect();
-
+  font-size: 20px;
 
   &,
   span {
