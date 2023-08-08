@@ -1,44 +1,40 @@
-# react-dress
+### react-dress
 
-### Обзор
+#### О проекте
 
-* Описание проекта
-* Технологии и инструменты
-* Функции
-* Начало работы
-* Cсылка на страницу проекта
 
-**Описание проекта**
+#### Технологии
 
-Проект "react-dress".
+<div>
+  <img height='25px' src="https://img.shields.io/badge/React-20232A??style=plastic&logo=react&logoColor=61DAFB" alt="React">
+  <img height='25px' src="https://img.shields.io/badge/TypeScript-20232A??style=plastic&logo=typescript&logoColor=3178C6" alt="TypeScript">
+  <img height='25px' src="https://img.shields.io/badge/Axios-20232A??style=for-the-badge&logo=Axios&logoColor=5A29E4" alt="Axios">
+</div>
 
-**Технологии и инструменты**
+#### Установка и запуск приложения
 
-* CSS-Modules / SCSS
-* React
-* Redux Toolkit
-* SPA
-* React Router v6
-* Axios
-* Lodash.Debounce
-* https://mockapi.io/
-* React Pagination
-* React Content Loader (скелетон)
-* createAsyncThunk, ThunkAPI
-* TypeScript
+<details><summary><b>Развернуть</b></summary>
 
-**Функции**
+Клонировать репозиторий:
 
-* добавление товара в корзину
-* сортировка товара
-* поиск товора
+    git clone https://github.com/Mariyazakharova73/react-dress.git
 
-**Начало работы**
+Установить зависимости:
 
-npm install - устанавливает необходимые пакеты<br/>
-npm start - запускает проект<br/>
-npm run deploy - обновляет проект на gh-pages<br/>
+    npm install
 
-**Cсылка на страницу проекта**
+Собрать проект:
 
-* [Ссылка: "react-dress"](https://mariyazakharova73.github.io/react-dress/)
+    npm run build
+
+Запустить проект:
+
+    npm start
+
+</details>
+
+[Ссылка на проект react-dress](https://mariyazakharova73.github.io/react-dress/)
+
+<!-- <div align="center">
+  <img width="575" alt="Приложение." src="./src/images/app.png">
+</div> -->
