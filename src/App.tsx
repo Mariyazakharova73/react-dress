@@ -6,6 +6,7 @@ import s from "./App.module.css";
 import { themeConfig } from "./theme/theme";
 import Categories from "./components/Categories/Categories";
 import Sort from "./components/Sort/Sort";
+import Dresses from './components/Dresses/Dresses';
 
 const { Content, Footer } = Layout;
 
@@ -19,9 +20,12 @@ const App = () => {
       <Layout>
         <HeaderApp />
         <Content className={s.content}>
-          <Row className={s.wrapper}>
+          <Row className={s.wrapper} wrap>
             <Categories />
             <Sort />
+          </Row>
+          <Row>
+            <Dresses/>
           </Row>
         </Content>
         <Footer>React Dress ©2023 Created by Maryia Zakharova</Footer>
