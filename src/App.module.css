@@ -1,0 +1,11 @@
+.content {
+  margin: 5px var(--border) 0;
+  border-radius: 10px;
+}
+
+.wrapper {
+  border-radius: 10px;
+   min-height: 360px;
+   padding: 24px;
+   background-color: var(--white-color);
+}

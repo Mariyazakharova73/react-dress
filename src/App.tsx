@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ConfigProvider, Row, theme } from "antd";
+import { Layout } from "antd";
+import HeaderApp from "./components/Header/Header";
+import s from "./App.module.css";
+import { themeConfig } from "./theme/theme";
+import Categories from "./components/Categories/Categories";
+import Sort from "./components/Sort/Sort";
 
-function App() {
+const { Content, Footer } = Layout;
+
+const App = () => {
+  // const {
+  //   token: { colorBgContainer },
+  // } = theme.useToken();
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfigProvider theme={themeConfig}>
+      <Layout>
+        <HeaderApp />
+        <Content className={s.content}>
+          <Row className={s.wrapper}>
+            <Categories />
+            <Sort />
+          </Row>
+        </Content>
+        <Footer>React Dress ©2023 Created by Maryia Zakharova</Footer>
+      </Layout>
+    </ConfigProvider>
   );
-}
+};
 
 export default App;
