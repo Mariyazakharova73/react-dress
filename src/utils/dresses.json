@@ -3,13 +3,12 @@
    "id": "0",
    "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/33576/3357629536_60_0.jpg", 
    "https://imgcdn.loverepublic.ru/upload/images/33576/3357629536_60_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/33576/3357629536_60_5.jpg"],
-   "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/33576/3357629536_50_0.jpg", 
+   "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/33576/3357629536_50_0.jpg", 
    "https://imgcdn.loverepublic.ru/upload/images/33576/3357629536_50_4.jpg" ,
    "https://imgcdn.loverepublic.ru/upload/images/33576/3357629536_50_5.jpg"],
    "title": "ПЛАТЬЕ С ОТКРЫТЫМИ ПЛЕЧАМИ",
    "types": [
-    0,
-    1
+    0
    ],
    "sizes": [
     42,
@@ -27,7 +26,7 @@
    "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/33586/3358612510_66_0.jpg", 
    "https://imgcdn.loverepublic.ru/upload/images/33586/3358612510_66_4.jpg" ,
    "https://imgcdn.loverepublic.ru/upload/images/33586/3358612510_66_5.jpg"],
-   "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/33586/3358612510_50_0.jpg", 
+   "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/33586/3358612510_50_0.jpg", 
    "https://imgcdn.loverepublic.ru/upload/images/33586/3358612510_50_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/33586/3358612510_50_5.jpg"],
    "title": "ПЛАТЬЕ МИНИ",
    "types": [
@@ -36,7 +35,9 @@
    ],
    "sizes": [
     42,
-    44
+    44,
+    46, 
+    48
    ],
    "price": 5999,
    "category": 1,
@@ -46,7 +47,7 @@
   },
   {
    "id": "2",
-   "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/22566/2256631538_50_0.jpg", 
+   "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/22566/2256631538_50_0.jpg", 
    "https://imgcdn.loverepublic.ru/upload/images/22566/2256631538_50_4.jpg" ,
    "https://imgcdn.loverepublic.ru/upload/images/22566/2256631538_50_5.jpg"],
    "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/22566/2256631538_65_0.jpg", 
@@ -58,7 +59,8 @@
    ],
    "sizes": [
     42,
-    44
+    44,
+    48
    ],
    "price": 2999,
    "category": 2,
@@ -68,14 +70,14 @@
   },
   {
    "id": "3",
-   "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/22566/2256620525_50_0.jpg", 
+   "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/22566/2256620525_50_0.jpg", 
    "https://imgcdn.loverepublic.ru/upload/images/22566/2256620525_50_4.jpg" ,
    "https://imgcdn.loverepublic.ru/upload/images/22566/2256620525_50_5.jpg"],
    "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/22566/2256620525_14_0.jpg", 
    "https://imgcdn.loverepublic.ru/upload/images/22566/2256620525_14_5.jpg", "https://imgcdn.loverepublic.ru/upload/images/22566/2256620525_14_4.jpg"],
    "title": "САРАФАН С ОТКРЫТОЙ СПИНОЙ",
    "types": [
-    1
+    0, 1
    ],
    "sizes": [
     42,
@@ -93,11 +95,11 @@
     "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/33586/3358623521_60_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/33586/3358623521_60_4.jpg" ,
     "https://imgcdn.loverepublic.ru/upload/images/33586/3358623521_60_5.jpg"],
-    "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/33586/3358623521_50_0.jpg", 
+    "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/33586/3358623521_50_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/33586/3358623521_50_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/33586/3358623521_50_5.jpg"],
     "title": "ПЛАТЬЕ-ПИДЖАК",
     "types": [
-     1
+     0, 1
     ],
     "sizes": [
      42,
@@ -115,11 +117,11 @@
     "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_60_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_60_4.jpg" ,
     "https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_60_5.jpg"],
-    "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_50_0.jpg", 
+    "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_50_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_50_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_50_5.jpg"],
     "title": "ПЛАТЬЕ-ПИДЖАК",
     "types": [
-     1
+     0, 1
     ],
     "sizes": [
      42,
@@ -137,16 +139,17 @@
     "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/31516/3151610510_61_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/31516/3151610510_61_4.jpg" ,
     "https://imgcdn.loverepublic.ru/upload/images/33576/3357631537_60_5.jpg"],
-    "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/31516/3151610510_13_0.jpg", 
+    "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/31516/3151610510_13_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/31516/3151610510_13_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/31516/3151610510_61_5.jpg"],
     "title": "КОРОТКОЕ ПЛАТЬЕ-РУБАШКА",
     "types": [
-     1
+     0, 1
     ],
     "sizes": [
      42,
      44,
-     46
+     46,
+     48
     ],
     "price": 
     1599,
@@ -160,16 +163,17 @@
     "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/31536/3153622520_41_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/31536/3153622520_41_4.jpg" ,
     "https://imgcdn.loverepublic.ru/upload/images/31536/3153622520_41_5.jpg"],
-    "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/31536/3153622520_54_0.jpg", 
+    "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/31536/3153622520_54_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/31536/3153622520_54_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/31536/3153622520_54_5.jpg"],
     "title": "ПЛАТЬЕ ИЗ ВИСКОЗЫ",
     "types": [
-     1
+     0, 1
     ],
     "sizes": [
      42,
      44,
-     46
+     46, 
+     48
     ],
     "price": 
     3599,
@@ -183,11 +187,11 @@
     "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/14521/1452104530_17_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/14521/1452104530_17_4.jpg" ,
     "https://imgcdn.loverepublic.ru/upload/images/14521/1452104530_17_5.jpg"],
-    "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/14521/1452104530_50_0.jpg", 
+    "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/14521/1452104530_50_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/14521/1452104530_50_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/14521/1452104530_50_5.jpg"],
     "title": "БЛЕСТЯЩЕЕ ПЛАТЬЕ С АСИММЕТРИЧНЫМ ВЫРЕЗОМ",
     "types": [
-     1
+    0, 1
     ],
     "sizes": [
      42,
@@ -200,21 +204,22 @@
     "rating": 2,
     "compound": "Состав: 100% хлопок",
     "description": "Уход за изделием: Ручная стирка при максимальной температуре 40ºС, Не отбеливать, Машинная сушка запрещена, Глажение при 110ºС, Профессиональная сухая чистка. Мягкий режим., Стирать и утюжить вывернутым наизнанку, Стирать с изделиями похожих цветов, Расправить во влажном состоянии. Не скручивать"
-   },{
+   },
+   {
     "id": "9",
     "imageUrl": ["https://imgcdn.loverepublic.ru/upload/images/14521/1452118533_7_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/14521/1452118533_7_4.jpg" ,
     "https://imgcdn.loverepublic.ru/upload/images/14521/1452118533_7_5.jpg"],
-    "imageUrl2": ["https://imgcdn.loverepublic.ru/upload/images/14521/1452118533_47_0.jpg", 
+    "imageUrlDark": ["https://imgcdn.loverepublic.ru/upload/images/14521/1452118533_47_0.jpg", 
     "https://imgcdn.loverepublic.ru/upload/images/14521/1452118533_47_4.jpg", "https://imgcdn.loverepublic.ru/upload/images/14521/1452118533_47_5.jpg"],
     "title": "ПЛАТЬЕ МИДИ С ВЫРЕЗАМИ",
     "types": [
-     1
+     0, 1
     ],
     "sizes": [
-     42,
      44,
-     46
+     46,
+     48
     ],
     "price": 
     1499,

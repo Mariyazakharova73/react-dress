@@ -4,7 +4,6 @@ export const GREY_COLOR = "#cfcfcf";
 export const BLACK_COLOR = "#000000";
 export const LIGHT_GREY_COLOR = "#e5e1e1";
 
-
 export const list = [
   { name: "популярности", sortProperty: "rating" },
   { name: "цене (по убыванию)", sortProperty: "price" },
@@ -12,6 +11,17 @@ export const list = [
   { name: "алфавиту", sortProperty: "-title" },
 ];
 
-export const categories = ["Все", "Короткие", "Сарафаны", "Платье-пиджак", "Платье-рубашка", "Вечерние"  ];
+export const categories = [
+  "Все",
+  "Короткие",
+  "Сарафаны",
+  "Платье-пиджак",
+  "Платье-рубашка",
+  "Вечерние",
+];
 
-export const typeNames = ["светлое", "темное"];
+export const colorArr = [
+  { name: "Светлое", code: 0 },
+  { name: "Темное", code: 1 },
+];
+export const sizesArr = [42, 44, 46, 48];
