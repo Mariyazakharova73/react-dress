@@ -6,7 +6,7 @@ import s from "./App.module.css";
 import { themeConfig } from "./theme/theme";
 import Categories from "./components/Categories/Categories";
 import Sort from "./components/Sort/Sort";
-import Dresses from './components/Dresses/Dresses';
+import Dresses from "./components/Dresses/Dresses";
 
 const { Content, Footer } = Layout;
 
@@ -14,10 +14,10 @@ const App = () => {
   // const {
   //   token: { colorBgContainer },
   // } = theme.useToken();
-  
+
   return (
     <ConfigProvider theme={themeConfig}>
-      <Layout>
+      <Layout className={s.layout}>
         <HeaderApp />
         <Content className={s.content}>
           <Row className={s.wrapper} wrap>
@@ -25,7 +25,7 @@ const App = () => {
             <Sort />
           </Row>
           <Row>
-            <Dresses/>
+            <Dresses />
           </Row>
         </Content>
         <Footer>React Dress ©2023 Created by Maryia Zakharova</Footer>

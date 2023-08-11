@@ -1,1 +1,26 @@
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
 
+.title {
+  font-size: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 25px;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 1rem;
+}
+
+@media screen and (max-width: 425px) {
+  .row {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}

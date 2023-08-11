@@ -1,0 +1,32 @@
+.colorWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.sizeWrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonWrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divider {
+  margin: 10px 0;
+}
+
+.image {
+  height: 390px;
+  object-fit: cover;
+  object-position: top;
+  transition: all 0.5s ease-in-out;
+}
+
+.image:hover {
+  transform: scale(1.02);
+  opacity: 0.8;
+}

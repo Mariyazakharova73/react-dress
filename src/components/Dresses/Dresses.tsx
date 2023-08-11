@@ -1,27 +1,21 @@
 import React from "react";
-import { Card, Col, Row, Typography } from "antd";
-const { Title } = Typography;
+import { Col, Row } from "antd";
+import DressCard from "./../DressCard/DressCard";
+import s from "./Dresses.module.css";
+import dresses from "../../utils/dresses.json";
 
 const Dresses = () => {
   return (
-    <div>
-      <Title level={1}>Все платья</Title>
-      <Row >
-        <Col span={8}>
-          <Card title="Card title" bordered={false} hoverable style={{ width: 260 }}>
-            Card content
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title" bordered={false} hoverable style={{ width: 260 }}>
-            Card content
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title" bordered={false} hoverable style={{ width: 260 }}>
-            Card content
-          </Card>
-        </Col>
+    <div className={s.wrapper}>
+      <h1 className={s.title}>Все платья</h1>
+      <Row className={s.row}>
+        {dresses.map((item) => {
+          return (
+            <Col key={item.id}>
+              <DressCard item={item}/>
+            </Col>
+          );
+        })}
       </Row>
     </div>
   );

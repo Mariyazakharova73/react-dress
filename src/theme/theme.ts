@@ -16,7 +16,14 @@ export const themeConfig  = {
       colorText: WHITE_COLOR,
       colorBgLayout: LIGHT_GREY_COLOR,
       borderRadius: 10,
-    }
+    },
+    Radio: {
+      borderRadius: 6,
+    },
+    Badge: {
+      colorBgContainer: MAIN_COLOR,
+    },
+
   },
   //algorithm: theme.darkAlgorithm,
   token: {

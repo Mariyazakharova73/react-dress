@@ -20,7 +20,7 @@ const Categories: React.FC = () => {
 
   return (
     <div>
-      {width >= 650 && (
+      {width >= 768 && (
         <Space direction="vertical">
           <Segmented
             options={categories}
@@ -31,7 +31,7 @@ const Categories: React.FC = () => {
           />
         </Space>
       )}
-      {width < 650 && (
+      {width < 768 && (
         <Select
           style={{ width: 200 }}
           value={category as string}

@@ -12,6 +12,6 @@ export const list = [
   { name: "алфавиту", sortProperty: "-title" },
 ];
 
-export const categories = ["Все", "Комбинация", "Кожаные", "Длинные", "Короткие", "Пиджак"];
+export const categories = ["Все", "Короткие", "Сарафаны", "Платье-пиджак", "Платье-рубашка", "Вечерние"  ];
 
 export const typeNames = ["светлое", "темное"];

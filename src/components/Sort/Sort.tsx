@@ -5,7 +5,7 @@ import { list } from "../../utils/variables";
 const { Text } = Typography;
 
 const Sort: React.FC = () => {
-  const [category, setCategory] = useState<string>("Все");
+  const [category, setCategory] = useState<string>("популярности");
 
   const handleChange = (newValue: string) => {
     console.log(newValue);
@@ -13,9 +13,10 @@ const Sort: React.FC = () => {
   };
   return (
     <div>
-      <Text className={s.text}>Сортировка по:&nbsp;</Text>
+      <Text className={s.text}>Сортировка по:</Text>
       <Select
-        style={{ width: 200 }}
+        bordered={false}
+        
         value={category}
         onChange={handleChange}
         options={list.map((item) => ({ label: item.name, value: item.name }))}
