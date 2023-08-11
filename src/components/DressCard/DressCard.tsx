@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Card, Radio, Divider, Typography, Space, Button, Badge } from "antd";
+import { Card, Radio, Divider, Typography, Space, Button, Badge, Skeleton } from "antd";
 import s from "./DressCard.module.css";
 import cn from "classnames";
 import { PlusOutlined } from "@ant-design/icons";
@@ -9,9 +9,10 @@ const { Text } = Typography;
 
 interface IDressCardProps {
   item: any;
+  isLoading: boolean;
 }
 
-const DressCard: FC<IDressCardProps> = ({ item }) => {
+const DressCard: FC<IDressCardProps> = ({ item, isLoading }) => {
   const [color, setColor] = useState("Светлое");
   const [size, setSize] = useState("42");
   const [dressCount, setDressCount] = useState(0);
@@ -22,12 +23,17 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
 
   return (
     <Card
+      loading={isLoading}
       cover={
-        <img
-          alt="dress"
-          className={s.image}
-          src={color === "Светлое" ? item.imageUrl[0] : item.imageUrlDark[0]}
-        />
+        isLoading ? (
+          <Skeleton.Image active={isLoading} className={s.skeleton} />
+        ) : (
+          <img
+            alt="dress"
+            className={s.image}
+            src={color === "Светлое" ? item.imageUrl[0] : item.imageUrlDark[0]}
+          />
+        )
       }
       hoverable
       className={s.card}

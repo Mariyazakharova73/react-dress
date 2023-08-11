@@ -25,3 +25,5 @@ export const colorArr = [
   { name: "Темное", code: 1 },
 ];
 export const sizesArr = [42, 44, 46, 48];
+
+export const BASE_URL = "https://631cd2604fa7d3264cb78455.mockapi.io/items";
