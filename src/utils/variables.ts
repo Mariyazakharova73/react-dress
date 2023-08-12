@@ -5,7 +5,7 @@ export const BLACK_COLOR = "#000000";
 export const LIGHT_GREY_COLOR = "#e5e1e1";
 
 export const list = [
-  { name: "популярности", sortProperty: "rating" },
+  { name: "популярности", sortProperty: "-rating" },
   { name: "цене (по убыванию)", sortProperty: "price" },
   { name: "цене (по возрастанию)", sortProperty: "-price" },
   { name: "алфавиту", sortProperty: "-title" },
@@ -27,3 +27,7 @@ export const colorArr = [
 export const sizesArr = [42, 44, 46, 48];
 
 export const BASE_URL = "https://631cd2604fa7d3264cb78455.mockapi.io/items";
+
+export const HOME_PATH = "/";
+export const CART_PATH = "cart";
+export const NOT_FOUND_PATH = "*";

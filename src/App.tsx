@@ -1,31 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { ConfigProvider, Row, theme } from "antd";
+import React from "react";
+import { ConfigProvider } from "antd";
 import { Layout } from "antd";
 import HeaderApp from "./components/Header/Header";
 import s from "./App.module.css";
 import { themeConfig } from "./theme/theme";
-import Categories from "./components/Categories/Categories";
-import Sort from "./components/Sort/Sort";
-import Dresses from "./components/Dresses/Dresses";
-import { BASE_URL } from "./utils/variables";
+import { CART_PATH, NOT_FOUND_PATH, HOME_PATH } from "./utils/variables";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart/Cart";
+import NotFound from "./pages/NotFound";
 
 const { Content, Footer } = Layout;
 
 const App = () => {
-  const [dresses, setDresses] = useState([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    fetch(BASE_URL)
-      .then((response) => {
-        return response.json();
-      })
-      .then((res) => {
-        setDresses(res);
-        setIsLoading(false);
-      });
-  }, []);
-
   // const {
   //   token: { colorBgContainer },
   // } = theme.useToken();
@@ -35,13 +22,11 @@ const App = () => {
       <Layout className={s.layout}>
         <HeaderApp />
         <Content className={s.content}>
-          <Row className={s.wrapper} wrap>
-            <Categories />
-            <Sort />
-          </Row>
-          <Row>
-            <Dresses dresses={dresses} isLoading={isLoading}/>
-          </Row>
+          <Routes>
+            <Route path={HOME_PATH} element={<Home />} />
+            <Route path={CART_PATH} element={<Cart />} />
+            <Route path={NOT_FOUND_PATH} element={<NotFound />} />
+          </Routes>
         </Content>
         <Footer>React Dress ©2023 Created by Maryia Zakharova</Footer>
       </Layout>

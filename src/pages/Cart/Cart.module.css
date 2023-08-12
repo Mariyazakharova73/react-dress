@@ -1,0 +1,35 @@
+.title {
+  font-size: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 25px;
+  }
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: var(--black-color);
+}
+
+.wrapper {
+  margin-top: 20px;
+}
+
+.text {
+  font-weight: bold;
+}
+
+.circle {
+  color: var(--main-color)
+}
+
+.price {
+  font-weight: bold;
+  margin: 0 20px;
+}

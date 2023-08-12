@@ -1,22 +1,21 @@
-import React, { useState } from "react";
+import React, { FC } from "react";
 import { Segmented, Space, Select } from "antd";
 import { categories } from "./../../utils/variables";
 import { SegmentedValue } from "antd/es/segmented";
 import useWindowDimensions from "./../../HOC/useWindowDimensions ";
 
-const Categories: React.FC = () => {
+interface ICategoriesProps {
+  category: string | SegmentedValue;
+  handleCategoryChange: (e: SegmentedValue) => void;
+  handleCategorySelect: (newValue: string) => void;
+}
+
+const Categories: FC<ICategoriesProps> = ({
+  category,
+  handleCategoryChange,
+  handleCategorySelect,
+}) => {
   const { width } = useWindowDimensions();
-  const [category, setCategory] = useState<string | SegmentedValue>("Все");
-
-  const handleCategoryChange = (e: SegmentedValue) => {
-    console.log(e);
-    setCategory(e);
-  };
-
-  const handleCategorySelect = (newValue: string) => {
-    console.log(newValue);
-    setCategory(newValue);
-  };
 
   return (
     <div>

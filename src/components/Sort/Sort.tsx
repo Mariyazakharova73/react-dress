@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React, { FC } from "react";
 import { Typography, Select } from "antd";
 import s from "./Sort.module.css";
 import { list } from "../../utils/variables";
 const { Text } = Typography;
 
-const Sort: React.FC = () => {
-  const [category, setCategory] = useState<string>("популярности");
+interface ISortProps {
+  sort: string;
+  handleChange: (newValue: string) => void;
+}
 
-  const handleChange = (newValue: string) => {
-    console.log(newValue);
-    setCategory(newValue);
-  };
+const Sort: FC<ISortProps> = ({sort, handleChange}) => {
   return (
     <div>
       <Text className={s.text}>Сортировка по:</Text>
       <Select
         bordered={false}
-        
-        value={category}
+        value={sort}
         onChange={handleChange}
         options={list.map((item) => ({ label: item.name, value: item.name }))}
       />
