@@ -1,18 +1,22 @@
-import React from "react";
+import React, { ChangeEvent, FC } from "react";
 import { Input } from "antd";
 import s from "./SearchApp.module.css";
-const { Search } = Input;
+import { SearchOutlined } from "@ant-design/icons";
 
-const SearchApp: React.FC = () => {
-  const onSearch = (value: string) => console.log(value);
+interface ISearchAppProps {
+  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+}
 
+const SearchApp: FC<ISearchAppProps> = ({ onSearch }) => {
   return (
-    <Search
+    <Input
       className={s.search}
-      size="large"
+      prefix={<SearchOutlined />}
       placeholder="Поиск платья..."
       allowClear
-      onSearch={onSearch}
+      onChange={onSearch}
+      size="large"
+      //onSearch={onSearch}
       //loading
     />
   );

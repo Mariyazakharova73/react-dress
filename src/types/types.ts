@@ -2,9 +2,9 @@ export interface IDress {
   id: string;
   title: string;
   price: number;
-  imageUrl: string;
+  imageUrl: string[];
   sizes: number[];
   types: number[];
-  imageUrl2: string;
+  imageUrl2: string[];
   raiting: number;
 }

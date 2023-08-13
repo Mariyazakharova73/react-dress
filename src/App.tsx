@@ -1,6 +1,5 @@
 import React from "react";
-import { ConfigProvider } from "antd";
-import { Layout } from "antd";
+import { Layout, ConfigProvider } from "antd";
 import HeaderApp from "./components/Header/Header";
 import s from "./App.module.css";
 import { themeConfig } from "./theme/theme";

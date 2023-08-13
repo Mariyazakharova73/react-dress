@@ -35,3 +35,7 @@
   width: 100% !important;
   height: 390px !important;
 }
+
+.card {
+  max-width: 575px;
+}
