@@ -3,6 +3,7 @@ import { Input } from "antd";
 import s from "./SearchApp.module.css";
 import { SearchOutlined } from "@ant-design/icons";
 
+
 interface ISearchAppProps {
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 }

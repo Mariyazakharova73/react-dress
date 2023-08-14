@@ -3,20 +3,24 @@ import { Segmented, Space, Select } from "antd";
 import { categories } from "./../../utils/variables";
 import { SegmentedValue } from "antd/es/segmented";
 import useWindowDimensions from "./../../HOC/useWindowDimensions ";
+import { AppDispatch, RootState } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategory } from "../../redux/slices/filterSlice";
 
-interface ICategoriesProps {
-  category: string | SegmentedValue;
-  handleCategoryChange: (e: SegmentedValue) => void;
-  handleCategorySelect: (newValue: string) => void;
-}
+interface ICategoriesProps {}
 
-const Categories: FC<ICategoriesProps> = ({
-  category,
-  handleCategoryChange,
-  handleCategorySelect,
-}) => {
+const Categories: FC<ICategoriesProps> = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const category = useSelector((state: RootState) => state.filter.category);
   const { width } = useWindowDimensions();
 
+  const handleCategoryChange = (e: SegmentedValue) => {
+    dispatch(setCategory(e as string));
+  };
+
+  const handleCategorySelect = (newValue: string) => {
+    dispatch(setCategory(newValue));
+  };
   return (
     <div>
       {width >= 768 && (

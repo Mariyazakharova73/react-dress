@@ -1,88 +1,116 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { Divider, Row } from "antd";
 import s from "../App.module.css";
 import Categories from "../components/Categories/Categories";
 import Sort from "../components/Sort/Sort";
 import Dresses from "../components/Dresses/Dresses";
 import SearchApp from "../components/SearchApp/SearchApp";
-import { BASE_URL, list } from "../utils/variables";
-import { SegmentedValue } from "antd/es/segmented";
-import { categories } from "./../utils/variables";
+import { BASE_URL, categories, list } from "../utils/variables";
 import { IDress } from "./../types/types";
 import PaginationApp from "./../components/Pagination/PaginationApp";
-import type { PaginationProps } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../redux/store";
+import axios from "axios";
+import debounce from "lodash.debounce";
+import qs from "qs";
+import { SegmentedValue } from "antd/es/segmented";
+import { useNavigate } from "react-router-dom";
+import { setFilters } from "../redux/slices/filterSlice";
 
 const Home: FC = () => {
+  const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
+  const isSearch = useRef(false);
+  const isMounted = useRef(false);
+  const { category, sort } = useSelector((state: RootState) => state.filter);
+  const currentPage = useSelector((state: RootState) => state.filter.currentPage);
+
   const [dresses, setDresses] = useState<IDress[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [category, setCategory] = useState<string | SegmentedValue>("Все");
-  const [sort, setSort] = useState<string>("популярности");
   const [serchValue, setSearchValue] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  const onChangePage: PaginationProps["onChange"] = (page: number) => {
-    console.log(page);
-    setCurrentPage(page);
-  };
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const handleChange = (newValue: string) => {
-    //console.log(newValue);
-    setSort(newValue);
+  const getCategoryNumber = (c: string | SegmentedValue) => {
+    return categories.findIndex((i) => i === c);
   };
 
-  const handleCategoryChange = (e: SegmentedValue) => {
-    //console.log(e);
-    setCategory(e);
+  const getSortProperty = (s: string) => {
+    return s.replace("-", "");
   };
 
-  const handleCategorySelect = (newValue: string) => {
-    //console.log(newValue);
-    setCategory(newValue);
+  const fetchDresses = () => {
+    const categoryNumber = getCategoryNumber(category);
+    const sortBy = getSortProperty(sort.sortProperty);
+    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+
+    setIsLoading(true);
+
+    axios
+      .get(
+        `${BASE_URL}?page=${currentPage}&limit=4&category=${
+          categoryNumber > 0 ? categoryNumber : ""
+        }&sortBy=${sortBy}&order=${order}&search=${serchValue}`
+      )
+      .then((res) => {
+        setDresses(res.data);
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
-    const categoryStr = categories.findIndex((i) => i === category);
-    const sortBy = list.find((item) => item.name === sort)?.sortProperty;
-    const sortByStr = sortBy?.replace("-", "");
-    const order = sortBy?.includes("-") ? "asc" : "desc";
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      console.log(params);
+      const obj = list.find((item) => item.sortProperty === params.sortProperty);
+      dispatch(
+        setFilters({
+          currentPage: params.currentPage,
+          sort: obj,
+          category: categories[Number(params.category)],
+        })
+      );
+      isSearch.current = true;
+    }
+  }, []);
 
-    setIsLoading(true);
-    fetch(
-      `${BASE_URL}?page=${currentPage}&limit=4&category=${
-        categoryStr > 0 ? categoryStr : ""
-      }&sortBy=${sortByStr}&order=${order}&search=${serchValue}`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((res) => {
-        setDresses(res);
-        setIsLoading(false);
-      });
+  useEffect(() => {
     window.scrollTo(0, 0);
+    if (!isSearch.current) {
+      fetchDresses();
+    }
+
+    isSearch.current = false;
   }, [category, sort, serchValue, currentPage]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        category: getCategoryNumber(category),
+        currentPage,
+      });
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
+  }, [category, sort, currentPage]);
+
   return (
     <>
       <Row justify="center">
-        <SearchApp onSearch={onSearch} />
+        <SearchApp onSearch={debounce(onSearch, 1000)} />
       </Row>
       <Row className={s.wrapper} wrap>
-        <Categories
-          category={category}
-          handleCategoryChange={handleCategoryChange}
-          handleCategorySelect={handleCategorySelect}
-        />
-        <Sort sort={sort} handleChange={handleChange} />
+        <Categories />
+        <Sort />
       </Row>
       <Row>
         <Dresses dresses={dresses} isLoading={isLoading} />
       </Row>
       <Divider />
-      <PaginationApp onChangePage={onChangePage} currentPage={currentPage} />
+      <PaginationApp />
     </>
   );
 };
