@@ -8,11 +8,6 @@
   }
 }
 
-.item {
-  display: flex;
-  justify-content: space-between;
-}
-
 .button {
   background-color: var(--black-color);
 }
@@ -25,11 +20,3 @@
   font-weight: bold;
 }
 
-.circle {
-  color: var(--main-color)
-}
-
-.price {
-  font-weight: bold;
-  margin: 0 20px;
-}

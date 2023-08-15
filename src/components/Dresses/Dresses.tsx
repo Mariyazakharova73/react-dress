@@ -2,10 +2,11 @@ import React, { FC } from "react";
 import { Col, Row } from "antd";
 import DressCard from "./../DressCard/DressCard";
 import s from "./Dresses.module.css";
+import { IDress } from "../../types/types";
 
 interface IDressesProps {
-  dresses: any;
-  isLoading: boolean
+  dresses: IDress[];
+  isLoading: boolean;
 }
 
 const Dresses: FC<IDressesProps> = ({ dresses, isLoading }) => {
@@ -16,7 +17,7 @@ const Dresses: FC<IDressesProps> = ({ dresses, isLoading }) => {
         {dresses.map((item: any) => {
           return (
             <Col key={item.id}>
-              <DressCard item={item} isLoading={isLoading}/>
+              <DressCard item={item} isLoading={isLoading} />
             </Col>
           );
         })}

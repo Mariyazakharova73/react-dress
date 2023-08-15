@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { SegmentedValue } from "antd/es/segmented";
 
-export interface FilterState {
+export interface IFilterState {
   category: string | SegmentedValue;
   sort: { name: string; sortProperty: string };
   currentPage: number;
 }
 
-const initialState: FilterState = {
+const initialState: IFilterState = {
   category: "Все",
   sort: {
     name: "популярности",

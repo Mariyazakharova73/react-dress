@@ -41,29 +41,29 @@ const Home: FC = () => {
     return s.replace("-", "");
   };
 
-  const fetchDresses = () => {
+  const fetchDresses = async () => {
     const categoryNumber = getCategoryNumber(category);
     const sortBy = getSortProperty(sort.sortProperty);
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
 
     setIsLoading(true);
-
-    axios
-      .get(
+    try {
+      const res = await axios.get(
         `${BASE_URL}?page=${currentPage}&limit=4&category=${
           categoryNumber > 0 ? categoryNumber : ""
         }&sortBy=${sortBy}&order=${order}&search=${serchValue}`
-      )
-      .then((res) => {
-        setDresses(res.data);
-        setIsLoading(false);
-      });
+      );
+      setDresses(res.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      console.log(params);
       const obj = list.find((item) => item.sortProperty === params.sortProperty);
       dispatch(
         setFilters({

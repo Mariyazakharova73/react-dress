@@ -3,8 +3,21 @@ export interface IDress {
   title: string;
   price: number;
   imageUrl: string[];
+  imageUrlDark: string[];
   sizes: number[];
   types: number[];
-  imageUrl2: string[];
   raiting: number;
+  category: number;
+  compound: string;
+  description: string;
+}
+
+export interface ICartDress {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  size: string;
+  color: string;
+  count: number
 }

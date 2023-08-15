@@ -1,15 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 import { Layout, Button, Typography, Divider, Row, Col } from "antd";
 import s from "./Header.module.css";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import logo from "../../images/dress.svg";
 import { HOME_PATH, CART_PATH } from "./../../utils/variables";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { getTotalDressCount } from "../../utils/helpers";
 
 const { Header } = Layout;
 const { Text } = Typography;
 
-const HeaderApp: React.FC = () => {
+const HeaderApp: FC = () => {
+  const { cartItems, totalPrice } = useSelector((state: RootState) => state.cart);
+
   return (
     <Header className={s.header}>
       <Row>
@@ -25,10 +30,10 @@ const HeaderApp: React.FC = () => {
           <NavLink to={CART_PATH}>
             <Row justify="end">
               <Button className={s.button} type="primary" size="large">
-                <Text className={s.text}>0 ₽</Text>
+                <Text className={s.text}>{totalPrice} ₽</Text>
                 <Divider type="vertical" className={s.divider} />
                 <ShoppingCartOutlined />
-                <Text className={s.text}>0</Text>
+                <Text className={s.text}>{getTotalDressCount(cartItems)}</Text>
               </Button>
             </Row>
           </NavLink>

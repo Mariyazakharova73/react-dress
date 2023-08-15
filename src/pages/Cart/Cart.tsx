@@ -1,87 +1,104 @@
-import { Avatar, Button, Divider, List, Row, Typography } from "antd";
-import React from "react";
-import {
-  CloseCircleOutlined,
-  DeleteOutlined,
-  LeftOutlined,
-  MinusCircleOutlined,
-  PlusCircleOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
+import React, { useState } from "react";
+import { Button, Divider, List, Row, Typography } from "antd";
+import { DeleteOutlined, LeftOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import s from "./Cart.module.css";
-import { MAIN_COLOR } from "../../utils/variables";
 import { Link } from "react-router-dom";
 import { HOME_PATH } from "./../../utils/variables";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store";
+import CartItem from "../../components/CartItem/CartItem";
+import { getTotalDressCount } from "../../utils/helpers";
+import { clearItems, removeItem } from "../../redux/slices/cartSlice";
+import ModalApp from "./../../components/ModalApp/ModalApp";
+import { ICartDress } from "../../types/types";
 
 const { Text } = Typography;
 
-const data = [
-  {
-    title: "Ant Design Title 1",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-];
-
 const Cart = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [selected, setSelected] = useState<ICartDress | null>(null);
+
+  const { cartItems, totalPrice } = useSelector((state: RootState) => state.cart);
+
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const handleOkClear = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen(false);
+      dispatch(clearItems());
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const onClickClear = () => {
+    showModal();
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  const showModalItem = (item: ICartDress) => {
+    setSelected(item);
+    setOpen(true);
+  };
+
+  const handleOkRemoveItem = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen(false);
+      dispatch(removeItem(selected as ICartDress));
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
   return (
     <>
+      <ModalApp
+        title="Очистка корзины"
+        modalText="Вы уверены, что хотите очистить корзину?"
+        open={open}
+        confirmLoading={confirmLoading}
+        handleOk={handleOkClear}
+        handleCancel={handleCancel}
+      />
+      <ModalApp
+        title="Удаление товара"
+        modalText="Вы уверены, что хотите удалить товар?"
+        open={open}
+        confirmLoading={confirmLoading}
+        handleOk={handleOkRemoveItem}
+        handleCancel={handleCancel}
+      />
       <Row justify="space-between" align="middle">
         <Row>
           <ShoppingCartOutlined className={s.title} />
           <h1 className={s.title}>&nbsp;Корзина</h1>
         </Row>
-        <Button type="text" icon={<DeleteOutlined />}>
+        <Button type="text" icon={<DeleteOutlined />} onClick={onClickClear}>
           Очистить корзину
         </Button>
       </Row>
       <Divider />
       <List
         itemLayout="horizontal"
-        dataSource={data}
-        renderItem={(item, index) => (
-          <List.Item className={s.item}>
-            <List.Item.Meta
-              avatar={
-                <Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />
-              }
-              title="КОРОТКОЕ ПЛАТЬЕ-РУБАШКА"
-              description="светлое, 42 р-р"
-            />
-            <Row align="middle">
-              <Button
-                type="text"
-                shape="circle"
-                icon={<MinusCircleOutlined className={s.circle} twoToneColor={MAIN_COLOR} />}
-              />
-              <Text>2</Text>
-              <Button
-                type="text"
-                shape="circle"
-                icon={<PlusCircleOutlined className={s.circle} />}
-              />
-            </Row>
-            <Text className={s.price}>1599 руб.</Text>
-            <Button type="text" shape="circle" icon={<CloseCircleOutlined />} />
-          </List.Item>
-        )}
+        dataSource={cartItems}
+        renderItem={(item, index) => <CartItem item={item} key={index} showModalItem={showModalItem}/>}
       />
       <Divider />
       <Row justify="space-between">
         <Row>
           <Text>Всего товаров:&nbsp;</Text>
-          <Text className={s.text}>3 шт.</Text>
+          <Text className={s.text}>{getTotalDressCount(cartItems)} шт.</Text>
         </Row>
         <Row>
           <Text>Сумма заказа:&nbsp;</Text>
-          <Text className={s.text}>5000 ₽</Text>
+          <Text className={s.text}>{totalPrice} ₽</Text>
         </Row>
       </Row>
       <Row justify="space-between" className={s.wrapper}>
@@ -90,7 +107,9 @@ const Cart = () => {
             Вернуться назад
           </Button>
         </Link>
-        <Button type="primary" size="large">Оплатить сейчас</Button>
+        <Button type="primary" size="large">
+          Оплатить сейчас
+        </Button>
       </Row>
     </>
   );

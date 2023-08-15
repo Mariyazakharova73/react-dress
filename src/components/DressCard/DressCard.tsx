@@ -3,22 +3,42 @@ import { Card, Radio, Divider, Typography, Space, Button, Badge, Skeleton } from
 import s from "./DressCard.module.css";
 import cn from "classnames";
 import { PlusOutlined } from "@ant-design/icons";
-import { sizesArr, colorArr } from "./../../utils/variables";
+import { sizesArr, colorArr, WHITE_COLOR } from "./../../utils/variables";
+import { ICartDress, IDress } from "../../types/types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store";
+import { addItem } from "../../redux/slices/cartSlice";
 const { Meta } = Card;
 const { Text } = Typography;
 
 interface IDressCardProps {
-  item: any;
+  item: IDress;
   isLoading: boolean;
 }
 
 const DressCard: FC<IDressCardProps> = ({ item, isLoading }) => {
+  const dispatch: AppDispatch = useDispatch();
+
+  const cartItem = useSelector((state: RootState) =>
+    state.cart.cartItems.find((cartDress) => cartDress.id === item.id)
+  );
+
   const [color, setColor] = useState("Светлое");
   const [size, setSize] = useState("42");
-  const [dressCount, setDressCount] = useState(0);
+
+  const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAddDress = () => {
-    setDressCount((prev) => prev + 1);
+    const { id, title, price, imageUrl, imageUrlDark } = item;
+    const dress = {
+      id,
+      title,
+      price,
+      imageUrl: color === "Светлое" ? imageUrl[0] : imageUrlDark[0],
+      color,
+      size,
+    };
+    dispatch(addItem(dress as ICartDress));
   };
 
   return (
@@ -84,7 +104,7 @@ const DressCard: FC<IDressCardProps> = ({ item, isLoading }) => {
           //loading
         >
           Добавить&nbsp;
-          {dressCount !== 0 && <Badge count={dressCount} color="#ffff" />}
+          {addedCount > 0 && <Badge count={addedCount} color={WHITE_COLOR} />}
         </Button>
       </Space>
     </Card>

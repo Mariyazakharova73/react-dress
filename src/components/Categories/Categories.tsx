@@ -10,9 +10,11 @@ import { setCategory } from "../../redux/slices/filterSlice";
 interface ICategoriesProps {}
 
 const Categories: FC<ICategoriesProps> = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const category = useSelector((state: RootState) => state.filter.category);
   const { width } = useWindowDimensions();
+
+  const dispatch: AppDispatch = useDispatch();
+
+  const category = useSelector((state: RootState) => state.filter.category);
 
   const handleCategoryChange = (e: SegmentedValue) => {
     dispatch(setCategory(e as string));
