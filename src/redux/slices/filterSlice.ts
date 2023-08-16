@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { SegmentedValue } from "antd/es/segmented";
+import { RootState } from "../store";
 
 export interface IFilterState {
   category: string | SegmentedValue;
   sort: { name: string; sortProperty: string };
   currentPage: number;
+  searchValue: string;
 }
 
 const initialState: IFilterState = {
@@ -15,6 +17,7 @@ const initialState: IFilterState = {
     sortProperty: "-rating",
   },
   currentPage: 1,
+  searchValue: "",
 };
 
 export const filterSlice = createSlice({
@@ -27,6 +30,9 @@ export const filterSlice = createSlice({
     setSort(state, action: PayloadAction<any>) {
       state.sort = action.payload;
     },
+    setSearchValue(state, action: PayloadAction<string>) {
+      state.searchValue = action.payload;
+    },
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
@@ -38,6 +44,15 @@ export const filterSlice = createSlice({
   },
 });
 
-export const { setCategory, setSort, setCurrentPage, setFilters } = filterSlice.actions;
+export const { setCategory, setSort, setCurrentPage, setFilters, setSearchValue } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;
+
+export const selectCategory = (state: RootState) => state.filter.category;
+
+export const selectCurrentPage = (state: RootState) => state.filter.currentPage;
+
+export const selectSort = (state: RootState) => state.filter.sort;
+
+export const selectFilter = (state: RootState) => state.filter;

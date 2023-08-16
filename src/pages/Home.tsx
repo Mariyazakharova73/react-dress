@@ -1,36 +1,31 @@
-import React, { ChangeEvent, FC, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useRef } from "react";
 import { Divider, Row } from "antd";
 import s from "../App.module.css";
 import Categories from "../components/Categories/Categories";
 import Sort from "../components/Sort/Sort";
 import Dresses from "../components/Dresses/Dresses";
 import SearchApp from "../components/SearchApp/SearchApp";
-import { BASE_URL, categories, list } from "../utils/variables";
-import { IDress } from "./../types/types";
+import { categories, list } from "../utils/variables";
 import PaginationApp from "./../components/Pagination/PaginationApp";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-import axios from "axios";
+import { AppDispatch } from "../redux/store";
 import debounce from "lodash.debounce";
 import qs from "qs";
 import { SegmentedValue } from "antd/es/segmented";
 import { useNavigate } from "react-router-dom";
-import { setFilters } from "../redux/slices/filterSlice";
+import { selectFilter, setFilters, setSearchValue } from "../redux/slices/filterSlice";
+import { fetchDresses } from "../redux/slices/dressesSlice";
 
 const Home: FC = () => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
-  const { category, sort } = useSelector((state: RootState) => state.filter);
-  const currentPage = useSelector((state: RootState) => state.filter.currentPage);
 
-  const [dresses, setDresses] = useState<IDress[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [serchValue, setSearchValue] = useState<string>("");
+  const { category, sort, currentPage, searchValue } = useSelector(selectFilter);
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
+    dispatch(setSearchValue(e.target.value));
   };
 
   const getCategoryNumber = (c: string | SegmentedValue) => {
@@ -41,24 +36,13 @@ const Home: FC = () => {
     return s.replace("-", "");
   };
 
-  const fetchDresses = async () => {
+  const getDresses = async () => {
     const categoryNumber = getCategoryNumber(category);
     const sortBy = getSortProperty(sort.sortProperty);
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
 
-    setIsLoading(true);
-    try {
-      const res = await axios.get(
-        `${BASE_URL}?page=${currentPage}&limit=4&category=${
-          categoryNumber > 0 ? categoryNumber : ""
-        }&sortBy=${sortBy}&order=${order}&search=${serchValue}`
-      );
-      setDresses(res.data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsLoading(false);
-    }
+    dispatch(fetchDresses({ categoryNumber, sortBy, order, searchValue, currentPage }));
+    console.log(searchValue);
   };
 
   useEffect(() => {
@@ -79,11 +63,11 @@ const Home: FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (!isSearch.current) {
-      fetchDresses();
+      getDresses();
     }
 
     isSearch.current = false;
-  }, [category, sort, serchValue, currentPage]);
+  }, [category, sort, searchValue, currentPage]);
 
   useEffect(() => {
     if (isMounted.current) {
@@ -107,7 +91,7 @@ const Home: FC = () => {
         <Sort />
       </Row>
       <Row>
-        <Dresses dresses={dresses} isLoading={isLoading} />
+        <Dresses />
       </Row>
       <Divider />
       <PaginationApp />

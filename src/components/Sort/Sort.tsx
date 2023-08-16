@@ -3,15 +3,15 @@ import { Typography, Select } from "antd";
 import s from "./Sort.module.css";
 import { list } from "../../utils/variables";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../redux/store";
-import { setSort } from "../../redux/slices/filterSlice";
+import { AppDispatch } from "../../redux/store";
+import { selectSort, setSort } from "../../redux/slices/filterSlice";
 const { Text } = Typography;
 
 interface ISortProps {}
 
 const Sort: FC<ISortProps> = () => {
   const dispatch: AppDispatch = useDispatch();
-  const sort = useSelector((state: RootState) => state.filter.sort);
+  const sort = useSelector(selectSort);
 
   const handleChange = (newValue: string) => {
     const obj = list.find((item) => item.name === newValue);

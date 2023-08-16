@@ -8,8 +8,6 @@ export interface IDress {
   types: number[];
   raiting: number;
   category: number;
-  compound: string;
-  description: string;
 }
 
 export interface ICartDress {
@@ -19,5 +17,5 @@ export interface ICartDress {
   imageUrl: string;
   size: string;
   color: string;
-  count: number
+  count: number;
 }

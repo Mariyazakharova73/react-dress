@@ -3,9 +3,9 @@ import { Segmented, Space, Select } from "antd";
 import { categories } from "./../../utils/variables";
 import { SegmentedValue } from "antd/es/segmented";
 import useWindowDimensions from "./../../HOC/useWindowDimensions ";
-import { AppDispatch, RootState } from "../../redux/store";
+import { AppDispatch } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory } from "../../redux/slices/filterSlice";
+import { selectCategory, setCategory } from "../../redux/slices/filterSlice";
 
 interface ICategoriesProps {}
 
@@ -14,7 +14,7 @@ const Categories: FC<ICategoriesProps> = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  const category = useSelector((state: RootState) => state.filter.category);
+  const category = useSelector(selectCategory);
 
   const handleCategoryChange = (e: SegmentedValue) => {
     dispatch(setCategory(e as string));

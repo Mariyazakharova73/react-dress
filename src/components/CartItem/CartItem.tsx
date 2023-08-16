@@ -5,9 +5,8 @@ import s from "./CartItem.module.css";
 import { MAIN_COLOR } from "../../utils/variables";
 import { ICartDress } from "../../types/types";
 import { AppDispatch } from "../../redux/store";
-import { addItem, minusItem, removeItem } from "../../redux/slices/cartSlice";
+import { addItem, minusItem } from "../../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
-import ModalApp from "../ModalApp/ModalApp";
 
 const { Text } = Typography;
 

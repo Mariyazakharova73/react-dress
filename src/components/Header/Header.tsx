@@ -6,14 +6,14 @@ import logo from "../../images/dress.svg";
 import { HOME_PATH, CART_PATH } from "./../../utils/variables";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import { getTotalDressCount } from "../../utils/helpers";
+import { selectCart } from "../../redux/slices/cartSlice";
 
 const { Header } = Layout;
 const { Text } = Typography;
 
 const HeaderApp: FC = () => {
-  const { cartItems, totalPrice } = useSelector((state: RootState) => state.cart);
+  const { cartItems, totalPrice } = useSelector(selectCart);
 
   return (
     <Header className={s.header}>

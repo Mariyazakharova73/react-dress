@@ -5,10 +5,10 @@ import s from "./Cart.module.css";
 import { Link } from "react-router-dom";
 import { HOME_PATH } from "./../../utils/variables";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../redux/store";
+import { AppDispatch } from "../../redux/store";
 import CartItem from "../../components/CartItem/CartItem";
 import { getTotalDressCount } from "../../utils/helpers";
-import { clearItems, removeItem } from "../../redux/slices/cartSlice";
+import { clearItems, removeItem, selectCart } from "../../redux/slices/cartSlice";
 import ModalApp from "./../../components/ModalApp/ModalApp";
 import { ICartDress } from "../../types/types";
 
@@ -17,10 +17,11 @@ const { Text } = Typography;
 const Cart = () => {
   const dispatch: AppDispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [openItem, setOpenItem] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [selected, setSelected] = useState<ICartDress | null>(null);
 
-  const { cartItems, totalPrice } = useSelector((state: RootState) => state.cart);
+  const { cartItems, totalPrice } = useSelector(selectCart);
 
   const showModal = () => {
     setOpen(true);
@@ -45,13 +46,13 @@ const Cart = () => {
 
   const showModalItem = (item: ICartDress) => {
     setSelected(item);
-    setOpen(true);
+    setOpenItem(true);
   };
 
   const handleOkRemoveItem = () => {
     setConfirmLoading(true);
     setTimeout(() => {
-      setOpen(false);
+      setOpenItem(false);
       dispatch(removeItem(selected as ICartDress));
       setConfirmLoading(false);
     }, 2000);
@@ -70,7 +71,7 @@ const Cart = () => {
       <ModalApp
         title="Удаление товара"
         modalText="Вы уверены, что хотите удалить товар?"
-        open={open}
+        open={openItem}
         confirmLoading={confirmLoading}
         handleOk={handleOkRemoveItem}
         handleCancel={handleCancel}
@@ -88,7 +89,9 @@ const Cart = () => {
       <List
         itemLayout="horizontal"
         dataSource={cartItems}
-        renderItem={(item, index) => <CartItem item={item} key={index} showModalItem={showModalItem}/>}
+        renderItem={(item, index) => (
+          <CartItem item={item} key={index} showModalItem={showModalItem} />
+        )}
       />
       <Divider />
       <Row justify="space-between">

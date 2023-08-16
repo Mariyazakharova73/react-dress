@@ -8,16 +8,20 @@ import { ICartDress, IDress } from "../../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { addItem } from "../../redux/slices/cartSlice";
+import { selectStatus } from "../../redux/slices/dressesSlice";
 const { Meta } = Card;
 const { Text } = Typography;
 
 interface IDressCardProps {
   item: IDress;
-  isLoading: boolean;
 }
 
-const DressCard: FC<IDressCardProps> = ({ item, isLoading }) => {
+const DressCard: FC<IDressCardProps> = ({ item }) => {
   const dispatch: AppDispatch = useDispatch();
+
+  const status = useSelector(selectStatus);
+
+  const isLoading = status === "loading";
 
   const cartItem = useSelector((state: RootState) =>
     state.cart.cartItems.find((cartDress) => cartDress.id === item.id)
