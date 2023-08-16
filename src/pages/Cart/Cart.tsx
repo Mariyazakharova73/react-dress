@@ -42,6 +42,7 @@ const Cart = () => {
 
   const handleCancel = () => {
     setOpen(false);
+    setOpenItem(false)
   };
 
   const showModalItem = (item: ICartDress) => {

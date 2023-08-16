@@ -6,7 +6,7 @@ export interface IDress {
   imageUrlDark: string[];
   sizes: number[];
   types: number[];
-  raiting: number;
+  rating: number;
   category: number;
 }
 

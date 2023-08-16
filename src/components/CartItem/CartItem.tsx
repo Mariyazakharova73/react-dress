@@ -64,7 +64,7 @@ const CartItem: FC<ICartitemProps> = ({ item, showModalItem }) => {
           />
           <Text>=</Text>
         </Row>
-        <Text className={s.price}>{item.price * item.count}</Text>
+        <Text className={s.price}>{item.price * item.count} ₽</Text>
         <Button type="text" shape="circle" icon={<CloseCircleOutlined onClick={onClickRemove} />} />
       </List.Item>
     </>

@@ -1,14 +1,27 @@
 import React, { FC, useState } from "react";
-import { Card, Radio, Divider, Typography, Space, Button, Badge, Skeleton } from "antd";
+import {
+  Card,
+  Radio,
+  Divider,
+  Typography,
+  Space,
+  Button,
+  Badge,
+  Skeleton,
+  RadioChangeEvent,
+} from "antd";
 import s from "./DressCard.module.css";
 import cn from "classnames";
 import { PlusOutlined } from "@ant-design/icons";
-import { sizesArr, colorArr, WHITE_COLOR } from "./../../utils/variables";
+import { sizesArr, WHITE_COLOR } from "./../../utils/variables";
 import { ICartDress, IDress } from "../../types/types";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../redux/store";
+import { AppDispatch } from "../../redux/store";
 import { addItem } from "../../redux/slices/cartSlice";
 import { selectStatus } from "../../redux/slices/dressesSlice";
+import ButtonColor from "../ButtonColor/ButtonColor";
+import { selectCartItem } from "../../redux/slices/filterSlice";
+import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 const { Text } = Typography;
 
@@ -18,17 +31,23 @@ interface IDressCardProps {
 
 const DressCard: FC<IDressCardProps> = ({ item }) => {
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
   const status = useSelector(selectStatus);
+  const [color, setColor] = useState("Светлое");
+  const [size, setSize] = useState("42");
+
+  const changeColor = (e: RadioChangeEvent) => {
+    setColor(e.target.value);
+  };
+
+  const changeSize = (e: RadioChangeEvent) => {
+    setSize(e.target.value);
+  };
 
   const isLoading = status === "loading";
 
-  const cartItem = useSelector((state: RootState) =>
-    state.cart.cartItems.find((cartDress) => cartDress.id === item.id)
-  );
-
-  const [color, setColor] = useState("Светлое");
-  const [size, setSize] = useState("42");
+  const cartItem = useSelector(selectCartItem(item));
 
   const addedCount = cartItem ? cartItem.count : 0;
 
@@ -56,6 +75,7 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
             alt="dress"
             className={s.image}
             src={color === "Светлое" ? item.imageUrl[0] : item.imageUrlDark[0]}
+            onClick={() => navigate(`dress/${item.id}`)}
           />
         )
       }
@@ -64,28 +84,8 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
     >
       <Meta title={item.title} />
       <Divider className={s.divider} plain />
-      <Radio.Group
-        className={s.colorWrapper}
-        value={color}
-        onChange={(e) => setColor(e.target.value)}
-      >
-        {colorArr.map((c, i) => {
-          return (
-            <Radio.Button
-              key={i}
-              value={c.name}
-              disabled={!item.types.some((type: number) => type === c.code)}
-            >
-              {c.name}
-            </Radio.Button>
-          );
-        })}
-      </Radio.Group>
-      <Radio.Group
-        className={cn(s.sizeWrapper)}
-        value={size}
-        onChange={(e) => setSize(e.target.value)}
-      >
+      <ButtonColor item={item} changeColor={changeColor} color={color}/>
+      <Radio.Group className={cn(s.sizeWrapper)} value={size} onChange={changeSize}>
         {sizesArr.map((s: number | string, index) => {
           return (
             <Radio.Button

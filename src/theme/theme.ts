@@ -1,6 +1,12 @@
-import { MAIN_COLOR, WHITE_COLOR, GREY_COLOR, BLACK_COLOR, LIGHT_GREY_COLOR } from "../utils/variables";
+import {
+  MAIN_COLOR,
+  WHITE_COLOR,
+  GREY_COLOR,
+  BLACK_COLOR,
+  LIGHT_GREY_COLOR,
+} from "../utils/variables";
 
-export const themeConfig  = {
+export const themeConfig = {
   components: {
     // Button: {
     //   colorPrimary: '#00b96b',
@@ -23,7 +29,12 @@ export const themeConfig  = {
     Badge: {
       colorBgContainer: MAIN_COLOR,
     },
-
+    Carousel: {
+      colorBgContainer: BLACK_COLOR,
+      //dotActiveWidth: 24,
+      dotHeight: 5,
+      dotWidth: 20,
+    },
   },
   //algorithm: theme.darkAlgorithm,
   token: {
@@ -34,4 +45,4 @@ export const themeConfig  = {
     fontFamily: "Nunito",
     fontSize: 16,
   },
-}
+};

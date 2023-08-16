@@ -3,11 +3,12 @@ import { Layout, ConfigProvider } from "antd";
 import HeaderApp from "./components/Header/Header";
 import s from "./App.module.css";
 import { themeConfig } from "./theme/theme";
-import { CART_PATH, NOT_FOUND_PATH, HOME_PATH } from "./utils/variables";
+import { CART_PATH, NOT_FOUND_PATH, HOME_PATH, DRESS_PATH } from "./utils/variables";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart/Cart";
 import NotFound from "./pages/NotFound";
+import FullDress from './pages/FullDress/FullDress';
 
 const { Content, Footer } = Layout;
 
@@ -24,6 +25,7 @@ const App = () => {
           <Routes>
             <Route path={HOME_PATH} element={<Home />} />
             <Route path={CART_PATH} element={<Cart />} />
+            <Route path={DRESS_PATH} element={<FullDress />} />
             <Route path={NOT_FOUND_PATH} element={<NotFound />} />
           </Routes>
         </Content>
