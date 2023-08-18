@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IDress, IOrder, ISortProperty } from "./../../types/types";
+import { IDress, IOrder,  SortPropertyEnum,  Status } from "./../../types/types";
 import { BASE_URL } from "../../utils/variables";
 import axios from "axios";
 import { RootState } from "../store";
@@ -9,17 +9,17 @@ import { RootState } from "../store";
 
 export interface IDressesState {
   items: IDress[];
-  status: "loading" | "success" | "error";
+  status: Status;
 }
 
 const initialState: IDressesState = {
   items: [],
-  status: "loading",
+  status: Status.LOADING,
 };
 
 type fetchDressesArgs = {
   categoryNumber: number;
-  sortBy: ISortProperty;
+  sortBy: SortPropertyEnum;
   order: IOrder;
   searchValue: string;
   currentPage: number;
@@ -47,15 +47,17 @@ export const dressesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDresses.pending, (state) => {
-      state.status = "loading";
-      state.items = [];
+      state.status = Status.LOADING;
+      //state.items = [];
     });
+
     builder.addCase(fetchDresses.fulfilled, (state, action) => {
-      state.status = "success";
       state.items = action.payload;
+      state.status = Status.SUCCESS;
     });
+
     builder.addCase(fetchDresses.rejected, (state) => {
-      state.status = "success";
+      state.status = Status.ERROR;
       state.items = [];
     });
   },
@@ -66,4 +68,5 @@ export const { setDresses } = dressesSlice.actions;
 export default dressesSlice.reducer;
 
 export const selectStatus = (state: RootState) => state.dresses.status;
+
 export const selectDresses = (state: RootState) => state.dresses;

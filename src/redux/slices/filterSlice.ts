@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { SegmentedValue } from "antd/es/segmented";
 import { RootState } from "../store";
-import { IDress } from "../../types/types";
+import { IDress, SortPropertyEnum } from "../../types/types";
 import { ISort } from "./../../types/types";
 
 export interface IFilterState {
@@ -16,7 +16,7 @@ const initialState: IFilterState = {
   category: "Все",
   sort: {
     name: "популярности",
-    sortProperty: "-rating",
+    sortProperty: SortPropertyEnum.RATING_ASC,
   },
   currentPage: 1,
   searchValue: "",

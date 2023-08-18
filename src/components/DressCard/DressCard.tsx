@@ -14,7 +14,7 @@ import s from "./DressCard.module.css";
 import cn from "classnames";
 import { PlusOutlined } from "@ant-design/icons";
 import { sizesArr, WHITE_COLOR } from "./../../utils/variables";
-import { ICartDress, IDress, TColor, TSize } from "../../types/types";
+import { ICartDress, IDress, Status, TColor, TSize } from "../../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { addItem } from "../../redux/slices/cartSlice";
@@ -46,7 +46,7 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
     setSize(e.target.value);
   };
 
-  const isLoading = status === "loading";
+  const isLoading = status === Status.LOADING;
 
   const cartItem = useSelector(selectCartItem(item));
 

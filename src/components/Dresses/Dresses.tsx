@@ -5,13 +5,14 @@ import s from "./Dresses.module.css";
 import { useSelector } from "react-redux";
 import ErrorInfo from "../ErrorInfo/ErrorInfo";
 import { selectDresses } from "../../redux/slices/dressesSlice";
+import { Status } from "../../types/types";
 
 const Dresses: FC = () => {
   const { items, status } = useSelector(selectDresses);
 
   return (
     <div className={s.wrapper}>
-      {status === "error" ? (
+      {status === Status.ERROR ? (
         <ErrorInfo />
       ) : (
         <>

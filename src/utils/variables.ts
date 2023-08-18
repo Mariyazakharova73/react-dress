@@ -1,5 +1,5 @@
 import { CollapseProps } from "antd";
-import { ISort } from "../types/types";
+import { ISort, SortPropertyEnum } from "../types/types";
 
 export const WHITE_COLOR = "#FFFFFF";
 export const MAIN_COLOR = "#e9967a";
@@ -8,10 +8,10 @@ export const BLACK_COLOR = "#000000";
 export const LIGHT_GREY_COLOR = "#e5e1e1";
 
 export const list: ISort[] = [
-  { name: "популярности", sortProperty: "-rating" },
-  { name: "цене (по убыванию)", sortProperty: "price" },
-  { name: "цене (по возрастанию)", sortProperty: "-price" },
-  { name: "алфавиту", sortProperty: "-title" },
+  { name: "популярности", sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: "цене (по убыванию)", sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: "цене (по возрастанию)", sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: "алфавиту", sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
 export const categories = [
@@ -40,16 +40,19 @@ export const dressDescription: CollapseProps["items"] = [
   {
     key: 1,
     label: "СОСТАВ",
-    children: "63% полиэстер, 30% вискоза, 5% шерсть, 2% эластан, Подкладка: 100% полиэстер, Отделка: 95% полиэстер, Отделка: 5% эластан.",
+    children:
+      "63% полиэстер, 30% вискоза, 5% шерсть, 2% эластан, Подкладка: 100% полиэстер, Отделка: 95% полиэстер, Отделка: 5% эластан.",
   },
   {
     key: 2,
     label: "УХОД ЗА ИЗДЕЛИЕМ",
-    children: "Не стирать, не отбеливать, машинная сушка запрещена, глажение при 110ºС, профессиональная сухая чистка, мягкий режим, снять декор перед химчисткой."
+    children:
+      "Не стирать, не отбеливать, машинная сушка запрещена, глажение при 110ºС, профессиональная сухая чистка, мягкий режим, снять декор перед химчисткой.",
   },
   {
     key: 3,
     label: "ДОСТАВКА",
-    children: "Вы можете выбрать наиболее подходящий для вас способ доставки товара: Курьерская доставка. Срок – от 1 дня. Доставка в пункты выдачи заказов и постаматы. Срок – от 1 дня. Доступна услуга примерки для ограниченного списка городов."
+    children:
+      "Вы можете выбрать наиболее подходящий для вас способ доставки товара: Курьерская доставка. Срок – от 1 дня. Доставка в пункты выдачи заказов и постаматы. Срок – от 1 дня. Доступна услуга примерки для ограниченного списка городов.",
   },
 ];
