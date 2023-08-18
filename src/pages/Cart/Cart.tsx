@@ -82,7 +82,7 @@ const Cart = () => {
           <ShoppingCartOutlined className={s.title} />
           <h1 className={s.title}>&nbsp;Корзина</h1>
         </Row>
-        <Button type="text" icon={<DeleteOutlined />} onClick={onClickClear}>
+        <Button type="text" icon={<DeleteOutlined />} onClick={onClickClear} disabled={!cartItems.length}>
           Очистить корзину
         </Button>
       </Row>
@@ -111,7 +111,7 @@ const Cart = () => {
             Вернуться назад
           </Button>
         </Link>
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" disabled={!cartItems.length}>
           Оплатить сейчас
         </Button>
       </Row>

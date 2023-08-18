@@ -5,11 +5,8 @@ import s from "./Dresses.module.css";
 import { useSelector } from "react-redux";
 import ErrorInfo from "../ErrorInfo/ErrorInfo";
 import { selectDresses } from "../../redux/slices/dressesSlice";
-import { Link } from "react-router-dom";
 
-interface IDressesProps {}
-
-const Dresses: FC<IDressesProps> = () => {
+const Dresses: FC = () => {
   const { items, status } = useSelector(selectDresses);
 
   return (

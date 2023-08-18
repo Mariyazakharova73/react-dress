@@ -6,11 +6,18 @@ interface IModalAppProps {
   modalText: string;
   open: boolean;
   confirmLoading: boolean;
-  handleOk: ()=> void;
-  handleCancel: ()=> void
+  handleOk: () => void;
+  handleCancel: () => void;
 }
 
-const ModalApp: FC<IModalAppProps> = ({ title, modalText, open, confirmLoading, handleOk, handleCancel }) => {
+const ModalApp: FC<IModalAppProps> = ({
+  title,
+  modalText,
+  open,
+  confirmLoading,
+  handleOk,
+  handleCancel,
+}) => {
   return (
     <Modal
       title={title}

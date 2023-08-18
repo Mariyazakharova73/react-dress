@@ -1,38 +1,21 @@
 import React, { FC, useEffect, useState } from "react";
-import {
-  Carousel,
-  Space,
-  Image,
-  Row,
-  Col,
-  Collapse,
-  CollapseProps,
-  Spin,
-  RadioChangeEvent,
-} from "antd";
-import { BASE_URL, descriptionDress } from "./../../utils/variables";
+import { Carousel, Space, Image, Row, Col, Collapse, Spin, RadioChangeEvent } from "antd";
+import { BASE_URL, dressDescription } from "./../../utils/variables";
 import ButtonColor from "./../../components/ButtonColor/ButtonColor";
 import s from "./FullDress.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { IDress } from "./../../types/types";
+import { IDress, TColor } from "./../../types/types";
+import { getImageUrlArr } from "../../utils/helpers";
 
 const FullDress: FC = () => {
   const [selectedDress, setSelectedDress] = useState<IDress | null>(null);
-  const [color, setColor] = useState("Светлое");
+  const [color, setColor] = useState<TColor>("Светлое");
 
   const changeColor = (e: RadioChangeEvent) => {
     setColor(e.target.value);
   };
-  const data: CollapseProps["items"] = descriptionDress.map((item) => {
-    return {
-      key: item.key,
-      label: item.label,
-      children: item.text,
-    };
-  });
 
-  const imageArr = color === "Светлое" ? selectedDress?.imageUrl : selectedDress?.imageUrlDark;
   const { id } = useParams();
 
   useEffect(() => {
@@ -61,7 +44,7 @@ const FullDress: FC = () => {
       <Col span={12} className={s.column}>
         <h3 className={s.title}>{selectedDress.title}</h3>
         <Carousel dotPosition="left" autoplay effect="fade">
-          {imageArr?.map((i) => (
+          {getImageUrlArr(color, selectedDress).map((i) => (
             <Space size={12}>
               <Image
                 //width={400}
@@ -74,7 +57,7 @@ const FullDress: FC = () => {
       </Col>
       <Col span={12} className={s.column}>
         <ButtonColor item={selectedDress as IDress} color={color} changeColor={changeColor} />
-        <Collapse defaultActiveKey={["1"]} ghost items={data} />
+        <Collapse defaultActiveKey={["1"]} ghost items={dressDescription} />
       </Col>
     </Row>
   );

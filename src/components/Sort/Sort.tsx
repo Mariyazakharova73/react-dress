@@ -7,15 +7,13 @@ import { AppDispatch } from "../../redux/store";
 import { selectSort, setSort } from "../../redux/slices/filterSlice";
 const { Text } = Typography;
 
-interface ISortProps {}
-
-const Sort: FC<ISortProps> = () => {
+const Sort: FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const sort = useSelector(selectSort);
 
   const handleChange = (newValue: string) => {
     const obj = list.find((item) => item.name === newValue);
-    dispatch(setSort(obj));
+    obj && dispatch(setSort(obj));
   };
 
   return (

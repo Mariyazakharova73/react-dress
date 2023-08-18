@@ -15,6 +15,7 @@ import { SegmentedValue } from "antd/es/segmented";
 import { useNavigate } from "react-router-dom";
 import { selectFilter, setFilters, setSearchValue } from "../redux/slices/filterSlice";
 import { fetchDresses } from "../redux/slices/dressesSlice";
+import { ISortProperty } from "../types/types";
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -32,8 +33,8 @@ const Home: FC = () => {
     return categories.findIndex((i) => i === c);
   };
 
-  const getSortProperty = (s: string) => {
-    return s.replace("-", "");
+  const getSortProperty = (property: string) => {
+    return property.replace("-", "") as ISortProperty;
   };
 
   const getDresses = async () => {
@@ -42,20 +43,22 @@ const Home: FC = () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
 
     dispatch(fetchDresses({ categoryNumber, sortBy, order, searchValue, currentPage }));
-    console.log(searchValue);
   };
 
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
       const obj = list.find((item) => item.sortProperty === params.sortProperty);
-      dispatch(
-        setFilters({
-          currentPage: params.currentPage,
-          sort: obj,
-          category: categories[Number(params.category)],
-        })
-      );
+      if (obj && params) {
+        dispatch(
+          setFilters({
+            searchValue: searchValue,
+            currentPage: Number(params.currentPage),
+            sort: obj,
+            category: categories[Number(params.category)],
+          })
+        );
+      }
       isSearch.current = true;
     }
   }, []);

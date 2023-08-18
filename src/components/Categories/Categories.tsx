@@ -7,9 +7,7 @@ import { AppDispatch } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategory, setCategory } from "../../redux/slices/filterSlice";
 
-interface ICategoriesProps {}
-
-const Categories: FC<ICategoriesProps> = () => {
+const Categories: FC = () => {
   const { width } = useWindowDimensions();
 
   const dispatch: AppDispatch = useDispatch();

@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { Radio, RadioChangeEvent } from "antd";
-import { IDress } from "../../types/types";
+import { IDress, TColor } from "../../types/types";
 import { colorArr } from "../../utils/variables";
 import s from "./ButtonColor.module.css";
 
 interface IButtonColorProps {
   item: IDress;
   changeColor: (e: RadioChangeEvent) => void;
-  color: string;
+  color: TColor;
 }
 
 const ButtonColor: FC<IButtonColorProps> = ({ item, changeColor, color }) => {

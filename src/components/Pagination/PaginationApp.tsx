@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { selectCurrentPage, setCurrentPage } from "../../redux/slices/filterSlice";
 
-interface IPaginationAppProps {}
-
-const PaginationApp: FC<IPaginationAppProps> = () => {
+const PaginationApp: FC = () => {
   const currentPage = useSelector(selectCurrentPage);
   const dispatch: AppDispatch = useDispatch();
 

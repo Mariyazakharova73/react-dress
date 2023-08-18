@@ -14,7 +14,7 @@ import s from "./DressCard.module.css";
 import cn from "classnames";
 import { PlusOutlined } from "@ant-design/icons";
 import { sizesArr, WHITE_COLOR } from "./../../utils/variables";
-import { ICartDress, IDress } from "../../types/types";
+import { ICartDress, IDress, TColor, TSize } from "../../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { addItem } from "../../redux/slices/cartSlice";
@@ -22,6 +22,7 @@ import { selectStatus } from "../../redux/slices/dressesSlice";
 import ButtonColor from "../ButtonColor/ButtonColor";
 import { selectCartItem } from "../../redux/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
+import { getImageUrl } from "../../utils/helpers";
 const { Meta } = Card;
 const { Text } = Typography;
 
@@ -34,8 +35,8 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
   const navigate = useNavigate();
 
   const status = useSelector(selectStatus);
-  const [color, setColor] = useState("Светлое");
-  const [size, setSize] = useState("42");
+  const [color, setColor] = useState<TColor>("Светлое");
+  const [size, setSize] = useState<TSize>("42");
 
   const changeColor = (e: RadioChangeEvent) => {
     setColor(e.target.value);
@@ -52,12 +53,12 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
   const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAddDress = () => {
-    const { id, title, price, imageUrl, imageUrlDark } = item;
+    const { id, title, price } = item;
     const dress = {
       id,
       title,
       price,
-      imageUrl: color === "Светлое" ? imageUrl[0] : imageUrlDark[0],
+      imageUrl: getImageUrl(color, item),
       color,
       size,
     };
@@ -74,7 +75,7 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
           <img
             alt="dress"
             className={s.image}
-            src={color === "Светлое" ? item.imageUrl[0] : item.imageUrlDark[0]}
+            src={getImageUrl(color, item)}
             onClick={() => navigate(`dress/${item.id}`)}
           />
         )
@@ -84,7 +85,7 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
     >
       <Meta title={item.title} />
       <Divider className={s.divider} plain />
-      <ButtonColor item={item} changeColor={changeColor} color={color}/>
+      <ButtonColor item={item} changeColor={changeColor} color={color} />
       <Radio.Group className={cn(s.sizeWrapper)} value={size} onChange={changeSize}>
         {sizesArr.map((s: number | string, index) => {
           return (

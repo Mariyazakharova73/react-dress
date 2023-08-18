@@ -9,6 +9,7 @@ interface ISearchAppProps {
 }
 
 const SearchApp: FC<ISearchAppProps> = ({ onSearch }) => {
+  
   return (
     <Input
       className={s.search}
@@ -17,8 +18,6 @@ const SearchApp: FC<ISearchAppProps> = ({ onSearch }) => {
       allowClear
       onChange={onSearch}
       size="large"
-      //onSearch={onSearch}
-      //loading
     />
   );
 };

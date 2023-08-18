@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Layout, ConfigProvider } from "antd";
 import HeaderApp from "./components/Header/Header";
 import s from "./App.module.css";
@@ -8,11 +8,11 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart/Cart";
 import NotFound from "./pages/NotFound";
-import FullDress from './pages/FullDress/FullDress';
+import FullDress from "./pages/FullDress/FullDress";
 
 const { Content, Footer } = Layout;
 
-const App = () => {
+const App: FC = () => {
   // const {
   //   token: { colorBgContainer },
   // } = theme.useToken();
