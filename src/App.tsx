@@ -1,12 +1,10 @@
 import React, { FC, Suspense } from "react";
 import { Layout, ConfigProvider } from "antd";
-//import HeaderApp from "./components/Header/Header";
 import s from "./App.module.css";
 import { themeConfig } from "./theme/theme";
 import { CART_PATH, NOT_FOUND_PATH, HOME_PATH, DRESS_PATH } from "./utils/variables";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-//import SpinApp from "./components/SpinApp/SpinApp";
 import { SpinApp, HeaderApp } from "./components";
 
 const CartPage = React.lazy(() => import(/* webpackChunkName: "CartPage" */ "./pages/Cart/Cart"));

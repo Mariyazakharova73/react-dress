@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
 import { Segmented, Space, Select } from "antd";
 import { categories } from "./../../utils/variables";
 import { SegmentedValue } from "antd/es/segmented";
@@ -12,13 +12,13 @@ export const Categories: FC = React.memo(() => {
   const dispatch: AppDispatch = useDispatch();
   const category = useSelector(selectCategory);
 
-  const handleCategoryChange = useCallback((e: SegmentedValue) => {
+  const handleCategoryChange = (e: SegmentedValue) => {
     dispatch(setCategory(e as string));
-  }, []);
+  };
 
-  const handleCategorySelect = useCallback((newValue: string) => {
+  const handleCategorySelect = (newValue: string) => {
     dispatch(setCategory(newValue));
-  }, []);
+  };
 
   return (
     <div>
