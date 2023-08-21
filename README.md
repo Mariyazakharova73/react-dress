@@ -39,6 +39,6 @@
 
 [Ссылка на проект react-dress](https://mariyazakharova73.github.io/react-dress/)
 
-<!-- <div align="center">
+<div align="center">
   <img width="575" alt="Приложение." src="./src/images/app.png">
-</div> -->
+</div>
