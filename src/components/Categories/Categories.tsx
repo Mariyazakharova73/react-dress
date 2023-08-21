@@ -7,7 +7,7 @@ import { AppDispatch } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategory, setCategory } from "../../redux/slices/filterSlice";
 
-const Categories: FC = () => {
+export const Categories: FC = React.memo(() => {
   const { width } = useWindowDimensions();
   const dispatch: AppDispatch = useDispatch();
   const category = useSelector(selectCategory);
@@ -43,6 +43,4 @@ const Categories: FC = () => {
       )}
     </div>
   );
-};
-
-export default React.memo(Categories);
+});

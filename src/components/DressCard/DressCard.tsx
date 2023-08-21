@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { addItem } from "../../redux/slices/cartSlice";
 import { selectStatus } from "../../redux/slices/dressesSlice";
-import ButtonColor from "../ButtonColor/ButtonColor";
+import { ButtonColor } from "../../components";
 import { selectCartItem } from "../../redux/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../utils/helpers";
@@ -30,7 +30,7 @@ interface IDressCardProps {
   item: IDress;
 }
 
-const DressCard: FC<IDressCardProps> = ({ item }) => {
+export const DressCard: FC<IDressCardProps> = ({ item }) => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -115,5 +115,3 @@ const DressCard: FC<IDressCardProps> = ({ item }) => {
     </Card>
   );
 };
-
-export default DressCard;

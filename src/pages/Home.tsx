@@ -1,12 +1,8 @@
 import React, { ChangeEvent, FC, useEffect, useRef } from "react";
 import { Divider, Row } from "antd";
 import s from "../App.module.css";
-import Categories from "../components/Categories/Categories";
-import Sort from "../components/Sort/Sort";
-import Dresses from "../components/Dresses/Dresses";
-import SearchApp from "../components/SearchApp/SearchApp";
+import { Categories, Sort, Dresses, SearchApp, PaginationApp } from "../components";
 import { categories, list } from "../utils/variables";
-import PaginationApp from "./../components/Pagination/PaginationApp";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../redux/store";
 import debounce from "lodash.debounce";
@@ -91,7 +87,7 @@ const Home: FC = () => {
       </Row>
       <Row className={s.wrapper} wrap>
         <Categories />
-        <Sort value={sort}/>
+        <Sort value={sort} />
       </Row>
       <Row>
         <Dresses />

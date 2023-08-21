@@ -8,7 +8,7 @@ interface ISearchAppProps {
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchApp: FC<ISearchAppProps> = ({ onSearch }) => {
+export const SearchApp: FC<ISearchAppProps> = ({ onSearch }) => {
   
   return (
     <Input
@@ -21,5 +21,3 @@ const SearchApp: FC<ISearchAppProps> = ({ onSearch }) => {
     />
   );
 };
-
-export default SearchApp;

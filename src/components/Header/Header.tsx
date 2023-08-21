@@ -12,7 +12,7 @@ import { selectCart } from "../../redux/slices/cartSlice";
 const { Header } = Layout;
 const { Text } = Typography;
 
-const HeaderApp: FC = () => {
+export const HeaderApp: FC = () => {
   const { cartItems, totalPrice } = useSelector(selectCart);
   const isMounted = useRef(false);
 
@@ -51,5 +51,3 @@ const HeaderApp: FC = () => {
     </Header>
   );
 };
-
-export default HeaderApp;

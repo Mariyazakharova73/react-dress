@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
-import { Carousel, Space, Image, Row, Col, Collapse, Spin, RadioChangeEvent } from "antd";
+import { Carousel, Space, Image, Row, Col, Collapse, RadioChangeEvent } from "antd";
 import { BASE_URL, dressDescription } from "./../../utils/variables";
-import ButtonColor from "./../../components/ButtonColor/ButtonColor";
+import { ButtonColor, SpinApp } from "../../components";
 import s from "./FullDress.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -32,11 +32,7 @@ const FullDress: FC = () => {
   }, []);
 
   if (!selectedDress) {
-    return (
-      <Row justify="center">
-        <Spin size="large" />
-      </Row>
-    );
+    return <SpinApp />;
   }
 
   return (
@@ -44,8 +40,8 @@ const FullDress: FC = () => {
       <Col span={12} className={s.column}>
         <h3 className={s.title}>{selectedDress.title}</h3>
         <Carousel dotPosition="left" autoplay effect="fade">
-          {getImageUrlArr(color, selectedDress).map((i) => (
-            <Space size={12}>
+          {getImageUrlArr(color, selectedDress).map((i, index) => (
+            <Space size={12} key={index}>
               <Image
                 //width={400}
                 src={i}

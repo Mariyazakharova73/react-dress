@@ -52,12 +52,8 @@ export const { setCategory, setSort, setCurrentPage, setFilters, setSearchValue 
 export default filterSlice.reducer;
 
 export const selectCategory = (state: RootState) => state.filter.category;
-
 export const selectCurrentPage = (state: RootState) => state.filter.currentPage;
-
 export const selectSort = (state: RootState) => state.filter.sort;
-
 export const selectFilter = (state: RootState) => state.filter;
-
 export const selectCartItem = (item: IDress) => (state: RootState) =>
   state.cart.cartItems.find((d) => d.id === item.id);

@@ -1,14 +1,21 @@
-import React, { FC } from "react";
+import React, { FC, Suspense } from "react";
 import { Layout, ConfigProvider } from "antd";
-import HeaderApp from "./components/Header/Header";
+//import HeaderApp from "./components/Header/Header";
 import s from "./App.module.css";
 import { themeConfig } from "./theme/theme";
 import { CART_PATH, NOT_FOUND_PATH, HOME_PATH, DRESS_PATH } from "./utils/variables";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Cart from "./pages/Cart/Cart";
-import NotFound from "./pages/NotFound";
-import FullDress from "./pages/FullDress/FullDress";
+//import SpinApp from "./components/SpinApp/SpinApp";
+import { SpinApp, HeaderApp } from "./components";
+
+const CartPage = React.lazy(() => import(/* webpackChunkName: "CartPage" */ "./pages/Cart/Cart"));
+const FullDressPage = React.lazy(
+  () => import(/* webpackChunkName: "FullDressPage" */ "./pages/FullDress/FullDress")
+);
+const NotFoundPage = React.lazy(
+  () => import(/* webpackChunkName: "NotFoundPage" */ "./pages/NotFound")
+);
 
 const { Content, Footer } = Layout;
 
@@ -22,12 +29,14 @@ const App: FC = () => {
       <Layout className={s.layout}>
         <HeaderApp />
         <Content className={s.content}>
-          <Routes>
-            <Route path={HOME_PATH} element={<Home />} />
-            <Route path={CART_PATH} element={<Cart />} />
-            <Route path={DRESS_PATH} element={<FullDress />} />
-            <Route path={NOT_FOUND_PATH} element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<SpinApp />}>
+            <Routes>
+              <Route path={HOME_PATH} element={<Home />} />
+              <Route path={CART_PATH} element={<CartPage />} />
+              <Route path={DRESS_PATH} element={<FullDressPage />} />
+              <Route path={NOT_FOUND_PATH} element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </Content>
         <Footer>React Dress ©2023 Created by Maryia Zakharova</Footer>
       </Layout>

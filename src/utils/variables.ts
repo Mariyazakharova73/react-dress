@@ -56,3 +56,5 @@ export const dressDescription: CollapseProps["items"] = [
       "Вы можете выбрать наиболее подходящий для вас способ доставки товара: Курьерская доставка. Срок – от 1 дня. Доставка в пункты выдачи заказов и постаматы. Срок – от 1 дня. Доступна услуга примерки для ограниченного списка городов.",
   },
 ];
+
+export const IMAGE_URL = "https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg";

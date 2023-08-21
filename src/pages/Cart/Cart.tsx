@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import { HOME_PATH } from "./../../utils/variables";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import CartItem from "../../components/CartItem/CartItem";
+import { CartItem, ModalApp } from "../../components";
 import { getTotalDressCount } from "../../utils/helpers";
 import { clearItems, removeItem, selectCart } from "../../redux/slices/cartSlice";
-import ModalApp from "./../../components/ModalApp/ModalApp";
 import { ICartDress } from "../../types/types";
 
 const { Text } = Typography;
@@ -42,7 +41,7 @@ const Cart = () => {
 
   const handleCancel = () => {
     setOpen(false);
-    setOpenItem(false)
+    setOpenItem(false);
   };
 
   const showModalItem = (item: ICartDress) => {
@@ -82,7 +81,12 @@ const Cart = () => {
           <ShoppingCartOutlined className={s.title} />
           <h1 className={s.title}>&nbsp;Корзина</h1>
         </Row>
-        <Button type="text" icon={<DeleteOutlined />} onClick={onClickClear} disabled={!cartItems.length}>
+        <Button
+          type="text"
+          icon={<DeleteOutlined />}
+          onClick={onClickClear}
+          disabled={!cartItems.length}
+        >
           Очистить корзину
         </Button>
       </Row>

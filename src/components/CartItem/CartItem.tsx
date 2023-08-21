@@ -15,7 +15,7 @@ interface ICartitemProps {
   showModalItem: (item: ICartDress) => void;
 }
 
-const CartItem: FC<ICartitemProps> = ({ item, showModalItem }) => {
+export const CartItem: FC<ICartitemProps> = ({ item, showModalItem }) => {
   const dispatch: AppDispatch = useDispatch();
 
   const onClickPlus = () => {
@@ -70,5 +70,3 @@ const CartItem: FC<ICartitemProps> = ({ item, showModalItem }) => {
     </>
   );
 };
-
-export default CartItem;

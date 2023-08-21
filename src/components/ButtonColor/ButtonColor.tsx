@@ -10,7 +10,7 @@ interface IButtonColorProps {
   color: TColor;
 }
 
-const ButtonColor: FC<IButtonColorProps> = ({ item, changeColor, color }) => {
+export const ButtonColor: FC<IButtonColorProps> = ({ item, changeColor, color }) => {
   return (
     <Radio.Group className={s.colorWrapper} value={color} onChange={changeColor}>
       {colorArr.map((c, i) => {
@@ -28,4 +28,3 @@ const ButtonColor: FC<IButtonColorProps> = ({ item, changeColor, color }) => {
   );
 };
 
-export default ButtonColor;

@@ -68,5 +68,4 @@ export const { setDresses } = dressesSlice.actions;
 export default dressesSlice.reducer;
 
 export const selectStatus = (state: RootState) => state.dresses.status;
-
 export const selectDresses = (state: RootState) => state.dresses;

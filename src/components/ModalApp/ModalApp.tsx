@@ -1,5 +1,5 @@
-import { Modal } from "antd";
 import React, { FC } from "react";
+import { Modal } from "antd";
 
 interface IModalAppProps {
   title: string;
@@ -10,7 +10,7 @@ interface IModalAppProps {
   handleCancel: () => void;
 }
 
-const ModalApp: FC<IModalAppProps> = ({
+export const ModalApp: FC<IModalAppProps> = ({
   title,
   modalText,
   open,
@@ -30,5 +30,3 @@ const ModalApp: FC<IModalAppProps> = ({
     </Modal>
   );
 };
-
-export default ModalApp;

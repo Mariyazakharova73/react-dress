@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-const ErrorInfo: FC = () => {
+export const ErrorInfo: FC = () => {
   return (
     <>
       <h2>Произошла ошибка</h2>
@@ -8,5 +8,3 @@ const ErrorInfo: FC = () => {
     </>
   );
 };
-
-export default ErrorInfo;

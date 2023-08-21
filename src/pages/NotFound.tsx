@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Empty } from "antd";
 import { Link } from "react-router-dom";
-import { HOME_PATH } from "./../utils/variables";
+import { HOME_PATH, IMAGE_URL } from "./../utils/variables";
 
 const NotFound = () => {
   return (
     <Empty
-      image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+      image={IMAGE_URL}
       imageStyle={{ height: 60 }}
       description={<span>К сожалению, ничего не найдено &#128542;</span>}
     >

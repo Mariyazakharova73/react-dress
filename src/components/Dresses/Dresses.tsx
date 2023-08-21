@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import { Col, Row } from "antd";
-import DressCard from "./../DressCard/DressCard";
+import { DressCard, ErrorInfo } from "../../components";
 import s from "./Dresses.module.css";
 import { useSelector } from "react-redux";
-import ErrorInfo from "../ErrorInfo/ErrorInfo";
 import { selectDresses } from "../../redux/slices/dressesSlice";
 import { Status } from "../../types/types";
 
-const Dresses: FC = () => {
+export const Dresses: FC = () => {
   const { items, status } = useSelector(selectDresses);
 
   return (
@@ -31,5 +30,3 @@ const Dresses: FC = () => {
     </div>
   );
 };
-
-export default Dresses;

@@ -12,7 +12,7 @@ interface ISortProps {
   value: ISort;
 }
 
-const Sort: FC<ISortProps> = ({ value }) => {
+export const Sort: FC<ISortProps> = React.memo(({ value }) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleChange = (newValue: string) => {
@@ -31,6 +31,4 @@ const Sort: FC<ISortProps> = ({ value }) => {
       />
     </div>
   );
-};
-
-export default React.memo(Sort);
+});
