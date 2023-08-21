@@ -2,14 +2,18 @@ import React, { FC } from "react";
 import { Typography, Select } from "antd";
 import s from "./Sort.module.css";
 import { list } from "../../utils/variables";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { selectSort, setSort } from "../../redux/slices/filterSlice";
+import { setSort } from "../../redux/slices/filterSlice";
+import { ISort } from "../../types/types";
 const { Text } = Typography;
 
-const Sort: FC = () => {
+interface ISortProps {
+  value: ISort;
+}
+
+const Sort: FC<ISortProps> = ({ value }) => {
   const dispatch: AppDispatch = useDispatch();
-  const sort = useSelector(selectSort);
 
   const handleChange = (newValue: string) => {
     const obj = list.find((item) => item.name === newValue);
@@ -21,7 +25,7 @@ const Sort: FC = () => {
       <Text className={s.text}>Сортировка по:</Text>
       <Select
         bordered={false}
-        value={sort.name}
+        value={value.name}
         onChange={handleChange}
         options={list.map((item) => ({ label: item.name, value: item.name }))}
       />
@@ -29,4 +33,4 @@ const Sort: FC = () => {
   );
 };
 
-export default Sort;
+export default React.memo(Sort);

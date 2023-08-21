@@ -10,10 +10,16 @@ export const getTotalPrice = (items: ICartDress[]) => {
   }, 0);
 };
 
-export const getImageUrlArr = (color: string, item: IDress)=> {
- return  color === "Светлое" ? item.imageUrl : item.imageUrlDark
-}
+export const getImageUrlArr = (color: string, item: IDress) => {
+  return color === "Светлое" ? item.imageUrl : item.imageUrlDark;
+};
 
-export const getImageUrl = (color: string, item: IDress)=> {
-  return  color === "Светлое" ? item.imageUrl[0] : item.imageUrlDark[0]
- }
+export const getImageUrl = (color: string, item: IDress) => {
+  return color === "Светлое" ? item.imageUrl[0] : item.imageUrlDark[0];
+};
+
+export const getCartFromLS = () => {
+  const cartData = localStorage.getItem("cart");
+  const cartItems = cartData ? JSON.parse(cartData) : [];
+  return { cartItems: cartItems as ICartDress[], totalPrice: getTotalPrice(cartItems) };
+};

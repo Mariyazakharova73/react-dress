@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { Segmented, Space, Select } from "antd";
 import { categories } from "./../../utils/variables";
 import { SegmentedValue } from "antd/es/segmented";
@@ -9,18 +9,17 @@ import { selectCategory, setCategory } from "../../redux/slices/filterSlice";
 
 const Categories: FC = () => {
   const { width } = useWindowDimensions();
-
   const dispatch: AppDispatch = useDispatch();
-
   const category = useSelector(selectCategory);
 
-  const handleCategoryChange = (e: SegmentedValue) => {
+  const handleCategoryChange = useCallback((e: SegmentedValue) => {
     dispatch(setCategory(e as string));
-  };
+  }, []);
 
-  const handleCategorySelect = (newValue: string) => {
+  const handleCategorySelect = useCallback((newValue: string) => {
     dispatch(setCategory(newValue));
-  };
+  }, []);
+
   return (
     <div>
       {width >= 768 && (
@@ -46,4 +45,4 @@ const Categories: FC = () => {
   );
 };
 
-export default Categories;
+export default React.memo(Categories);

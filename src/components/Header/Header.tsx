@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { Layout, Button, Typography, Divider, Row, Col } from "antd";
 import s from "./Header.module.css";
 import { ShoppingCartOutlined } from "@ant-design/icons";
@@ -14,6 +14,15 @@ const { Text } = Typography;
 
 const HeaderApp: FC = () => {
   const { cartItems, totalPrice } = useSelector(selectCart);
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(cartItems);
+      localStorage.setItem("cart", json);
+    }
+    isMounted.current = true;
+  }, [cartItems]);
 
   return (
     <Header className={s.header}>

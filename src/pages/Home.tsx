@@ -91,7 +91,7 @@ const Home: FC = () => {
       </Row>
       <Row className={s.wrapper} wrap>
         <Categories />
-        <Sort />
+        <Sort value={sort}/>
       </Row>
       <Row>
         <Dresses />
