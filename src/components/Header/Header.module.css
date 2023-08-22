@@ -1,37 +1,46 @@
 .header {
-  padding: 20px;
+  padding: 10px 20px;
   margin: 0 auto;
   border-radius: 10px;
   height: auto;
-  background-color: var(--white-color);
   max-width: 1440px;
   width: 100%;
 }
 
 .button {
-  margin-left: auto;
-}
-
-.text {
-  color: var(--white-color);
-}
-
-.divider {
-  border: .5px solid var(--white-color);
+  margin-left: 10px;
 }
 
 .logo {
   margin-bottom: 10px;
 }
 
-.logoImage {
+.logoText {
   font-size: 24px;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 @media screen and (max-width: 500px) {
-  .logoImage {
+  .logoText {
     font-size: 15px;
   }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.logoImage {
+  width: 30px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  object-fit: con;
+  object-position: center;
 }

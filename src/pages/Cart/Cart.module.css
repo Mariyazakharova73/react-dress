@@ -8,15 +8,16 @@
   }
 }
 
-.button {
-  background-color: var(--black-color);
-}
-
 .wrapper {
   margin-top: 20px;
+  gap: 10px;
 }
 
 .text {
   font-weight: bold;
 }
 
+
+.textWpapper {
+  column-gap: 10px
+}

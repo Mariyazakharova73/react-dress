@@ -1,18 +1,27 @@
 import React, { FC, useEffect, useRef } from "react";
-import { Layout, Button, Typography, Divider, Row, Col } from "antd";
+import { Layout, Button, Typography, Row, Col, Tooltip } from "antd";
 import s from "./Header.module.css";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import Icon, { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import logo from "../../images/dress.svg";
+import logoDark from "../../images/dressDark.svg";
 import { HOME_PATH, CART_PATH } from "./../../utils/variables";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getTotalDressCount } from "../../utils/helpers";
 import { selectCart } from "../../redux/slices/cartSlice";
+import { ThemeTypes } from "../../types/types";
+import sun from "../../images/sun.png";
+import moon from "../../images/moon.png";
 
 const { Header } = Layout;
 const { Text } = Typography;
 
-export const HeaderApp: FC = () => {
+interface IHeaderAppProps {
+  themeApp: ThemeTypes;
+  changeTheme: () => void;
+}
+
+export const HeaderApp: FC<IHeaderAppProps> = ({ themeApp, changeTheme }) => {
   const { cartItems, totalPrice } = useSelector(selectCart);
   const isMounted = useRef(false);
 
@@ -26,26 +35,41 @@ export const HeaderApp: FC = () => {
 
   return (
     <Header className={s.header}>
-      <Row>
-        <Col span={12} className={s.logo}>
-          <NavLink to={HOME_PATH}>
-            <Row align="middle" wrap={false}>
-              <img width={40} src={logo} alt="Логотип." />
-              <Text className={s.logoImage}>React Dress</Text>
-            </Row>
-          </NavLink>
+      <Row align="middle">
+        <Col className={s.logo} span={12}>
+          <Row wrap={false}>
+            <NavLink to={HOME_PATH} className={s.link}>
+              <img
+                className={s.logoImage}
+                src={themeApp === "light" ? logo : logoDark}
+                alt="Логотип."
+              />
+              <Text className={s.logoText}>React Dress</Text>
+            </NavLink>
+          </Row>
         </Col>
         <Col span={12}>
-          <NavLink to={CART_PATH}>
-            <Row justify="end">
+          <Row align="middle" justify="end">
+            <Button
+              type="primary"
+              shape="circle"
+              onClick={changeTheme}
+              icon={
+                themeApp !== "light" ? (
+                  <Icon component={() => <img src={sun} className={s.icon} />} />
+                ) : (
+                  <Icon component={() => <img className={s.icon} src={moon} />} />
+                )
+              }
+            />
+            <NavLink to={CART_PATH}>
               <Button className={s.button} type="primary" size="large">
-                <Text className={s.text}>{totalPrice} ₽</Text>
-                <Divider type="vertical" className={s.divider} />
+                {totalPrice} ₽ &#124;
                 <ShoppingCartOutlined />
-                <Text className={s.text}>{getTotalDressCount(cartItems)}</Text>
+                {getTotalDressCount(cartItems)}
               </Button>
-            </Row>
-          </NavLink>
+            </NavLink>
+          </Row>
         </Col>
       </Row>
     </Header>

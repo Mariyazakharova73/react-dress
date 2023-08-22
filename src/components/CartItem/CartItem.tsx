@@ -32,13 +32,13 @@ export const CartItem: FC<ICartitemProps> = ({ item, showModalItem }) => {
 
   const onClickRemove = () => {
     showModalItem(item);
-    //dispatch(removeItem(item));
   };
 
   return (
     <>
       <List.Item className={s.item}>
         <List.Item.Meta
+          className={s.title}
           avatar={<Avatar src={item.imageUrl} />}
           title={item.title}
           description={`${item.color}, ${item.size} р-р`}
@@ -48,24 +48,18 @@ export const CartItem: FC<ICartitemProps> = ({ item, showModalItem }) => {
           <Button
             type="text"
             shape="circle"
-            icon={
-              <MinusCircleOutlined
-                className={s.circle}
-                twoToneColor={MAIN_COLOR}
-                onClick={onClickMinus}
-              />
-            }
+            icon={<MinusCircleOutlined  onClick={onClickMinus} />}
           />
           <Text>{item.count}</Text>
+          <Button type="text" shape="circle" icon={<PlusCircleOutlined onClick={onClickPlus} />} />
+          <Text>=&nbsp;</Text>
+          <Text className={s.price}>{item.price * item.count} ₽</Text>
           <Button
             type="text"
             shape="circle"
-            icon={<PlusCircleOutlined className={s.circle} onClick={onClickPlus} />}
+            icon={<CloseCircleOutlined onClick={onClickRemove} />}
           />
-          <Text>=</Text>
         </Row>
-        <Text className={s.price}>{item.price * item.count} ₽</Text>
-        <Button type="text" shape="circle" icon={<CloseCircleOutlined onClick={onClickRemove} />} />
       </List.Item>
     </>
   );

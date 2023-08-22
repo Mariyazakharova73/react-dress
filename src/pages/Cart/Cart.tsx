@@ -78,8 +78,10 @@ const Cart = () => {
       />
       <Row justify="space-between" align="middle">
         <Row>
-          <ShoppingCartOutlined className={s.title} />
-          <h1 className={s.title}>&nbsp;Корзина</h1>
+          <Text className={s.title}>
+            <ShoppingCartOutlined className={s.title} />
+            &nbsp;Корзина
+          </Text>
         </Row>
         <Button
           type="text"
@@ -99,7 +101,7 @@ const Cart = () => {
         )}
       />
       <Divider />
-      <Row justify="space-between">
+      <Row justify="space-between" className={s.textWpapper}>
         <Row>
           <Text>Всего товаров:&nbsp;</Text>
           <Text className={s.text}>{getTotalDressCount(cartItems)} шт.</Text>
@@ -111,7 +113,7 @@ const Cart = () => {
       </Row>
       <Row justify="space-between" className={s.wrapper}>
         <Link to={HOME_PATH}>
-          <Button className={s.button} type="primary" size="large" icon={<LeftOutlined />}>
+          <Button type="primary" size="large" icon={<LeftOutlined />}>
             Вернуться назад
           </Button>
         </Link>

@@ -1,11 +1,19 @@
-import React, { FC, Suspense } from "react";
-import { Layout, ConfigProvider } from "antd";
+import React, { FC, Suspense, useEffect, useState } from "react";
+import { Layout, ConfigProvider, theme } from "antd";
 import s from "./App.module.css";
-import { themeConfig } from "./theme/theme";
-import { CART_PATH, NOT_FOUND_PATH, HOME_PATH, DRESS_PATH } from "./utils/variables";
+import { createThemeConfig } from "./theme/theme";
+import {
+  CART_PATH,
+  NOT_FOUND_PATH,
+  HOME_PATH,
+  DRESS_PATH,
+  WHITE_COLOR,
+  DARK_BG,
+} from "./utils/variables";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { SpinApp, HeaderApp } from "./components";
+import { ThemeTypes } from "./types/types";
 
 const CartPage = React.lazy(() => import(/* webpackChunkName: "CartPage" */ "./pages/Cart/Cart"));
 const FullDressPage = React.lazy(
@@ -18,15 +26,28 @@ const NotFoundPage = React.lazy(
 const { Content, Footer } = Layout;
 
 const App: FC = () => {
-  // const {
-  //   token: { colorBgContainer },
-  // } = theme.useToken();
+  const [themeApp, setThemeApp] = useState<ThemeTypes>("dark");
+
+  const changeTheme = () => {
+    setThemeApp((prev) => (prev === "light" ? "dark" : "light"));
+    localStorage.setItem("theme", themeApp === "light" ? "dark" : "light");
+  };
+
+  useEffect(() => {
+    let theme = localStorage.getItem("theme");
+    if (theme) {
+      setThemeApp(theme as ThemeTypes);
+    }
+  }, [themeApp]);
 
   return (
-    <ConfigProvider theme={themeConfig}>
+    <ConfigProvider theme={createThemeConfig(themeApp)}>
       <Layout className={s.layout}>
-        <HeaderApp />
-        <Content className={s.content}>
+        <HeaderApp themeApp={themeApp} changeTheme={changeTheme}/>
+        <Content
+          className={s.content}
+          style={{ backgroundColor: themeApp === "light" ? WHITE_COLOR : DARK_BG }}
+        >
           <Suspense fallback={<SpinApp />}>
             <Routes>
               <Route path={HOME_PATH} element={<Home />} />
@@ -36,7 +57,7 @@ const App: FC = () => {
             </Routes>
           </Suspense>
         </Content>
-        <Footer>React Dress ©2023 Created by Maryia Zakharova</Footer>
+        <Footer className={s.footer}>React Dress ©2023 Created by Maryia Zakharova</Footer>
       </Layout>
     </ConfigProvider>
   );

@@ -23,6 +23,7 @@ import { ButtonColor } from "../../components";
 import { selectCartItem } from "../../redux/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../utils/helpers";
+import useWindowDimensions from "../../HOC/useWindowDimensions ";
 const { Meta } = Card;
 const { Text } = Typography;
 
@@ -33,6 +34,7 @@ interface IDressCardProps {
 export const DressCard: FC<IDressCardProps> = ({ item }) => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+  const { width } = useWindowDimensions();
 
   const status = useSelector(selectStatus);
   const [color, setColor] = useState<TColor>("Светлое");
@@ -101,14 +103,8 @@ export const DressCard: FC<IDressCardProps> = ({ item }) => {
       </Radio.Group>
       <Space className={cn(s.buttonWrapper)}>
         <Text>{item.price} ₽</Text>
-        <Button
-          onClick={onClickAddDress}
-          size="large"
-          type="primary"
-          icon={<PlusOutlined />}
-          //loading
-        >
-          Добавить&nbsp;
+        <Button onClick={onClickAddDress} size="large" type="primary" icon={<PlusOutlined />}>
+          {width > 425 && <span>Добавить&nbsp;</span>}
           {addedCount > 0 && <Badge count={addedCount} color={WHITE_COLOR} />}
         </Button>
       </Space>

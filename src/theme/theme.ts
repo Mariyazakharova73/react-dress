@@ -1,48 +1,58 @@
+import { theme } from "antd";
+import { ThemeTypes } from "../types/types";
 import {
   MAIN_COLOR,
   WHITE_COLOR,
   GREY_COLOR,
   BLACK_COLOR,
   LIGHT_GREY_COLOR,
+  DARK_BG,
+  DARK_MAIN_COLOR,
 } from "../utils/variables";
 
-export const themeConfig = {
-  components: {
-    // Button: {
-    //   colorPrimary: '#00b96b',
-    //   algorithm: true, // Enable algorithm
-    // },
-    // Input: {
-    //   colorPrimary: '#eb2f96',
-    //   algorithm: true, // Enable algorithm
-    // }
-    Segmented: {
-      itemSelectedBg: BLACK_COLOR,
-      itemColor: BLACK_COLOR,
-      colorText: WHITE_COLOR,
-      colorBgLayout: LIGHT_GREY_COLOR,
-      borderRadius: 10,
+export const createThemeConfig = (themeStr: ThemeTypes) => {
+  const isLight = themeStr === "light";
+  return {
+    token: {
+      colorPrimary: isLight ? MAIN_COLOR : DARK_MAIN_COLOR,
+      borderRadius: 15,
+      fontFamily: "Nunito",
+      fontSize: 16,
+      ...(isLight && { colorBgLayout: GREY_COLOR }),
+      ...(isLight && { colorBgContainer: WHITE_COLOR }),
+      ...(isLight && { colorText: BLACK_COLOR }),
     },
-    Radio: {
-      borderRadius: 6,
+    components: {
+      Layout: {
+        colorBgHeader: isLight ? WHITE_COLOR : DARK_BG,
+        colorBgContent: WHITE_COLOR,
+      },
+      Main: {
+        colorBgLayout: WHITE_COLOR,
+      },
+      Segmented: {
+        borderRadius: 10,
+        ...(isLight && { itemSelectedBg: BLACK_COLOR }),
+        ...(isLight && { itemColor: BLACK_COLOR }),
+        ...(isLight && { colorText: WHITE_COLOR }),
+        ...(isLight && { colorBgLayout: LIGHT_GREY_COLOR }),
+      },
+      Radio: {
+        borderRadius: 6,
+      },
+      Badge: {
+        colorBgContainer: isLight ? MAIN_COLOR : DARK_MAIN_COLOR,
+        colorBorderBg: WHITE_COLOR,
+      },
+      Carousel: {
+        colorBgContainer: BLACK_COLOR,
+        dotHeight: 5,
+        dotWidth: 20,
+      },
+      Icon: {
+        twoToneColor: MAIN_COLOR,
+      },
     },
-    Badge: {
-      colorBgContainer: MAIN_COLOR,
-    },
-    Carousel: {
-      colorBgContainer: BLACK_COLOR,
-      //dotActiveWidth: 24,
-      dotHeight: 5,
-      dotWidth: 20,
-    },
-  },
-  //algorithm: theme.darkAlgorithm,
-  token: {
-    colorBgLayout: GREY_COLOR,
-    colorPrimary: MAIN_COLOR,
-    borderRadius: 15,
-    colorBgContainer: WHITE_COLOR,
-    fontFamily: "Nunito",
-    fontSize: 16,
-  },
+    algorithm: isLight ? theme.defaultAlgorithm : theme.darkAlgorithm,
+  };
 };

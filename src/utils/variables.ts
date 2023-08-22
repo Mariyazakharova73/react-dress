@@ -6,6 +6,8 @@ export const MAIN_COLOR = "#e9967a";
 export const GREY_COLOR = "#cfcfcf";
 export const BLACK_COLOR = "#000000";
 export const LIGHT_GREY_COLOR = "#e5e1e1";
+export const DARK_BG = "#141414";
+export const DARK_MAIN_COLOR = "#1677ff";
 
 export const list: ISort[] = [
   { name: "популярности", sortProperty: SortPropertyEnum.RATING_ASC },

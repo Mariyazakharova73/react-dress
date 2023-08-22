@@ -44,3 +44,5 @@ export enum Status {
   SUCCESS = "success",
   ERROR = "error",
 }
+
+export type ThemeTypes = "light" | "dark"
