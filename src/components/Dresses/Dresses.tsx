@@ -1,10 +1,12 @@
 import React, { FC } from "react";
-import { Col, Row } from "antd";
+import { Col, Row, Typography } from "antd";
 import { DressCard, ErrorInfo } from "../../components";
 import s from "./Dresses.module.css";
 import { useSelector } from "react-redux";
 import { selectDresses } from "../../redux/slices/dressesSlice";
 import { Status } from "../../types/types";
+
+const { Title } = Typography;
 
 export const Dresses: FC = () => {
   const { items, status } = useSelector(selectDresses);
@@ -15,7 +17,7 @@ export const Dresses: FC = () => {
         <ErrorInfo />
       ) : (
         <>
-          <h1 className={s.title}>Все платья</h1>
+          <Title className={s.title}>Все платья</Title>
           <Row className={s.row}>
             {items.map((item: any) => {
               return (
