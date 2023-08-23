@@ -1,15 +1,29 @@
 {
   "files": {
-    "main.css": "/react-dress/static/css/main.06b4e202.css",
-    "main.js": "/react-dress/static/js/main.1e248983.js",
-    "static/media/empty-cart.png": "/react-dress/static/media/empty-cart.db905d1f4b063162f25b.png",
+    "main.css": "/react-dress/static/css/main.ddda7496.css",
+    "main.js": "/react-dress/static/js/main.cc6721d7.js",
+    "CartPage.css": "/react-dress/static/css/CartPage.052b7ab1.chunk.css",
+    "CartPage.js": "/react-dress/static/js/CartPage.5eb126ab.chunk.js",
+    "FullDressPage.css": "/react-dress/static/css/FullDressPage.6547abaa.chunk.css",
+    "FullDressPage.js": "/react-dress/static/js/FullDressPage.c6f78fee.chunk.js",
+    "NotFoundPage.js": "/react-dress/static/js/NotFoundPage.15595849.chunk.js",
+    "static/js/875.1a6eceaf.chunk.js": "/react-dress/static/js/875.1a6eceaf.chunk.js",
+    "static/media/moon.png": "/react-dress/static/media/moon.cfa37b178f3890f6d652.png",
+    "static/media/sun.png": "/react-dress/static/media/sun.e084c7323a6f30ebee93.png",
+    "static/media/dressDark.svg": "/react-dress/static/media/dressDark.9a8df869079b8964e5c122191e2da5cd.svg",
     "static/media/dress.svg": "/react-dress/static/media/dress.2704476e100681df31f5bc950ff9c5e6.svg",
     "index.html": "/react-dress/index.html",
-    "main.06b4e202.css.map": "/react-dress/static/css/main.06b4e202.css.map",
-    "main.1e248983.js.map": "/react-dress/static/js/main.1e248983.js.map"
+    "main.ddda7496.css.map": "/react-dress/static/css/main.ddda7496.css.map",
+    "main.cc6721d7.js.map": "/react-dress/static/js/main.cc6721d7.js.map",
+    "CartPage.052b7ab1.chunk.css.map": "/react-dress/static/css/CartPage.052b7ab1.chunk.css.map",
+    "CartPage.5eb126ab.chunk.js.map": "/react-dress/static/js/CartPage.5eb126ab.chunk.js.map",
+    "FullDressPage.6547abaa.chunk.css.map": "/react-dress/static/css/FullDressPage.6547abaa.chunk.css.map",
+    "FullDressPage.c6f78fee.chunk.js.map": "/react-dress/static/js/FullDressPage.c6f78fee.chunk.js.map",
+    "NotFoundPage.15595849.chunk.js.map": "/react-dress/static/js/NotFoundPage.15595849.chunk.js.map",
+    "875.1a6eceaf.chunk.js.map": "/react-dress/static/js/875.1a6eceaf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.06b4e202.css",
-    "static/js/main.1e248983.js"
+    "static/css/main.ddda7496.css",
+    "static/js/main.cc6721d7.js"
   ]
 }
