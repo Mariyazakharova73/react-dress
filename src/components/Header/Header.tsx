@@ -44,7 +44,7 @@ export const HeaderApp: FC<IHeaderAppProps> = ({ themeApp, changeTheme }) => {
                 src={themeApp === "light" ? logo : logoDark}
                 alt="Логотип."
               />
-              <Text className={s.logoText}>React Dress</Text>
+              <Text className={s.logoText}>Dress</Text>
             </NavLink>
           </Row>
         </Col>
