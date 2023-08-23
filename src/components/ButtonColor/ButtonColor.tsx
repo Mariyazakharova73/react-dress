@@ -27,4 +27,3 @@ export const ButtonColor: FC<IButtonColorProps> = ({ item, changeColor, color })
     </Radio.Group>
   );
 };
-

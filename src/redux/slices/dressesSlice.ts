@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IDress, IOrder,  SortPropertyEnum,  Status } from "./../../types/types";
+import { IDress, IOrder, SortPropertyEnum, Status } from "./../../types/types";
 import { BASE_URL } from "../../utils/variables";
 import axios from "axios";
 import { RootState } from "../store";
-
-//export type FetchDressesType = Record<string, string>;
 
 export interface IDressesState {
   items: IDress[];
@@ -48,7 +46,6 @@ export const dressesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchDresses.pending, (state) => {
       state.status = Status.LOADING;
-      //state.items = [];
     });
 
     builder.addCase(fetchDresses.fulfilled, (state, action) => {

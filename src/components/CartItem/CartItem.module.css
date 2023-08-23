@@ -10,7 +10,7 @@
 @media screen and (max-width: 767px) {
   .item {
     gap: 10px;
-    justify-content: center!important;
+    justify-content: center !important;
   }
 }
 

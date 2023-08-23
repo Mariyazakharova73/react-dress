@@ -3,14 +3,14 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { ICartDress } from "../../types/types";
 import { getTotalPrice } from "../../utils/helpers";
 import { RootState } from "../store";
-import { getCartFromLS } from './../../utils/helpers';
+import { getCartFromLS } from "./../../utils/helpers";
 
 export interface ICartState {
   cartItems: ICartDress[];
   totalPrice: number;
 }
 
-const {cartItems, totalPrice} = getCartFromLS()
+const { cartItems, totalPrice } = getCartFromLS();
 
 const initialState: ICartState = {
   cartItems: cartItems,

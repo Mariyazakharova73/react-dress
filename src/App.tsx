@@ -43,7 +43,7 @@ const App: FC = () => {
   return (
     <ConfigProvider theme={createThemeConfig(themeApp)}>
       <Layout className={s.layout}>
-        <HeaderApp themeApp={themeApp} changeTheme={changeTheme}/>
+        <HeaderApp themeApp={themeApp} changeTheme={changeTheme} />
         <Content
           className={s.content}
           style={{ backgroundColor: themeApp === "light" ? WHITE_COLOR : DARK_BG }}

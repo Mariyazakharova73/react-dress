@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from "react";
-import { Layout, Button, Typography, Row, Col, Tooltip } from "antd";
+import { Layout, Button, Typography, Row, Col } from "antd";
 import s from "./Header.module.css";
-import Icon, { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import Icon, { ShoppingCartOutlined } from "@ant-design/icons";
 import logo from "../../images/dress.svg";
 import logoDark from "../../images/dressDark.svg";
 import { HOME_PATH, CART_PATH } from "./../../utils/variables";

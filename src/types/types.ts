@@ -45,4 +45,4 @@ export enum Status {
   ERROR = "error",
 }
 
-export type ThemeTypes = "light" | "dark"
+export type ThemeTypes = "light" | "dark";

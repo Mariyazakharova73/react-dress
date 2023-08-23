@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { Avatar, Button, List, Row, Typography } from "antd";
 import { CloseCircleOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import s from "./CartItem.module.css";
-import { MAIN_COLOR } from "../../utils/variables";
 import { ICartDress } from "../../types/types";
 import { AppDispatch } from "../../redux/store";
 import { addItem, minusItem } from "../../redux/slices/cartSlice";
@@ -48,7 +47,7 @@ export const CartItem: FC<ICartitemProps> = ({ item, showModalItem }) => {
           <Button
             type="text"
             shape="circle"
-            icon={<MinusCircleOutlined  onClick={onClickMinus} />}
+            icon={<MinusCircleOutlined onClick={onClickMinus} />}
           />
           <Text>{item.count}</Text>
           <Button type="text" shape="circle" icon={<PlusCircleOutlined onClick={onClickPlus} />} />

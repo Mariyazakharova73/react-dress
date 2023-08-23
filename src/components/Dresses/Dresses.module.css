@@ -6,7 +6,6 @@
 .title {
   font-size: 30px !important;
   margin: 10px 0 10px;
-  color: red;
 }
 
 @media screen and (max-width: 767px) {
