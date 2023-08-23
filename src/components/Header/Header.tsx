@@ -12,6 +12,7 @@ import { selectCart } from "../../redux/slices/cartSlice";
 import { ThemeTypes } from "../../types/types";
 import sun from "../../images/sun.png";
 import moon from "../../images/moon.png";
+import useWindowDimensions from "../../HOC/useWindowDimensions ";
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -23,6 +24,7 @@ interface IHeaderAppProps {
 
 export const HeaderApp: FC<IHeaderAppProps> = ({ themeApp, changeTheme }) => {
   const { cartItems, totalPrice } = useSelector(selectCart);
+  const { width } = useWindowDimensions();
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -35,21 +37,21 @@ export const HeaderApp: FC<IHeaderAppProps> = ({ themeApp, changeTheme }) => {
 
   return (
     <Header className={s.header}>
-      <Row align="middle">
+      <Row align="middle" className={s.logoWrapper}>
         <Col className={s.logo} span={12}>
-          <Row wrap={false}>
+          <Row>
             <NavLink to={HOME_PATH} className={s.link}>
               <img
                 className={s.logoImage}
                 src={themeApp === "light" ? logo : logoDark}
                 alt="Логотип."
               />
-              <Text className={s.logoText}>Dress</Text>
+              {width > 500 && <Text className={s.logoText}>Dress</Text>}
             </NavLink>
           </Row>
         </Col>
         <Col span={12}>
-          <Row align="middle" justify="end">
+          <Row align="middle" justify="end" className={s.buttonWrapper}>
             <Button
               type="primary"
               shape="circle"
@@ -63,7 +65,7 @@ export const HeaderApp: FC<IHeaderAppProps> = ({ themeApp, changeTheme }) => {
               }
             />
             <NavLink to={CART_PATH}>
-              <Button className={s.button} type="primary" size="large">
+              <Button className={s.button} type="primary" size={width > 500 ? "large" : "middle"}>
                 {totalPrice} ₽ &#124;
                 <ShoppingCartOutlined />
                 {getTotalDressCount(cartItems)}

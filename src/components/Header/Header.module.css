@@ -11,8 +11,25 @@
   margin-left: 10px;
 }
 
-.logo {
-  margin-bottom: 10px;
+@media screen and (max-width: 500px) {
+  .button {
+    margin-left: 5px;
+    font-size: 15px !important;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .logoWrapper {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    flex: 0 1 auto !important;
+    max-width: 40px !important
+  }
 }
 
 .logoText {
@@ -24,6 +41,14 @@
 @media screen and (max-width: 500px) {
   .logoText {
     font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .buttonWrapper {
+    flex: 0 1 auto !important;
+    max-width: 170px !important;
+    flex-wrap: nowrap;
   }
 }
 
@@ -41,6 +66,6 @@
 .icon {
   width: 20px;
   height: 20px;
-  object-fit: con;
+  object-fit: contain;
   object-position: center;
 }
