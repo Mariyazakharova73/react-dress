@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-dress/static/css/main.b6991835.css",
+    "main.css": "/react-dress/static/css/main.38242f6a.css",
     "main.js": "/react-dress/static/js/main.5e7c4a51.js",
     "CartPage.css": "/react-dress/static/css/CartPage.052b7ab1.chunk.css",
     "CartPage.js": "/react-dress/static/js/CartPage.5eb126ab.chunk.js",
@@ -13,7 +13,7 @@
     "static/media/dressDark.svg": "/react-dress/static/media/dressDark.9a8df869079b8964e5c122191e2da5cd.svg",
     "static/media/dress.svg": "/react-dress/static/media/dress.2704476e100681df31f5bc950ff9c5e6.svg",
     "index.html": "/react-dress/index.html",
-    "main.b6991835.css.map": "/react-dress/static/css/main.b6991835.css.map",
+    "main.38242f6a.css.map": "/react-dress/static/css/main.38242f6a.css.map",
     "main.5e7c4a51.js.map": "/react-dress/static/js/main.5e7c4a51.js.map",
     "CartPage.052b7ab1.chunk.css.map": "/react-dress/static/css/CartPage.052b7ab1.chunk.css.map",
     "CartPage.5eb126ab.chunk.js.map": "/react-dress/static/js/CartPage.5eb126ab.chunk.js.map",
@@ -23,7 +23,7 @@
     "875.1a6eceaf.chunk.js.map": "/react-dress/static/js/875.1a6eceaf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b6991835.css",
+    "static/css/main.38242f6a.css",
     "static/js/main.5e7c4a51.js"
   ]
 }
